@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'use_ico_only' => false,
+    'use_ico_only' => true,
     'use_full_favicon' => false,
 
     /*
@@ -64,7 +64,7 @@ return [
     */
 
     'logo' => '<b>Roush</b>Corp',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img' => 'favicons/FaviconRoushCorp.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -86,7 +86,7 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'favicons/FaviconRoushCorp.png',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 50,
@@ -109,7 +109,7 @@ return [
     'preloader' => [
         'enabled' => true,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'favicons/FaviconRoushCorp.png',
             'alt' => 'AdminLTE Preloader Image',
             'effect' => 'animation__shake',
             'width' => 60,
@@ -302,97 +302,36 @@ return [
         ],
 
         // Sidebar items:
-        /* [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ], */
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog', //para sistema de roles
-        ],
         [
             'text' => 'Inicio',
             'route'  => 'dash',
             'icon'=> 'fas fa-fw fa-home',
         ],
         [
+            'text'        => 'Clientes',
+            'route'         => 'customers.index',
+            'icon'        => 'fas fa-fw fa-users'
+        ],
+        [
             'text'        => 'Productos',
             'url'         => '/productos',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 'O',
-            'label_color' => 'success',
+            'icon'        => 'fas fa-fw fa-box'
         ],
         [
             'text'        => 'Facturar',
             'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 'O',
-            'label_color' => 'danger',
+            'icon'        => 'fas fa-fw fa-file-invoice'
         ],
         [
             'text'        => 'Ventas',
             'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 'O',
-            'label_color' => 'warning',
+            'icon'        => 'fas fa-fw fa-cash-register'
         ],
         [
             'text'        => 'Compras',
             'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 'O',
-            'label_color' => 'info',
-        ],
-        ['header' => 'Cuenta'],
-        [
-            'text' => 'Perfil',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
-        ],
+            'icon'        => 'fas fa-fw fa-shopping-cart'
+        ]
         /* ['header' => 'labels'],
         [
             'text'       => 'important',

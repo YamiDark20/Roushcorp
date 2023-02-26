@@ -11,17 +11,22 @@
 
     </ol>
 </nav>
-@endsection 
+@endsection
 
 @section('content')
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <strong>No se han colocado nada en ninguno de los campos o el codigo del producto ya existe.</strong>
+        </div>
+    @endif
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <h4>Agregar producto</h4>
                 </div>
-    
+
                 <form action="/productos" method="POST">
                     @csrf
                     <div class="row">
@@ -30,27 +35,27 @@
                             <label for="" class="form-label">Codigo</label>
                             <input id="codigo" name="codigo" type="text" class="form-control" >
                         </div>
-                    
+
                         <div class="form-group col-4">
                             <label for="" class="form-label">Nombre</label>
                             <input id="nombre" name="nombre" type="text" class="form-control" >
                         </div>
-                    
+
                         <div class="form-group col-4">
                             <label for="" class="form-label">Marca</label>
                             <input id="marca" name="marca" type="text" class="form-control" >
                         </div>
-                    
+
                         <div class="form-group col-4">
                             <label for="" class="form-label">Peso</label>
                             <input id="peso" name="peso" type="number" class="form-control" >
                         </div>
-                    
+
                         <div class="form-group col-4">
                             <label for="" class="form-label">Cantidad</label>
                             <input id="cantidad" name="cantidad" type="number" class="form-control" >
                         </div>
-                    
+
                         <div class="form-group col-4">
                             <label for="" class="form-label">Precio</label>
                             <input id="precio" name="precio" type="text" step="any" value="0.00" class="form-control" >
@@ -71,7 +76,7 @@
                             </label>
 
                         </div> --}}
-                    
+
                        <div class="form-group col-3">
                             <label for="" class="form-label">Exonerado</label>
                             <input id="exonerado" name="exonerado" type="boolean" class="form-control" >
@@ -79,20 +84,20 @@
 
 
                     </div>
-                    
-                
+
+
                     <div>
                         <a href="/productos" class="btn btn-secondary" >Cancelar</a>
                         <button type="submit" class="btn btn-info" >Guardar</button>
                     </div>
-                
-    
+
+
             </div>
-    
+
         </div>
-    
+
     </div>
-    
+
 
 
 @endsection

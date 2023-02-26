@@ -36,20 +36,33 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        $productos = new Producto();
+        $request->validate([
+            'codigo' => 'required|unique:productos',
+            'nombre' => 'required',
+            'marca' => 'required',
+            'peso' => 'required',
+            'descripcion' => 'required',
+            'cantidad' => 'required',
+            'precio' => 'required',
+            'exonerado' => 'required'
+        ]);
+        Producto::create($request->all());
+        return redirect()->route('productos.index');
 
-        $productos->codigo = $request->get('codigo');
-        $productos->nombre = $request->get('nombre');
-        $productos->marca = $request->get('marca');
-        $productos->peso = $request->get('peso');
-        $productos->descripcion = $request->get('descripcion');
-        $productos->cantidad = $request->get('cantidad');
-        $productos->precio = $request->get('precio');
-        $productos->exonerado = $request->get('exonerado');
+        // $productos = new Producto();
 
-        $productos->save();
+        // $productos->codigo = $request->get('codigo');
+        // $productos->nombre = $request->get('nombre');
+        // $productos->marca = $request->get('marca');
+        // $productos->peso = $request->get('peso');
+        // $productos->descripcion = $request->get('descripcion');
+        // $productos->cantidad = $request->get('cantidad');
+        // $productos->precio = $request->get('precio');
+        // $productos->exonerado = $request->get('exonerado');
 
-        return redirect('/productos');
+        // $productos->save();
+
+        // return redirect('/productos');
 
     }
 
@@ -85,6 +98,16 @@ class ProductoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'codigo' => 'required|unique:productos',
+            'nombre' => 'required',
+            'marca' => 'required',
+            'peso' => 'required',
+            'descripcion' => 'required',
+            'cantidad' => 'required',
+            'precio' => 'required',
+            'exonerado' => 'required'
+        ]);
         $producto = Producto::find($id);
 
         $producto->codigo = $request->get('codigo');

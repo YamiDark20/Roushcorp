@@ -15,7 +15,11 @@
 @endsection
 
 @section('content')
-
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <strong>No se han colocado nada en ninguno de los campos.</strong>
+        </div>
+    @endif
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
@@ -26,34 +30,34 @@
             <form action="/productos/{{$producto->id}}" method="POST">
                 @csrf
                 @method('PUT')
-                
+
                 <div class="row">
 
                     <div class="mb-3 col-4">
                         <label for="" class="form-label">Codigo</label>
-                        <input id="codigo" name="codigo" type="text" value="{{$producto->codigo}}" class="form-control">
+                        <input id="codigo" name="codigo" type="text" value="{{$producto->codigo}}" class="form-control" readonly>
                     </div>
-                
+
                     <div class="mb-3 col-4">
                         <label for="" class="form-label">Nombre</label>
                         <input id="nombre" name="nombre" type="text" value="{{$producto->nombre}}" class="form-control">
                     </div>
-                
+
                     <div class="mb-3 col-4">
                         <label for="" class="form-label">Marca</label>
                         <input id="marca" name="marca" type="text" value="{{$producto->marca}}" class="form-control">
                     </div>
-                
+
                     <div class="mb-3 col-4">
                         <label for="" class="form-label">Peso</label>
                         <input id="peso" name="peso" type="number" value="{{$producto->peso}}" class="form-control">
                     </div>
-                
+
                     <div class="mb-3 col-4">
                         <label for="" class="form-label">Cantidad</label>
                         <input id="cantidad" name="cantidad" type="number" value="{{$producto->cantidad}}" class="form-control">
                     </div>
-                
+
                     <div class="mb-3 col-4">
                         <label for="" class="form-label">Precio</label>
                         <input id="precio" name="precio" type="text" step="any" value="{{$producto->precio}}" class="form-control">
@@ -63,12 +67,12 @@
                         <label for="" class="form-label">Descripcion</label>
                         <input id="descripcion" name="descripcion" type="text" value="{{$producto->descripcion}}" class="form-control">
                     </div>
-                
+
                     <div class="mb-3 col-3">
                         <label for="" class="form-label">Exonerado</label>
                         <input id="exonerado" name="exonerado" type="text" value="{{$producto->exonerado}}" class="form-control">
                     </div>
-                
+
                 </div>
 
                 <div>

@@ -9,27 +9,27 @@
 @section('content')
     {{-- <p>Welcome to this beautiful admin panel.</p> --}}
    <div class="d-flex">
-   
-    <div class="mr-3"> 
+
+    <div class="mr-3">
     <a href="/productos" class="btn btn-danger btn-xl">
       <i class=" ocul-ico fa fa-heart">&nbsp;Productos</i>
     </a>
     </div>
 
-    <div class="mr-3"> 
-      <a href="#" class="btn btn-primary btn-xl">
+    <div class="mr-3">
+      <a href="{{ route('customers.index') }}" class="btn btn-primary btn-xl">
       <i class="fa fa-user">&nbsp;Clientes  </i>
       </a>
     </div>
 
-    
-    <div class="mr-3"> 
+
+    <div class="mr-3">
       <a href="#" class="btn btn-success btn-xl">
       <i class="fa fa-user">&nbsp;Ventas  </i>
       </a>
     </div>
 
-    <div class="mr-3"> 
+    <div class="mr-3">
       <a href="#" class="btn btn-info btn-xl">
       <i class="fa fa-heart">&nbsp;Compras  </i>
       </a>
@@ -42,12 +42,12 @@
 @section('css')
 
 <style>
-  
+
   @import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,700");
   @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
-  
-  
-  
+
+
+
   .btn-circle.btn-xl {
     width: 100px;
     height: 100px;
@@ -56,8 +56,8 @@
     font-size: 24px;
     line-height: 1.33;
 }
-  
-  
+
+
 .btn-circle {
     width: 30px;
     height: 30px;
@@ -118,6 +118,3 @@ a:hover .ocul{
 
 @stop
 
-@section('js')
-    <script> console.log('Hi!'); </script>
-@stop
