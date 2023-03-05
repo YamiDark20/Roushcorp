@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CobroController;
 
 
 /*
@@ -22,6 +23,21 @@ Route::resource('productos', '\App\Http\Controllers\ProductoController');
 
 Route::resource('customers', '\App\Http\Controllers\CustomerController')
 ->except('show', 'destroy')->names('customers');
+
+Route::resource('cobros', CobroController::class)
+->except('store', 'edit', 'update', 'show', 'destroy')->names('cobros');
+
+Route::get('compras/almacen', function(){
+    return view('compra.almacen.index');
+})->name('compra.almacen'); //Gestionar almacen
+
+Route::get('compras/almacen/{codalm}/create', function($codalm){
+    return view('compra.create', compact('codalm'));
+})->name('compra.almacen.create'); //Agregar compra de un almacen x
+
+Route::get('compras/{codalm}', function($codalm){
+    return view('compra.index');
+})->name('compra.index'); //Visualizar compras de un almacen
 
 /* Route::get('/', function(){
     return view('cliente.registro');

@@ -318,6 +318,11 @@ return [
             'icon'        => 'fas fa-fw fa-box'
         ],
         [
+            'text'        => 'Cobrar',
+            'route'         => 'cobros.index',
+            'icon'        => 'fas fa-fw fa-book'
+        ],
+        [
             'text'        => 'Facturar',
             'url'         => 'admin/pages',
             'icon'        => 'fas fa-fw fa-file-invoice'
@@ -329,7 +334,7 @@ return [
         ],
         [
             'text'        => 'Compras',
-            'url'         => 'admin/pages',
+            'route'         => 'compra.almacen',
             'icon'        => 'fas fa-fw fa-shopping-cart'
         ]
         /* ['header' => 'labels'],
@@ -502,5 +507,5 @@ return [
     |
     */
 
-    'livewire' => false,
+    'livewire' => true,
 ];

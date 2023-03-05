@@ -48,12 +48,12 @@
 
                         <div class="form-group col-4">
                             <label for="" class="form-label">Peso</label>
-                            <input id="peso" name="peso" type="number" class="form-control" >
+                            <input id="peso" name="peso" type="number" min="1" class="form-control" >
                         </div>
 
                         <div class="form-group col-4">
                             <label for="" class="form-label">Cantidad</label>
-                            <input id="cantidad" name="cantidad" type="number" class="form-control" >
+                            <input id="cantidad" name="cantidad" type="number" min="1" class="form-control" >
                         </div>
 
                         <div class="form-group col-4">
@@ -63,28 +63,22 @@
 
                         <div class="form-group col-6">
                             <label for="" class="form-label">Descripcion</label>
-                            <textarea id="descripcion" name="descripcion" type="text" class="form-control" rows="3"></textarea>
+                            <textarea id="descripcion" name="descripcion" type="text" class="form-control"></textarea>
                         </div>
 
-                        {{-- <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <label for="" class="form-label">Exonerado</label>
-                            <label for="" class="btn btn-warning">
-                                <input type="radio" name="exonerado" value="si" autocomplete="off">Si
-                            </label>
-                            <label for="" class="btn btn-warning active">
-                                <input type="radio" name="exonerado" value="no" autocomplete="off">No
-                            </label>
+                        <div class="form-group">
+                            <label for="" class="form-label d-block">Exonerado</label>
+                            <div class="btn-group btn-group-toggle d-block" data-toggle="buttons">
+                                <div class="btn btn-primary">
+                                    <input type="radio" name="exonerado" value="0" autocomplete="off" class="btn-check" checked>Sin IVA
+                                </div>
+                                <div class="btn btn-primary">
+                                    <input type="radio" name="exonerado" value="1" autocomplete="off" class="btn-check">Con IVA
+                                </div>
 
-                        </div> --}}
-
-                       <div class="form-group col-3">
-                            <label for="" class="form-label">Exonerado</label>
-                            <input id="exonerado" name="exonerado" type="boolean" class="form-control" >
+                            </div>
                         </div>
-
-
                     </div>
-
 
                     <div>
                         <a href="/productos" class="btn btn-secondary" >Cancelar</a>
