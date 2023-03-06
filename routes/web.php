@@ -23,6 +23,8 @@ Route::resource('productos', '\App\Http\Controllers\ProductoController');
 Route::resource('customers', '\App\Http\Controllers\CustomerController')
 ->except('show', 'destroy')->names('customers');
 
+Route::resource('ventas', '\App\Http\Controllers\VentaController');
+
 /* Route::get('/', function(){
     return view('cliente.registro');
 }); */

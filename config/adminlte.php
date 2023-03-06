@@ -319,17 +319,17 @@ return [
         ],
         [
             'text'        => 'Facturar',
-            'url'         => 'admin/pages',
+            'url'         => '#',
             'icon'        => 'fas fa-fw fa-file-invoice'
         ],
         [
             'text'        => 'Ventas',
-            'url'         => 'admin/pages',
+            'route'         => 'ventas.index',
             'icon'        => 'fas fa-fw fa-cash-register'
         ],
         [
             'text'        => 'Compras',
-            'url'         => 'admin/pages',
+            'url'         => '#',
             'icon'        => 'fas fa-fw fa-shopping-cart'
         ]
         /* ['header' => 'labels'],

@@ -19,7 +19,7 @@
         <div class="alert alert-danger">
             <strong>No se han colocado nada en ninguno de los campos.</strong>
         </div>
-    @endif
+    @endif 
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">

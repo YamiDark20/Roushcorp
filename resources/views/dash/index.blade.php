@@ -11,7 +11,7 @@
    <div class="d-flex">
 
     <div class="mr-3">
-    <a href="/productos" class="btn btn-danger btn-xl">
+    <a href="{{ route('productos.index') }}" class="btn btn-danger btn-xl">
       <i class=" ocul-ico fa fa-heart">&nbsp;Productos</i>
     </a>
     </div>
@@ -24,7 +24,7 @@
 
 
     <div class="mr-3">
-      <a href="#" class="btn btn-success btn-xl">
+      <a href="{{ route('ventas.index') }}" class="btn btn-success btn-xl">
       <i class="fa fa-user">&nbsp;Ventas  </i>
       </a>
     </div>
@@ -34,6 +34,22 @@
       <i class="fa fa-heart">&nbsp;Compras  </i>
       </a>
     </div>
+    
+{{-- Botones con animacion --}}
+    {{-- <a href="/productos">
+      <div class="contenedor" id="uno">
+      <i class="fa fa-user icon"></i>
+        <p class="texto">productos</p>
+      
+      </div>
+    </a>
+
+    <a href="{{ route('customers.index') }}">
+      <div class="contenedor" id="dos">
+        <i class="fa fa-heart icon"></i>
+        <p class="texto">clientes</p>
+      </div>
+    </a> --}}
 
   </div>
 
@@ -47,6 +63,63 @@
   @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
 
 
+div.contenedor{
+  width:200px;
+  height: 200px;
+  float: left;
+  transition: height .4s;  
+}
+div#uno{
+  background-color: rgb(208, 101, 3)
+}
+div#dos{
+  background-color: rgb(233, 147, 26)
+}
+div#tres{
+  background-color: rgb(22, 145, 190)
+}
+div#cuatro{
+  background-color: rgb(22, 107, 162)
+}
+div#cinco{
+  background-color: rgb(27, 54, 71)
+}
+div#seis{
+  background-color: rgb(21, 40, 54)
+}
+
+i.icon{
+  font-size: 1.5em;
+  display: block;
+  margin: 50px auto;
+  background-color: rgba(255, 255, 255, .15);
+  width: 60px;
+  padding: 20px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 0px 30px rgba(255, 255, 255, 0);
+  transition:box-shadow .4s;
+}
+
+p.texto{
+  font-size: 1.2em;
+  color: white;
+  text-align: center;
+  padding-top: 10px;
+  opacity: .5;
+  transition: .4s;
+}
+div.contenedor:hover{
+  height: 230px;
+}
+
+div.contenedor:hover p.texto{
+  padding-top: 30px;
+  opacity: 1;
+}
+
+div.contenedor:hover i.icon{
+  box-shadow: 0px 0px 0px 0px rgba(255255, 255, 255, .6);
+}
 
   .btn-circle.btn-xl {
     width: 100px;
@@ -74,7 +147,6 @@
     font-size: 23px;
     text-align: center;
     border-radius: 10px;
-;
 }
 
 /* .contenedor{
