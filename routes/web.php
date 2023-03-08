@@ -25,6 +25,8 @@ Route::resource('customers', '\App\Http\Controllers\CustomerController')
 
 Route::resource('ventas', '\App\Http\Controllers\VentaController');
 
+Route::resource('reporte', '\App\Http\Controllers\ReporteController');
+
 /* Route::get('/', function(){
     return view('cliente.registro');
 }); */

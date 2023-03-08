@@ -60,7 +60,7 @@
 
                 {{-- Lista de los producto a comprar. En opciones irian dos botones: 1) Para agregar mas de uno de los productos
                     en la lista 2)Para quitar o disminuir productos de la lista --}}
-                <div class="table-responsive">
+                <div class="table table-responsive">
                     <table id="listaProductoVenta" class="table table-striped shadow">                      
                         <thead>
                             <tr>
