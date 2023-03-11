@@ -24,6 +24,7 @@ Route::resource('productos', '\App\Http\Controllers\ProductoController');
 Route::resource('customers', '\App\Http\Controllers\CustomerController')
 ->except('show', 'destroy')->names('customers');
 
+<<<<<<< HEAD
 Route::resource('cobros', CobroController::class)
 ->except('store', 'edit', 'update', 'show', 'destroy')->names('cobros');
 
@@ -38,6 +39,9 @@ Route::get('compras/almacen/{codalm}/create', function($codalm){
 Route::get('compras/{codalm}', function($codalm){
     return view('compra.index');
 })->name('compra.index'); //Visualizar compras de un almacen
+=======
+Route::resource('ventas', '\App\Http\Controllers\VentaController');
+>>>>>>> Venta
 
 /* Route::get('/', function(){
     return view('cliente.registro');

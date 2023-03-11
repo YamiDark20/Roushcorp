@@ -8,7 +8,6 @@
         <li class="breadcrumb-item "><a href="/dash">Inicio</a></li>
         <li class="breadcrumb-item"><a href="/productos">Productos</a></li>
         <li class="breadcrumb-item active" aria-current="page"><a href="">Agregar</a></li>
-
     </ol>
 </nav>
 @endsection

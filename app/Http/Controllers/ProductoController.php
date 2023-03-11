@@ -99,7 +99,7 @@ class ProductoController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'codigo' => 'required|unique:productos',
+            'codigo' => "required|unique:productos,codigo,$id",
             'nombre' => 'required',
             'marca' => 'required',
             'peso' => 'required',
@@ -107,7 +107,7 @@ class ProductoController extends Controller
             'cantidad' => 'required',
             'precio' => 'required',
             'exonerado' => 'required'
-        ]);
+        ]); 
         $producto = Producto::find($id);
 
         $producto->codigo = $request->get('codigo');
