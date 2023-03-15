@@ -18,15 +18,12 @@ class Factura extends Model
             'cantidad_producto',
             'precio_producto',
             'exonerado',
-            'nombre_cliente',
-            'rif_cliente',
-            'direccion_cliente',
-            'telefono_cliente',
-            'nombre_almacen',
             'precio_antes_de_impuesto',
             'precio_total_factura',
             'venta_id',
-            'compra_id'
+            'compra_id',
+            'cliente_id',
+            'almacen_id',
 
     ];
 
@@ -38,5 +35,20 @@ class Factura extends Model
     public function compras()
     {
         return $this->belongsTo(Compra::class);
+    }
+
+    public function almacen()
+    {
+        return $this->belongsTo(Almacen::class);
+    }
+
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class);
+    }
+
+    public function producto()
+    {
+        return $this->belongsTo(Producto::class);
     }
 }

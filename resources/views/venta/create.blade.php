@@ -27,6 +27,29 @@
                     se agrega a la tabla de mas abajo --}}
                 <div class="col-md-12">
                     <div class="form-group">
+                        <label class="form-label" for="id_producto">
+                            <i class="fas fa barcode"></i>
+                            <span class="small">Cliente</span>
+                        </label>
+
+                        <select class="form-control form-control-sm" id="id_cliente" name="id_cliente" oninput="calcularValores()">
+                            <option value="">Seleccione un cliente</option>
+                            @foreach ($clientes as $cliente)
+                                <option value="{{ $cliente->id }}">{{ $cliente->nombre }}</option>
+                            @endforeach
+                        </select>
+
+                        <label class="form-label" for="id_producto">
+                            <i class="fas fa barcode"></i>
+                            <span class="small">Almacen</span>
+                        </label>
+
+                        <select class="form-control form-control-sm" id="id_almacen" name="id_almacen" oninput="calcularValores()">
+                            <option value="">Seleccione un almacen</option>
+                            @foreach ($almacenes as $almacen)
+                                <option value="{{ $almacen->id }}">{{ $almacen->nombre }}</option>
+                            @endforeach
+                        </select>
 
                         <label class="form-label" for="id_producto">
                             <i class="fas fa barcode"></i>
@@ -41,26 +64,10 @@
                         </select>
 
                         <button type="submit" class="btn btn-success" id="btnAnadirProducto" onclick="anadirProducto()">
-                            <i class="fas fa-shopping-cart"></i> Anadir producto
+                            <i class="fas fa-plus"></i> Anadir producto
                         </button>
 
                     </div>
-                </div>
-
-                {{-- Etiqueta que muestra la suma total del precio de los productos en la lista. Mi idea es que se actualice
-                    cada vez que se agregue o quite un producto--}}
-                <div class="col-md-6">
-                    <h3>Total Venta: <span id="totalVenta">0.00</span></h3>
-                </div>
-
-                {{-- Botones para realizar la venta o vaciar la lista --}}
-
-                <div class="col-md-6 text-right">
-                    <button type="submit" class="btn btn-success" id="btnRealizarVenta">
-                        <i class="fas fa-shopping-cart"></i> Realizar Venta
-                    </button>
-
-                    <a href="/productos" class="btn btn-secondary" >Cancelar</a>
                 </div>
 
                 {{-- Lista de los producto a comprar. En opciones irian dos botones: 1) Para agregar mas de uno de los productos
@@ -71,6 +78,7 @@
                                 <th>Nombre</th>
                                 <th>Cantidad</th>
                                 <th>Precio</th>
+                                <th>IVA</th>
                                 <th>Total</th>
                                 <th class="text-center">Opciones</th>
                             </tr>
@@ -84,7 +92,6 @@
                     </table>
 
                 </div>
-                <h5 class="text-center">Sin datos porque esto no tiene funcionalidad :(</h5>
 
             </div>
 
@@ -131,36 +138,6 @@
                             <option value="pago_movil">Pago Movil</option>
                         </select>
 
-                    </div>
-
-                    {{-- Numero de documento --}}
-                    <div class="form-group">
-
-                        <div class="row">
-
-                            <div class="col-md-4">
-
-                                <label for="nroDoc">Serie</label>
-
-                                <input type="text" min="0" id="nroSerie" class="form-control form-control-sm"
-                                placeholder="nro Serie" disabled>
-                            </div>
-
-                            {{-- Al hacer una venta este numero deberia incrementarse --}}
-                            <div class="col-md-8">
-                                <label for="nroVenta">Nro Venta</label>
-
-                                <input type="text" min="0" id="NroVenta"
-                                class="form-control form-control-sm" placeholder="Nro Venta" disabled>
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- Cantidad --}}
-                    <div class="form-group">
-                        <label for="cantidad">Cantidad</label>
-                        <input type="number" id="cantidad"
-                        class="form-control form-control-sm" placeholder="Cantidad" oninput="calcularValores()">
                     </div>
 
                     {{-- Efectivo recibido --}}
@@ -210,6 +187,16 @@
 
                         <button onclick="fedeTest()">fedebutton</button>
 
+                        {{-- Botones para realizar la venta o vaciar la lista --}}
+
+                        <div class="d-flex text-right">
+                            <button type="submit" class="btn btn-success" id="btnRealizarVenta">
+                                <i class="fas fa-shopping-cart"></i> Realizar Venta
+                            </button>
+
+                            <a href="/productos" class="btn btn-secondary" >Cancelar</a>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -219,78 +206,93 @@
      </div>
 
 </div>
-
 <script>
     let productos = {{ Js::from($productos) }};
     let selectedProducto = null;
     let selectedProductos = new Map();
+    let sumaTotal = 0;
+    let sumaIva = 0;
+    const table = document.querySelector('#listaProductoVenta');
+
+    function realizarVenta() {
+        //
+    }
 
     function setSelectedProducto() {
-        let selectedProductoId = document.getElementById('id_producto').value;
+        let selectedProductoId = document.querySelector('#id_producto').value;
         selectedProducto = productos.find((producto) => producto.id == selectedProductoId);
     }
 
-    function actualizarTabla() {
-        const table = document.getElementById('listaProductoVenta');
-        while (table.rows.length > 1) {
-            table.deleteRow(-1);
-        }
+    function anadirProductoTabla(item) {
+        const row = table.insertRow();
+        row.id = `fila_${item.id}`;
+        const codigoCell = row.insertCell(0);
+        codigoCell.innerHTML = item.codigo;
+        const nombreCell = row.insertCell(1);
+        nombreCell.innerHTML = item.nombre;
+        const cantidadInput = document.createElement("input");
+        cantidadInput.id = `cantidad_${item.id}`;
+        cantidadInput.type = "number";
+        const cantidadCell = row.insertCell(2);
+        cantidadCell.append(cantidadInput);
+        const precioCell = row.insertCell(3);
+        precioCell.innerHTML = item.precio;
+        const ivaCell = row.insertCell(4);
+        ivaCell.innerHTML = 0;
+        ivaCell.id = `iva_${item.id}`;
+        const totalCell = row.insertCell(5);
+        totalCell.innerHTML = (item.precio * cantidadInput.value).toFixed(2);
+        totalCell.id = `total_${item.id}`;
+        const opcionesCell = row.insertCell(6);
+        opcionesCell.classList.add('text-center');
+        const eliminarButton = document.createElement("button");
+        eliminarButton.id = `eliminar_btn_${item.id}`;
+        eliminarButton.innerText = "Eliminar"
+        opcionesCell.append(eliminarButton);
 
-        selectedProductos.forEach((item) => {
-            const row = table.insertRow();
-            const codigoCell = row.insertCell(0);
-            codigoCell.innerHTML = item.codigo;
-            const nombreCell = row.insertCell(1);
-            nombreCell.innerHTML = item.nombre;
-            const cantidadCell = row.insertCell(2);
-            cantidadCell.innerHTML = 0;
-            const precioCell = row.insertCell(3);
-            precioCell.innerHTML = item.precio;
-            const totalCell = row.insertCell(4);
-            totalCell.innerHTML = 0;
-            const opcionesCell = row.insertCell(5);
-            opcionesCell.classList.add('text-center');
-            const eliminarButton = document.createElement("button");
-            eliminarButton.id = `eliminar_btn_${item.id}`;
-            eliminarButton.addEventListener('click', ()=> {eliminarProducto(`${item.id}`)});
-            eliminarButton.innerText = "Eliminar"
-            opcionesCell.append(eliminarButton);
+        cantidadInput.addEventListener("input", () => {
+            total = (item.precio * cantidadInput.value).toFixed(2);
+            totalCell.innerHTML = (item.precio * cantidadInput.value).toFixed(2);
+            ivaCell.innerHTML = (total * (item.exonerado ? 0 : 0.16)).toFixed(2);
+            calcularTotal();
+        });
+        eliminarButton.addEventListener('click', ()=> {
+            eliminarProducto(`${item.id}`);
+            calcularTotal();
         });
     }
 
     function anadirProducto() {
-        let selectedProductId = document.getElementById('id_producto')?.value;
+        let selectedProductId = document.querySelector('#id_producto')?.value;
         if(!selectedProductId) return;
         setSelectedProducto();
+        let originalSize = selectedProductos.size;
         selectedProductos.set(selectedProductId, selectedProducto);
-        actualizarTabla();
+        if(selectedProductos.size != originalSize) {
+            anadirProductoTabla(selectedProducto);
+        }
     }
 
     function eliminarProducto(id) {
         selectedProductos.delete(id);
-        actualizarTabla();
+        let fila = document.querySelector(`#fila_${id}`)
+        fila.remove();
     }
 
     function calcularValores() {
         setSelectedProducto();
-        let efectivoExacto = document.getElementById('chkefectivoExacto').checked;
-        let cantidad = document.getElementById('cantidad').value;
-        let precioProducto = selectedProducto?.precio ?? 0;
-        let exonerado = selectedProducto?.exonerado ?? false;
-        let precioVenta = (cantidad * precioProducto).toFixed(2);
-        let iva = (precioVenta * (exonerado ? 1 : 0.16)).toFixed(2);
-        let subtotal = (precioVenta - iva).toFixed(2);
+        let efectivoExacto = document.querySelector('#chkefectivoExacto').checked;
         let efectivoRecibido = 0;
-
+        let subtotal = (sumaTotal - sumaIva).toFixed(2);
 
         if(efectivoExacto) {
-            efectivoRecibido = precioVenta
-            document.getElementById('cancelado').value = efectivoRecibido;
+            efectivoRecibido = sumaTotal
+            document.querySelector('#cancelado').value = efectivoRecibido;
         } else {
-            efectivoRecibido = document.getElementById('cancelado').value
+            efectivoRecibido = document.querySelector('#cancelado').value
         }
 
-        let totalAPagar = (precioVenta - efectivoRecibido).toFixed(2);
+        let totalAPagar = (sumaTotal - efectivoRecibido).toFixed(2);
         let vuelto = 0;
 
         if(totalAPagar < 0){
@@ -298,20 +300,30 @@
             totalAPagar = 0;
         }
 
-        document.getElementById('vuelto').innerText = vuelto;
-        document.getElementById('documentoSubtotal').innerText = subtotal;
-        document.getElementById('documentoIva').innerText = iva;
-        document.getElementById('documentoTotal').innerText = totalAPagar;
+        document.querySelector('#vuelto').innerText = vuelto;
+        document.querySelector('#documentoSubtotal').innerText = subtotal;
+        document.querySelector('#documentoIva').innerText = sumaIva.toFixed(2);
+        document.querySelector('#documentoTotal').innerText = totalAPagar;
     }
 
     function calcularTotal() {
-        let precioTotal = document.getElementById('precio').value;
+        let inputsTotales = document.querySelectorAll("[id^='total_']");
+        let inputsIva = document.querySelectorAll("[id^='iva_']");
+        sumaTotal = 0;
+        sumaIva = 0;
+        inputsTotales.forEach((total) => {sumaTotal += parseFloat(total.innerText)});
+        inputsIva.forEach((iva) => {sumaIva += parseFloat(iva.innerText)});
+
+        calcularValores();
     }
 
     function fedeTest() {
         console.log(selectedProducto)
         let exonerado = selectedProducto?.exonerado ?? 0;
         console.log(exonerado)
+        console.log(table);
+        calcularValores();
+        console.log(axios);
     }
 
 </script>
