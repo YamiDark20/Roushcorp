@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('productos_almacens', function (Blueprint $table) {
+        Schema::create('ventas', function (Blueprint $table) {
             $table->id();
-            $table->string('estado', 25);
-            $table->string('stock', 45);
-            $table->integer('cantidad_a_reponer');
+            $table->decimal('valor_compra', 9,2);
+            $table->decimal('cancelado', 9,2);
+            $table->decimal('por_cancelar', 9,2);
+            $table->decimal('vuelto', 9,2);
+            $table->string('tipo_pago');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('productos_almacens');
+        Schema::dropIfExists('ventas');
     }
 };

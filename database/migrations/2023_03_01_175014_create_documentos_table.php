@@ -16,11 +16,7 @@ return new class extends Migration
         Schema::create('documentos', function (Blueprint $table) {
             $table->id();
             $table->string('codfact')->unique();
-            $table->string('rifcliente');
-            $table->foreign('rifcliente')
-                ->references('rif')
-                ->on('customers')
-                ->onDelete('cascade');
+            
             //$table->string('impuesto');
             $table->string('numguia');
             $table->string('moneda');

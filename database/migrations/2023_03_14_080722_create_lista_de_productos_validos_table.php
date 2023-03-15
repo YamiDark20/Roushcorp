@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('productos_almacens', function (Blueprint $table) {
+        Schema::create('lista_de_productos_validos', function (Blueprint $table) {
             $table->id();
-            $table->string('estado', 25);
-            $table->string('stock', 45);
-            $table->integer('cantidad_a_reponer');
+            $table->string('nombre_del_producto');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('productos_almacens');
+        Schema::dropIfExists('lista_de_productos_validos');
     }
 };
