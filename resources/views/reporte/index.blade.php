@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Ventas')
+@section('title', 'Reportes')
 
 @section('content_header')
 <nav>

@@ -1,11 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\CobroController;
-// use App\Http\Livewire\CobrosCreate;
-
+use App\Http\Controllers\ClienteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,34 +19,31 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::resource('productos', ProductoController::class);
+Route::resource('productos', '\App\Http\Controllers\ProductoController');
 
-Route::resource('customers', CustomerController::class)
+Route::resource('customers', '\App\Http\Controllers\CustomerController')
 ->except('show', 'destroy')->names('customers');
+Route::post('/create_cliente', [ClienteController::class, 'store']);
 
 Route::resource('cobros', CobroController::class)
 ->except('store', 'edit', 'update', 'show', 'destroy')->names('cobros');
 
 Route::resource('ventas', '\App\Http\Controllers\VentaController');
+Route::resource('reportes', '\App\Http\Controllers\ReporteController');
 
 Route::get('compras/almacen', function(){
     return view('compra.almacen.index');
-})->name('compra.almacen');
+})->name('compra.almacen'); //Gestionar almacen
 
 Route::get('compras/almacen/{codalm}/create', function($codalm){
     return view('compra.create', compact('codalm'));
-})->name('compra.almacen.create');
+})->name('compra.almacen.create'); //Agregar compra de un almacen x
 
 Route::get('compras/{codalm}', function($codalm){
-    return view('compra.index', compact('codalm'));
-})->name('compra.index');
+    return view('compra.index');
+})->name('compra.index'); //Visualizar compras de un almacen
 
-Route::get('reporte', function(){
-    return view('reporte.index');
-})->name('reporte.index');
 
-#Route::get('compras/almacen', CobrosCreate::class);
-// Route::post('cobros', CobrosCreate::class);
 
 /* Route::get('/', function(){
     return view('cliente.registro');
@@ -64,3 +58,13 @@ Route::middleware([
         return view('dash.index');
     })->name('dash');
 });
+
+
+// AQUÍ LO HECHO POR DANIEL
+
+Route::post('/crear_tipo_de_producto', [ListaProductosValidosController::class, 'create']);
+Route::get('/obtener_productos_validos', [ListaProductosValidosController::class, 'list']);
+
+Route::post('/nueva_venta/{cliente_id}/{almacen_id}', [VentaController::class, 'store']);
+
+Route::post('/nueva_compra/{cliente_id}/{almacen_id}', [CompraController::class, 'store']);

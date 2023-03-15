@@ -339,7 +339,7 @@ return [
         ],
         [
             'text'        => 'Reportes',
-            'route'         => 'reporte.index',
+            'route'         => 'reportes.index',
             'icon'        => 'fas fa-fw fa-file'
         ],
         [
@@ -347,22 +347,6 @@ return [
             'route'         => 'compra.almacen',
             'icon'        => 'fas fa-fw fa-shopping-cart'
         ]
-        /* ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ], */
     ],
 
     /*

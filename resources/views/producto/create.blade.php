@@ -48,6 +48,7 @@
                         <div class="form-group col-4">
                             <label for="" class="form-label">Peso</label>
                             <input id="peso" name="peso" type="number" min="1" class="form-control" >
+                            Kg
                         </div>
 
                         <div class="form-group col-4">

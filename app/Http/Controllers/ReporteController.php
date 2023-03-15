@@ -3,17 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Factura;
+use App\Models\Compra;
+use App\Models\Cliente;
+use App\Models\Almacen;
+use App\Models\Venta;
+use Carbon\Carbon;
 
 class ReporteController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('reportes.index');
+        return view('reporte.index');
     }
 
     /**
@@ -32,53 +36,27 @@ class ReporteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, int $clienteId, int $almacenId)
+    {
+        //
+    }
+    public function showGeneral($id)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function showById(int $clienteId, string $startDate, string $endDate)
     {
-        //
+
+        $startDate = Carbon::parse($startDate);
+        $endDate = Carbon::parse($endDate);
+        $reporteCliente = Factura::whereIn('venta_id', function($query) use ($clienteId, $startDate, $endDate) {
+            $query->select('id')
+                ->from((new Venta())->getTable())
+                ->where('cliente_id', $clienteId)
+                ->whereBetween('created_at', [$startDate, $endDate]);
+        })->get();
+        return $reporteCliente;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
