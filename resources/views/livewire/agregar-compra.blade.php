@@ -47,9 +47,9 @@
             <select name="tipomov" wire:model="tipomov"
             class="form-control">
                 <option value="0">---------</option>
-                <option value="terrestre">Terrestre</option>
-                <option value="aereo">Aereo</option>
-                <option value="maritimo">Maritimo</option>
+                <option value="Terrestre">Terrestre</option>
+                <option value="Aereo">Aereo</option>
+                <option value="Maritimo">Maritimo</option>
             </select>
         </div>
 

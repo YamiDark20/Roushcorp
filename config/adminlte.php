@@ -327,11 +327,11 @@ return [
             'route'         => 'cobros.index',
             'icon'        => 'fas fa-fw fa-book'
         ],
-        [
-            'text'        => 'Facturar',
-            'url'         => 'admin/pages',
-            'icon'        => 'fas fa-fw fa-file-invoice'
-        ],
+        // [
+        //     'text'        => 'Facturar',
+        //     'url'         => 'admin/pages',
+        //     'icon'        => 'fas fa-fw fa-file-invoice'
+        // ],
         [
             'text'        => 'Ventas',
             'route'         => 'ventas.index',

@@ -70,9 +70,9 @@
                             <th scope='col'>CodProd</th>
                             <th scope='col'>Nombre</th>
                             <th scope='col'>Stock</th>
-                            <th scope='col'>Cantidad a reponer</th>
+                            {{-- <th scope='col'>Cantidad a reponer</th> --}}
                             <th scope='col'>Estado</th>
-                            <th scope='col'>Acción</th>
+                            {{-- <th scope='col'>Acción</th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -92,12 +92,12 @@
                                     {{-- <td>{{$nombre}}</td> --}}
                                     <td>{{$nombre}}</td>
                                     <td>{{$producto->stock}}</td>
-                                    <td>{{$producto->cantReponer}}</td>
+                                    {{-- <td>{{$producto->cantReponer}}</td> --}}
                                     {{-- <td>{{$documento->total}}</td> --}}
                                     <td>{{$producto->estado}}</td>
-                                    <td width="10px">
+                                    {{-- <td width="10px">
                                         <a class="btn btn-info btn-sm">Editar</a>
-                                    </td>
+                                    </td> --}}
                                 @endif
                             </tr>
                         @endforeach

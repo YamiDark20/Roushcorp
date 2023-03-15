@@ -43,6 +43,9 @@ Route::get('compras/{codalm}', function($codalm){
     return view('compra.index');
 })->name('compra.index'); //Visualizar compras de un almacen
 
+Route::get('compras/{codcompra}/{codalm}', function($codcompra, $codalm){
+    return view('compra.almacen.visualizar-compra', compact('codcompra', 'codalm'));
+})->name('compra.almacen.visualizar');  //Visualizar compra x de un almacen x
 
 
 /* Route::get('/', function(){
@@ -58,9 +61,6 @@ Route::middleware([
         return view('dash.index');
     })->name('dash');
 });
-
-
-// AQUÍ LO HECHO POR DANIEL
 
 Route::post('/crear_tipo_de_producto', [ListaProductosValidosController::class, 'create']);
 Route::get('/obtener_productos_validos', [ListaProductosValidosController::class, 'list']);
