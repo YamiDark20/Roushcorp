@@ -50,12 +50,12 @@
 
                     <div class="mb-3 col-4">
                         <label for="" class="form-label">Peso</label>
-                        <input id="peso" name="peso" type="number" value="{{$producto->peso}}" class="form-control">
+                        <input id="peso" name="peso" type="number" min="1" value="{{$producto->peso}}" class="form-control">
                     </div>
 
                     <div class="mb-3 col-4">
                         <label for="" class="form-label">Cantidad</label>
-                        <input id="cantidad" name="cantidad" type="number" value="{{$producto->cantidad}}" class="form-control">
+                        <input id="cantidad" name="cantidad" type="number" min="1" value="{{$producto->cantidad}}" class="form-control">
                     </div>
 
                     <div class="mb-3 col-4">
@@ -68,9 +68,26 @@
                         <input id="descripcion" name="descripcion" type="text" value="{{$producto->descripcion}}" class="form-control">
                     </div>
 
-                    <div class="mb-3 col-3">
-                        <label for="" class="form-label">Exonerado</label>
-                        <input id="exonerado" name="exonerado" type="text" value="{{$producto->exonerado}}" class="form-control">
+                    <div class="form-group">
+                        <label for="" class="form-label d-block">Exonerado</label>
+                        <div class="btn-group btn-group-toggle d-block" data-toggle="buttons">
+                            @if ($producto->exonerado == 0)
+                                <div class="btn btn-primary">
+                                    <input type="radio" name="exonerado" value="0" autocomplete="off" class="btn-check" checked>Sin IVA
+                                </div>
+                                <div class="btn btn-primary">
+                                    <input type="radio" name="exonerado" value="1" autocomplete="off" class="btn-check">Con IVA
+                                </div>
+                            @else
+                                <div class="btn btn-primary">
+                                    <input type="radio" name="exonerado" value="0" autocomplete="off" class="btn-check">Sin IVA
+                                </div>
+                                <div class="btn btn-primary">
+                                    <input type="radio" name="exonerado" value="1" autocomplete="off" class="btn-check" checked>Con IVA
+                                </div>
+                            @endif
+
+                        </div>
                     </div>
 
                 </div>

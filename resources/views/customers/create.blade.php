@@ -23,82 +23,58 @@ variable title proviene del admintle.php de la carpeta config --}}
             <strong>No se han colocado nada en ninguno de los campos. Otra razon del error es que el rif o correo ya existen</strong>
         </div>
     @endif
-    <div class="abs-center">
-        {!! Form::open(['route' => 'customers.store',
-        'class' => 'border pr-0 pl-5 pt-5 pb-5 bg-white']) !!}
-            <div class="row g-4 mb-3">
-                <div class="col-sm-1 mr-sm-4 mb-2 d-inline">
-                    {!! Form::label('name', 'Nombre:', ['class' => 'd-inline']) !!}
-                </div>
-                <div class="col-sm-4 mb-3 pr-4 d-inline">
-                    {!! Form::text('name', null, ['class' => 'form-control d-inline',
-                    'placeholder' => 'Ingrese el nombre del cliente']) !!}
-                </div>
-
-                <div class="col-sm-1 mr-sm-4 mb-2 d-inline">
-                    {!! Form::label('lastname', 'Apellido:', ['class' => 'd-inline']) !!}
-                </div>
-                <div class="col-sm-4 pr-4 d-inline">
-                    {!! Form::text('lastname', null, ['class' => 'form-control d-inline',
-                    'placeholder' => 'Ingrese el apellido del cliente']) !!}
-                </div>
-
-            </div>
-
-            <div class="row g-4 mb-3 ml-0">
-                <div class="col-sm-0 mr-sm-0 mb-2 d-inline">
-                    {!! Form::label('rif', 'RIF:', ['class' => 'd-inline']) !!}
-                </div>
-                <div class="col-sm-4 mb-3 pr-4 d-inline">
-                    {!! Form::text('rif', null, ['class' => 'form-control d-inline',
-                    'placeholder' => 'Ingrese el RIF del cliente']) !!}
-                </div>
-
-                <div class="col-sm-0 mr-sm-2 mb-2 d-inline">
-                    {!! Form::label('address', 'Dirección:', ['class' => 'd-inline']) !!}
-                </div>
-                <div class="col-sm-4 pr-4 d-inline">
-                    {!! Form::text('address', null, ['class' => 'form-control d-inline',
+    <div class="card">
+        <div class="card-body">
+            {!! Form::open(['route' => 'customers.store',
+            'class' => '']) !!}
+                <div class="row">
+                    <div class="form-group col-4">
+                        {!! Form::label('name', 'Nombre:', ['class' => 'd-inline']) !!}
+                        {!! Form::text('name', null, ['class' => 'form-control d-inline',
+                        'placeholder' => 'Ingrese el nombre del cliente']) !!}
+                    </div>
+                    <div class="form-group col-4">
+                        {!! Form::label('tiporif', 'Tipo RIF:', ['class' => 'd-inline']) !!}
+                        <select name="tiporif" id="tiporif" class="form-control d-inline">
+                            <option value="v">Ente Natural (v)</option>
+                            <option value="j">Persona Jurídica (j)</option>
+                            <option value="e">Extranjero (e)</option>
+                            <option value="p">Agente registrado con Pasaporte (p)</option>
+                            <option value="g">Ente Gubernamental (g)</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-4">
+                        {!! Form::label('rif', 'RIF:', ['class' => 'd-inline']) !!}
+                        {!! Form::text('rif', null, ['class' => 'form-control d-inline',
+                        'placeholder' => 'Ingrese el RIF del cliente']) !!}
+                    </div>
+                    <div class="form-group col-4">
+                        {!! Form::label('address', 'Dirección:', ['class' => 'd-inline']) !!}
+                        {!! Form::text('address', null, ['class' => 'form-control d-inline',
                     'placeholder' => 'Ingrese la dirección del cliente']) !!}
-                </div>
-
-            </div>
-
-            <div class="row g-4 mb-3 ml-0">
-                <div class="col-sm-0 mr-0 mb-2 d-inline">
-                    {!! Form::label('telephone', 'Telefono:', ['class' => 'd-inline']) !!}
-                </div>
-                <div class="col-sm-4 mb-2 pr-4 d-inline">
-                    {!! Form::text('telephone', null, ['class' => 'form-control d-inline',
+                    </div>
+                    <div class="form-group col-4">
+                        {!! Form::label('telephone', 'Telefono:', ['class' => 'd-inline']) !!}
+                        {!! Form::text('telephone', null, ['class' => 'form-control d-inline',
                     'placeholder' => 'Ingrese el telefono del cliente']) !!}
-                </div>
-
-                <div class="col-sm-0 mr-1 mb-2 d-inline">
-                    {!! Form::label('email', 'Correo:', ['class' => 'd-inline']) !!}
-                </div>
-                <div class="col-sm-4 pr-4 d-inline">
-                    {!! Form::text('email', null, ['class' => 'form-control d-inline',
+                    </div>
+                    <div class="form-group col-4">
+                        {!! Form::label('email', 'Correo:', ['class' => 'd-inline']) !!}
+                        {!! Form::text('email', null, ['class' => 'form-control d-inline',
                     'placeholder' => 'Ingrese el correo del cliente']) !!}
+                    </div>
+                    <div class="form-group col-12">
+                        {!! Form::label('city', 'Ciudad:', ['class' => 'd-inline']) !!}
+                        <div>
+                            {!! Form::text('city', null, ['class' => 'form-control d-inline col-4',
+                        'placeholder' => 'Ingrese el ciudad del cliente']) !!}
+                            {!! Form::submit('Crear cliente', [
+                                'class' => 'btn btn-info d-inline float-right col-2']) !!}
+                        </div>
+                    </div>
                 </div>
-
-            </div>
-
-            <div class="row mb-3 ml-0">
-                <div class="col-sm-0 mr-0 mb-2 d-inline">
-                    {!! Form::label('city', 'Ciudad:', ['class' => 'd-inline']) !!}
-                </div>
-                <div class="col-sm-9 pr-4 d-inline">
-                    {!! Form::text('city', null, ['class' => 'form-control d-inline',
-                    'placeholder' => 'Ingrese el ciudad del cliente']) !!}
-                </div>
-
-            </div>
-
-            <div class="col-3 mx-auto">
-                {!! Form::submit('Crear cliente', [
-            'class' => 'btn btn-info']) !!}
-            </div>
-        {!! Form::close() !!}
+            {!! Form::close() !!}
+        </div>
     </div>
 
 @stop

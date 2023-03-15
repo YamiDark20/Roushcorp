@@ -4,10 +4,6 @@
 
 {{-- En la siguiente linea de codigo se modifica el contenido del header --}}
 @section('content_header')
-    {{-- @can('admin.customers.create')
-        <a href="{{route('admin.customers.create')}}"
-        class="btn btn-secondary btn-sm float-right">Agregar Cliente</a>
-    @endcan --}}
     <nav aria-label="breadcrumb" class="mb-2">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('dash')}}">Inicio</a></li>
@@ -33,42 +29,16 @@
                         <tr>
                             <th scope='col'>RIF</th>
                             <th scope='col'>Nombre</th>
-                            <th scope='col'>Apellido</th>
                             <th scope='col'>Correo</th>
                             <th scope='col'>Telefono</th>
                             <th colspan="2" scope='col'>Acción</th>
                         </tr>
                     </thead>
-                    {{-- <tbody>
-                        <tr>
-                            <th class="h6">Cedula1</th>
-                            <th class="h6">Nombre1</th>
-                            <th class="h6">Apellido1</th>
-                            <th class="h6">Dirección1</th>
-                            <th class="h6">Telefono1</th>
-                            <th>
-                                <a href="{{route('admin.customers.edit', '$customer')}}"
-                                        class="btn btn-primary btn-sm">Editar</a>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th class="h6">Cedula2</th>
-                            <th class="h6">Nombre2</th>
-                            <th class="h6">Apellido2</th>
-                            <th class="h6">Dirección2</th>
-                            <th class="h6">Telefono2</th>
-                            <th>
-                                <a href="{{route('admin.customers.edit', '$customer')}}"
-                                        class="btn btn-primary btn-sm">Editar</a>
-                            </th>
-                        </tr>
-                    </tbody> --}}
                     <tbody>
                         @foreach ($customers as $customer)
                             <tr>
                                 <td>{{$customer->rif}}</td>
                                 <td>{{$customer->name}}</td>
-                                <td>{{$customer->lastname}}</td>
                                 <td>{{$customer->email}}</td>
                                 <td>{{$customer->telephone}}</td>
                                 <td width="10px">

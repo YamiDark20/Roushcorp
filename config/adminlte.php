@@ -296,9 +296,14 @@ return [
             'text'         => 'search',
             'topnav_right' => false,
         ],
+        // [
+        //     'type'         => 'fullscreen-widget',
+        //     'topnav_right' => true,
+        // ],
         [
-            'type'         => 'fullscreen-widget',
-            'topnav_right' => true,
+            'text'         => 'RoushCorp',
+            'url' => '#',
+            'topnav' => true,
         ],
 
         // Sidebar items:
@@ -317,13 +322,18 @@ return [
             'url'         => '/productos',
             'icon'        => 'fas fa-fw fa-box'
         ],
-        // [
-        //     'text'        => 'Facturar',
-        //     'url'         => '#',
-        //     'icon'        => 'fas fa-fw fa-file-invoice'
-        // ],
         [
-            'text'        => 'Venta',
+            'text'        => 'Cobrar',
+            'route'         => 'cobros.index',
+            'icon'        => 'fas fa-fw fa-book'
+        ],
+        [
+            'text'        => 'Facturar',
+            'url'         => 'admin/pages',
+            'icon'        => 'fas fa-fw fa-file-invoice'
+        ],
+        [
+            'text'        => 'Ventas',
             'route'         => 'ventas.index',
             'icon'        => 'fas fa-fw fa-cash-register'
         ],
@@ -334,7 +344,7 @@ return [
         ],
         [
             'text'        => 'Compras',
-            'url'         => '#',
+            'route'         => 'compra.almacen',
             'icon'        => 'fas fa-fw fa-shopping-cart'
         ]
         /* ['header' => 'labels'],
@@ -507,5 +517,5 @@ return [
     |
     */
 
-    'livewire' => false,
+    'livewire' => true,
 ];

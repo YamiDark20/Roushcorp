@@ -47,12 +47,12 @@
 
                         <div class="form-group col-4">
                             <label for="" class="form-label">Peso</label>
-                            <input id="peso" name="peso" type="number" class="form-control" >
+                            <input id="peso" name="peso" type="number" min="1" class="form-control" >
                         </div>
 
                         <div class="form-group col-4">
                             <label for="" class="form-label">Cantidad</label>
-                            <input id="cantidad" name="cantidad" type="number" class="form-control" >
+                            <input id="cantidad" name="cantidad" type="number" min="1" class="form-control" >
                         </div>
 
                         <div class="form-group col-4">
@@ -62,7 +62,7 @@
 
                         <div class="form-group col-6">
                             <label for="" class="form-label">Descripcion</label>
-                            <textarea id="descripcion" name="descripcion" type="text" class="form-control" rows="3"></textarea>
+                            <textarea id="descripcion" name="descripcion" type="text" class="form-control"></textarea>
                         </div>
 
                         <div class="form-group">
@@ -77,10 +77,7 @@
 
                             </div>
                         </div>
-
-
                     </div>
-
 
                     <div>
                         <a href="/productos" class="btn btn-secondary" >Cancelar</a>

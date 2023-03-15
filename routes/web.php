@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\CobroController;
+// use App\Http\Livewire\CobrosCreate;
 
 
 /*
@@ -18,14 +22,34 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::resource('productos', '\App\Http\Controllers\ProductoController');
+Route::resource('productos', ProductoController::class);
 
-Route::resource('customers', '\App\Http\Controllers\CustomerController')
+Route::resource('customers', CustomerController::class)
 ->except('show', 'destroy')->names('customers');
+
+Route::resource('cobros', CobroController::class)
+->except('store', 'edit', 'update', 'show', 'destroy')->names('cobros');
 
 Route::resource('ventas', '\App\Http\Controllers\VentaController');
 
-Route::resource('reporte', '\App\Http\Controllers\ReporteController');
+Route::get('compras/almacen', function(){
+    return view('compra.almacen.index');
+})->name('compra.almacen');
+
+Route::get('compras/almacen/{codalm}/create', function($codalm){
+    return view('compra.create', compact('codalm'));
+})->name('compra.almacen.create');
+
+Route::get('compras/{codalm}', function($codalm){
+    return view('compra.index', compact('codalm'));
+})->name('compra.index');
+
+Route::get('reporte', function(){
+    return view('reporte.index');
+})->name('reporte.index');
+
+#Route::get('compras/almacen', CobrosCreate::class);
+// Route::post('cobros', CobrosCreate::class);
 
 /* Route::get('/', function(){
     return view('cliente.registro');

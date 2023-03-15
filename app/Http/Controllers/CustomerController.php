@@ -32,7 +32,6 @@ class CustomerController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'lastname' => 'required',
             'rif' => 'required|unique:customers',
             'address' => 'required',
             'telephone' => 'required',
@@ -40,6 +39,8 @@ class CustomerController extends Controller
             'city' => 'required'
         ]);
         $customer = Customer::create($request->all());
+        $customer->rif = $request->get('tiporif').$request->get('rif');
+        $customer->save();
         return redirect()->route('customers.edit', $customer)
         ->with('info', 'El cliente se ha creado exitosamente');
     }
@@ -67,7 +68,6 @@ class CustomerController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'lastname' => 'required',
             'rif' => "required|unique:customers,rif,$customer->id",
             'address' => 'required',
             'telephone' => 'required',

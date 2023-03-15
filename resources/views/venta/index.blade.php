@@ -22,7 +22,6 @@
         <div class="col-md-9">
 
             <div class="row">
-               
                 {{-- Para ingresar el codigo o nombre del producto, podria mostrar una lista desplegable con los
                     productos coincidentes en la bse de datos. O podria ser una ventana modal. Al seleccionar uno
                     se agrega a la tabla de mas abajo --}}
@@ -34,7 +33,7 @@
                             <span class="small">Productos</span>
                         </label>
 
-                        <input type="text" class="form-control form-control-sm" 
+                        <input type="text" class="form-control form-control-sm"
                         id="codigoProd" placeholder="Ingrese el codigo o el nombre del producto">
 
                     </div>
@@ -61,12 +60,8 @@
                 {{-- Lista de los producto a comprar. En opciones irian dos botones: 1) Para agregar mas de uno de los productos
                     en la lista 2)Para quitar o disminuir productos de la lista --}}
                 <div class="table table-responsive">
-                    <table id="listaProductoVenta" class="table table-striped shadow">                      
-                        <thead>
-                            <tr>
-                                <th>Item</th>
+                    <table id="listaProductoVenta" class="table table-striped shadow">
                                 <th>Codigo</th>
-                                <th>Producto</th>
                                 <th>Cantidad</th>
                                 <th>Precio</th>
                                 <th>Total</th>
@@ -76,12 +71,12 @@
                         </thead>
 
                         <tbody>
-                            
+
                         </tbody>
-                        
-                        
+
+
                     </table>
-                    
+
                 </div>
                 <h5 class="text-center">Sin datos porque esto no tiene funcionalidad :(</h5>
 
@@ -99,13 +94,11 @@
                 <div class="card-body">
                     {{-- selccionar tipo de documento --}}
                     <div class="form-group">
-                        
+
                         <label for="seleccionarDoc">
                             <i class="fas fa-file-alt"></i>
                             <span class="small">Documento</span>
                         </label>
-                    
-
                         <select name="" id="selDocVenta" class="form-select form-select-sm col-sm-12">
                             <option value="0">Seleccionar Documento</option>
                             <option value="1" selected="true">Factura</option>
@@ -115,8 +108,8 @@
 
                     {{-- <span id="" class="text-danger small fst-italic" style="display:none">
                         Debe seleccionar documento
-                    </span> --}}   
-                    
+                    </span> --}}
+
                     {{-- Seleccionar tipo de pago --}}
                     <div class="form-group">
 
@@ -143,7 +136,7 @@
 
                                 <label for="nroDoc">Serie</label>
 
-                                <input type="text" min="0" id="nroSerie" class="form-control form-control-sm" 
+                                <input type="text" min="0" id="nroSerie" class="form-control form-control-sm"
                                 placeholder="nro Serie" disabled>
                             </div>
 
@@ -160,7 +153,7 @@
                     {{-- Efectivo recibido --}}
                     <div class="form-group">
                         <label for="inputEfectivoRecibido">Efectivo Recibido</label>
-                        <input type="text" id="inputEfectivoRecibido" 
+                        <input type="text" id="inputEfectivoRecibido"
                         class="form-control form-control-sm" placeholder="Cantidad de efectivo recibido">
                     </div>
 
@@ -169,7 +162,7 @@
                         <input type="checkbox" class="form-check-input" value="" id="chkefectivoExacto">
                         <label class="form-check-label" for="chkEfectivoExacto">
                             Efectivo Exacto
-                        </label> 
+                        </label>
                     </div>
 
                     {{-- Mostrar monto y vuelto --}}
@@ -192,7 +185,7 @@
                         <div class="col-md-5 text-rigth">
                             <span id="documentoSubtotal">0.00</span>
                         </div>
-                        
+
                         <div class="col-md-7">
                             <span>IVA (16%)</span>
                         </div>
@@ -206,7 +199,7 @@
                         <div class="col-md-5 text-rigth">
                             <span id="documentoTotal">0.00</span>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
