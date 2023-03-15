@@ -110,7 +110,7 @@ class AgregarCompra extends Component
         foreach ($this->prodcomprados as $producto) {
             if ($producto[0] != $codprod) {
                 $prodcompradosnuevo[] = array($producto[0], $producto[1],
-                $producto[2], $producto[3]);
+                $producto[2], $producto[3], $producto[4]);
             }else{
                 $this->total -= ($producto[2] * $producto[3]);
             }

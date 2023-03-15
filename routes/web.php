@@ -44,6 +44,10 @@ Route::get('compras/{codalm}', function($codalm){
     return view('compra.index', compact('codalm'));
 })->name('compra.index');
 
+Route::get('compras/{codcompra}/{codalm}', function($codcompra, $codalm){
+    return view('compra.almacen.visualizar-compra', compact('codcompra', 'codalm'));
+})->name('compra.almacen.visualizar');  //Visualizar compra x de un almacen x
+
 Route::get('reporte', function(){
     return view('reporte.index');
 })->name('reporte.index');

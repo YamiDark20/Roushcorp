@@ -60,7 +60,12 @@
                                 <td>{{$nombre}}</td>
                                 <td>{{$documento->codfact}}</td>
                                 <td>{{$documento->fecha}}</td>
-                                <td>{{$documento->total}}</td>
+                                @if ($documento->moneda == 'Bs')
+                                    <td>{{$documento->moneda}}. {{$documento->total}}</td>
+                                @else
+                                    <td>{{$documento->moneda}} {{$documento->total}}</td>
+                                @endif
+
                                 <td>{{$documento->estado}}</td>
                             @endif
                         </tr>
@@ -130,12 +135,33 @@
                 // $rif = 0;
                 foreach ($documentos as $documento) {
                     if ($documento->rifcliente == $search){
-                        // $rif = $documento->rifcliente;
-                        $total += $documento->total;
+                        if ($documento->moneda == 'Bs') {
+                            $total += $documento->total;
+                        } else if($documento->moneda == '€'){
+                            $total += round(($documento->total * $cambioBsaEuro), 7);
+                        } else {
+                            $total += round(($documento->total * $cambioBsaDolar), 7);
+                        }
+
+                        // $total += $documento->total;
                         if(($documento->estado == 'Pagado')||($documento->estado == 'Abonado')){
-                            $pagado += $documento->total;
+                            if ($documento->moneda == 'Bs') {
+                                $pagado += $documento->total;
+                            } else if($documento->moneda == '€'){
+                                $pagado += round(($documento->total * $cambioBsaEuro), 7);
+                            } else {
+                                $pagado += round(($documento->total * $cambioBsaDolar), 7);
+                            }
+                            // $pagado += $documento->total;
                         }else{
-                            $nopagado += $documento->total;
+                            if ($documento->moneda == 'Bs') {
+                                $nopagado += $documento->total;
+                            } else if($documento->moneda == '€'){
+                                $nopagado += round(($documento->total * $cambioBsaEuro), 7);
+                            } else {
+                                $nopagado += round(($documento->total * $cambioBsaDolar), 7);
+                            }
+                            // $nopagado += $documento->total;
                         }
                     }
                 }
