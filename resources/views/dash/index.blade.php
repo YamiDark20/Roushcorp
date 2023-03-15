@@ -30,6 +30,12 @@
     </div>
 
     <div class="mr-3">
+      <a href="{{ route('reporte.index') }}" class="btn btn-secondary btn-xl">
+      <i class="fa fa-file">&nbsp;Reporte  </i>
+      </a>
+    </div>
+
+    <div class="mr-3">
       <a href="#" class="btn btn-info btn-xl">
       <i class="fa fa-heart">&nbsp;Compras  </i>
       </a>

@@ -22,7 +22,6 @@
         <div class="col-md-9">
 
             <div class="row">
-
                 {{-- Para ingresar el codigo o nombre del producto, podria mostrar una lista desplegable con los
                     productos coincidentes en la bse de datos. O podria ser una ventana modal. Al seleccionar uno
                     se agrega a la tabla de mas abajo --}}
@@ -62,11 +61,7 @@
                     en la lista 2)Para quitar o disminuir productos de la lista --}}
                 <div class="table table-responsive">
                     <table id="listaProductoVenta" class="table table-striped shadow">
-                        <thead>
-                            <tr>
-                                <th>Item</th>
                                 <th>Codigo</th>
-                                <th>Producto</th>
                                 <th>Cantidad</th>
                                 <th>Precio</th>
                                 <th>Total</th>
@@ -104,8 +99,6 @@
                             <i class="fas fa-file-alt"></i>
                             <span class="small">Documento</span>
                         </label>
-
-
                         <select name="" id="selDocVenta" class="form-select form-select-sm col-sm-12">
                             <option value="0">Seleccionar Documento</option>
                             <option value="1" selected="true">Factura</option>
