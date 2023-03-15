@@ -110,20 +110,33 @@
         </div>
         <div class="d-flex justify-content-between">
             @php
+                // $total = $pagado = $nopagado = 0;
+                // $rif = 0;
+                // foreach ($cobros as $documento) {
+                //     if (($rif == 0) || ($documento->rifcliente == $rif)){
+                //         $rif = $documento->rifcliente;
+                //         $total += $documento->total;
+                //         if(($documento->estado == 'Pagado')||($documento->estado == 'Abonado')){
+                //             $pagado += $documento->total;
+                //         }else{
+                //             $nopagado += $documento->total;
+                //         }
+                //     }else{
+                //         $total = $pagado = $nopagado = 0;
+                //         break;
+                //     }
+                // }
                 $total = $pagado = $nopagado = 0;
-                $rif = 0;
-                foreach ($cobros as $documento) {
-                    if (($rif == 0) || ($documento->rifcliente == $rif)){
-                        $rif = $documento->rifcliente;
+                // $rif = 0;
+                foreach ($documentos as $documento) {
+                    if ($documento->rifcliente == $search){
+                        // $rif = $documento->rifcliente;
                         $total += $documento->total;
                         if(($documento->estado == 'Pagado')||($documento->estado == 'Abonado')){
                             $pagado += $documento->total;
                         }else{
                             $nopagado += $documento->total;
                         }
-                    }else{
-                        $total = $pagado = $nopagado = 0;
-                        break;
                     }
                 }
             @endphp
@@ -183,17 +196,17 @@
             <div class="form-group col-12">
                 <div class="row">
                     <div class="col-6">
-                        <label for="" class="form-label">Tipo de pago</label>
+                        <label for="" class="form-label">Tipo de cambio</label>
                         <select wire:model="tipopago" name="tipopago" id="tipopago"
                         class="form-control">
                             <option value="0">-------------</option>
                             <option value="Bs">Bolivar (Bs.)</option>
-                            <option value="Z">Zelle</option>
+                            <option value="€">Euro (€)</option>
                             <option value="$">Dolar ($)</option>
                         </select>
                     </div>
                     <div class="col-6">
-                        <label for="" class="form-label">Tipo de cambio</label>
+                        <label for="" class="form-label">Tipo de pago</label>
                         <select wire:model="tipocambio" name="tipocambio"
                         id="tipocambio" class="form-control">
                             <option value="0">-------------</option>

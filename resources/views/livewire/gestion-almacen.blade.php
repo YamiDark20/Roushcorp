@@ -36,9 +36,11 @@
                 {{-- <a href="{{route('compra.almacen.create', 'kjkkk')}}"
                 class="btn btn-warning btn-sm mb-3 mr-1 d-inline float-right">
                 Comprar <i class="fas fa-box"></i></a> --}}
-                <a href="{{route('compra.index', 'kjkkk')}}"
-                class="btn btn-warning btn-sm mb-3 mr-1 d-inline float-right">
-                Ver Compras</a>
+                @if ($codalm != 0)
+                    <a href="{{route('compra.index', compact('codalm'))}}"
+                    class="btn btn-warning btn-sm mb-3 mr-1 d-inline float-right">
+                    Ver Compras</a>
+                @endif
             </div>
         </div>
     </div>
@@ -67,7 +69,8 @@
                         <tr>
                             <th scope='col'>CodProd</th>
                             <th scope='col'>Nombre</th>
-                            <th scope='col'>Cantidad</th>
+                            <th scope='col'>Stock</th>
+                            <th scope='col'>Cantidad a reponer</th>
                             <th scope='col'>Estado</th>
                             <th scope='col'>Acción</th>
                         </tr>
@@ -88,6 +91,7 @@
                                     @endphp
                                     {{-- <td>{{$nombre}}</td> --}}
                                     <td>{{$nombre}}</td>
+                                    <td>{{$producto->stock}}</td>
                                     <td>{{$producto->cantReponer}}</td>
                                     {{-- <td>{{$documento->total}}</td> --}}
                                     <td>{{$producto->estado}}</td>

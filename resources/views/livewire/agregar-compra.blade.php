@@ -8,6 +8,12 @@
         </div>
 
         <div class="form-group col-4 mt-2">
+            <label class="form-label">Codigo Compra</label>
+            <input type="text" name="codcompra" wire:model="codcompra"
+            class="form-control">
+        </div>
+
+        <div class="form-group col-4 mt-2">
             <label class="form-label">Proveedor</label>
             <input wire:model="proveedor" name="proveedor"
             type="text" class="form-control" >
@@ -19,12 +25,46 @@
             type="date" class="form-control" >
         </div>
 
+        <div class="form-group col-4 mt-2">
+            <label class="form-label">Moneda</label>
+            <select name="moneda" wire:model="moneda"
+            class="form-control">
+                <option value="">---------</option>
+                <option value="$">Dolar ($)</option>
+                <option value="Bs">Bolivar (Bs)</option>
+                <option value="€">Euro (€)</option>
+            </select>
+        </div>
+
+        <div class="form-group col-4 mt-2">
+            <label class="form-label">Guia de Mov.</label>
+            <input type="text" name="guiamov" wire:model="guiamov"
+            class="form-control">
+        </div>
+
+        <div class="form-group col-4 mt-2">
+            <label class="form-label">Tipo de Mov.</label>
+            <select name="tipomov" wire:model="tipomov"
+            class="form-control">
+                <option value="0">---------</option>
+                <option value="terrestre">Terrestre</option>
+                <option value="aereo">Aereo</option>
+                <option value="maritimo">Maritimo</option>
+            </select>
+        </div>
+
+        <div class="form-group col-4 mt-2">
+            <label class="form-label">Impuesto</label>
+            <input type="number" min="1" max="100" name="impuesto"
+            wire:model="impuesto" class="form-control">
+        </div>
+
         <div class="col-12">
             <h4 class="h5">Producto a agregar</h4>
         </div>
 
-        <div class="form-group col-4 mt-2">
-            <label class="form-label">Codigo Producto</label>
+        <div class="form-group col-3 mt-2">
+            <label class="form-label">Codigo</label>
             <select name="codprod" wire:model="codprod"
             class="form-control">
                 <option value="0">---------</option>
@@ -37,12 +77,22 @@
                 <option value="3443">3443</option> --}}
             </select>
         </div>
+        <div class="form-group col-3 mt-2">
+            <label class="form-label">Estado</label>
+            <select name="estado" wire:model="estado"
+            class="form-control">
+                <option value="0">---------</option>
+                <option value="Bueno">Bueno</option>
+                <option value="Medio">Medio</option>
+                <option value="Malo">Malo</option>
+            </select>
+        </div>
 
-        <div class="form-group col-8 mt-2">
-            <label class="form-label">Cantidad a llevar</label>
+        <div class="form-group col-6 mt-2">
+            <label class="form-label">Cantidad</label>
             <div>
                 <input wire:model="cantllevar" name="cantllevar"
-                type="number" min="1" class="form-control col-6 d-inline" >
+                type="number" min="1" class="form-control col-4 d-inline" >
                 <a wire:click="agregarProd"
                 class="btn btn-warning mr-1 d-inline float-right">
                 Agregar <i class="fas fa-box"></i></a>
@@ -69,9 +119,11 @@
                         <tr>
                             <th scope='col'>CodProd</th>
                             <th scope='col'>Nombre</th>
+                            <th scope='col'>Estado</th>
                             <th scope='col'>Cantidad</th>
                             <th scope='col'>Precio</th>
                             <th scope='col'>Total</th>
+                            <th scope='col'>Acción</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -92,9 +144,13 @@
                             <tr>
                                 <td>{{$prod[0]}}</td>
                                 <td>{{$prod[1]}}</td>
+                                <td>{{$prod[4]}}</td>
                                 <td>{{$prod[2]}}</td>
                                 <td>{{$prod[3]}}</td>
                                 <td>{{$prod[2] * $prod[3]}}</td>
+                                <td><a wire:click="eliminarProd('{{$prod[0]}}')"
+                                    class="btn btn-danger">
+                                    Eliminar</a></td>
                             </tr>
                         @endforeach
                         {{-- <tr>
@@ -114,12 +170,17 @@
                     </tbody>
                 </table>
             </div>
+            <div class="col-12">
+                <label for="" class="float-right">Impuesto: {{$moneda}} {{$this->total * ($this->impuesto / 100)}}</label>
+            </div>
+            <div class="col-12">
+                <label for="" class="float-right">Total: {{$moneda}} {{$total + ($this->total * ($this->impuesto / 100))}}</label>
+            </div>
         @endif
-
         <div class="col-12">
-            <a wire:click="agregarProd"
+            <a wire:click="guardarCompra"
                 class="btn btn-warning mr-1 float-right">
-                Guardar <i class="fas fa-box"></i></a>
+                Guardar <i class="fas fa-shopping-cart"></i></a>
         </div>
     </div>
     {{-- {{$rif}}
@@ -131,6 +192,7 @@
     {{$estado}}
     {{$impuesto}}
     {{$moneda}}
+
 
 
     <div>
