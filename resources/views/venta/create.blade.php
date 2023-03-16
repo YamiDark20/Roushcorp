@@ -27,43 +27,40 @@
                     se agrega a la tabla de mas abajo --}}
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label class="form-label" for="id_producto">
+                        <label class="form-label mt-3" for="id_producto">
                             <i class="fas fa barcode"></i>
-                            <span class="small">Cliente</span>
+                            <span class="bold">Cliente</span>
                         </label>
 
                         <select class="form-control form-control-sm" id="id_cliente" name="id_cliente" oninput="calcularValores()">
-                            <option value="">Seleccione un cliente</option>
                             @foreach ($clientes as $cliente)
-                                <option value="{{ $cliente->id }}">{{ $cliente->nombre }}</option>
+                                <option value="{{ $cliente->id }}">{{ $cliente->name }}</option>
                             @endforeach
                         </select>
 
-                        <label class="form-label" for="id_producto">
+                        <label class="form-label mt-3" for="id_producto">
                             <i class="fas fa barcode"></i>
-                            <span class="small">Almacen</span>
+                            <span class="bold">Almacen</span>
                         </label>
 
                         <select class="form-control form-control-sm" id="id_almacen" name="id_almacen" oninput="calcularValores()">
-                            <option value="">Seleccione un almacen</option>
                             @foreach ($almacenes as $almacen)
                                 <option value="{{ $almacen->id }}">{{ $almacen->nombre }}</option>
                             @endforeach
                         </select>
 
-                        <label class="form-label" for="id_producto">
+                        <label class="form-label mt-3" for="id_producto">
                             <i class="fas fa barcode"></i>
-                            <span class="small">Productos</span>
+                            <span class="bold">Productos</span>
                         </label>
 
                         <select class="form-control form-control-sm" id="id_producto" name="id_producto" oninput="calcularValores()">
-                            <option value="">Seleccione un producto</option>
                             @foreach ($productos as $producto)
                                 <option value="{{ $producto->id }}">{{ $producto->nombre }}</option>
                             @endforeach
                         </select>
 
-                        <button type="submit" class="btn btn-success" id="btnAnadirProducto" onclick="anadirProducto()">
+                        <button type="submit" class="btn btn-success float-right my-3" id="btnAnadirProducto" onclick="anadirProducto()">
                             <i class="fas fa-plus"></i> Anadir producto
                         </button>
 
@@ -101,7 +98,7 @@
         <div class="col-md-3">
             <div class="card shadow">
                 <h5 class="card-header bg-info text-white text-center">
-                    Total Venta: <span id="totalVentaRegistrar">0.00</span>
+                    Datos Venta
                 </h5>
 
                 <div class="card-body">
@@ -113,7 +110,6 @@
                             <span class="small">Documento</span>
                         </label>
                         <select name="" id="tipo_documento" class="form-select form-select-sm col-sm-12">
-                            <option value="">Seleccionar Documento</option>
                             <option value="factura">Factura</option>
                             <option value="nota_entrega">Nota de Entrega</option>
                         </select>
@@ -132,7 +128,6 @@
                         </label>
 
                         <select id="tipo_pago" class="form-select form-select-sm col-sm-12">
-                            <option value="">Seleccione Tipo de Pago</option>
                             <option value="efectivo">Efectivo</option>
                             <option value="tarjeta">Tarjeta</option>
                             <option value="pago_movil">Pago Movil</option>
@@ -143,7 +138,7 @@
                     {{-- Efectivo recibido --}}
                     <div class="form-group">
                         <label for="cancelado">Efectivo Recibido</label>
-                        <input type="text" id="cancelado"
+                        <input type="number" id="cancelado"
                         class="form-control form-control-sm" placeholder="Cantidad de efectivo recibido" oninput="calcularValores()">
                     </div>
 
@@ -185,16 +180,14 @@
                             <span id="documentoTotal">0.00</span>
                         </div>
 
-                        <button onclick="fedeTest()">fedebutton</button>
-
                         {{-- Botones para realizar la venta o vaciar la lista --}}
 
-                        <div class="d-flex text-right">
-                            <button type="submit" class="btn btn-success" id="btnRealizarVenta">
+                        <div class="col text-right">
+                            <button type="submit" class="btn btn-success w-100 mt-3" id="btnRealizarVenta" onclick="realizarVenta()">
                                 <i class="fas fa-shopping-cart"></i> Realizar Venta
                             </button>
 
-                            <a href="/productos" class="btn btn-secondary" >Cancelar</a>
+                            <a href="/productos" class="btn btn-secondary w-100 mt-3" >Cancelar</a>
                         </div>
 
                     </div>
@@ -210,13 +203,47 @@
     let productos = {{ Js::from($productos) }};
     let selectedProducto = null;
     let selectedProductos = new Map();
-    let sumaTotal = 0;
+    let valor_compra = 0;
     let sumaIva = 0;
+    let cancelado = 0;
+    let totalAPagar = 0;
+    let vuelto = 0;
     const table = document.querySelector('#listaProductoVenta');
 
     function realizarVenta() {
-        //
+        console.log("aqui");
+        const productos = obtenerProductosSeleccionados();
+        const por_cancelar = vuelto <= 0 ? valor_compra - cancelado : 0;
+        const cliente_id = document.querySelector("#id_cliente")?.value ?? null;
+        const almacen_id = document.querySelector("#id_almacen")?.value ?? null;
+        const tipo_documento = document.querySelector("#tipo_documento")?.value ?? "invalido";
+        const tipo_pago = document.querySelector("#tipo_pago")?.value ?? "invalido";
+        const body = JSON.stringify({productos, cancelado, valor_compra, por_cancelar, vuelto, tipo_documento, tipo_pago, cliente_id, almacen_id});
+
+        fetch('/ventas', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            body
+        })
+        .then(response => response.json())
+        .then(data => window.location.href = '/ventas')
+        .catch(error => console.error(error));
     }
+
+    function obtenerProductosSeleccionados() {
+        const productos = [];
+
+        selectedProductos.forEach(producto => {
+            const {id, precio, iva, total, cantidad} = producto;
+            productos.push({id, precio, iva, total, cantidad});
+        });
+
+        return productos;
+    }
+
 
     function setSelectedProducto() {
         let selectedProductoId = document.querySelector('#id_producto').value;
@@ -233,6 +260,7 @@
         const cantidadInput = document.createElement("input");
         cantidadInput.id = `cantidad_${item.id}`;
         cantidadInput.type = "number";
+        cantidadInput.classList = "form-control form-control-sm";
         const cantidadCell = row.insertCell(2);
         cantidadCell.append(cantidadInput);
         const precioCell = row.insertCell(3);
@@ -246,16 +274,23 @@
         const opcionesCell = row.insertCell(6);
         opcionesCell.classList.add('text-center');
         const eliminarButton = document.createElement("button");
+        eliminarButton.classList = "btn btn-danger";
         eliminarButton.id = `eliminar_btn_${item.id}`;
         eliminarButton.innerText = "Eliminar"
         opcionesCell.append(eliminarButton);
 
         cantidadInput.addEventListener("input", () => {
-            total = (item.precio * cantidadInput.value).toFixed(2);
-            totalCell.innerHTML = (item.precio * cantidadInput.value).toFixed(2);
-            ivaCell.innerHTML = (total * (item.exonerado ? 0 : 0.16)).toFixed(2);
+            let cantidad = cantidadInput.value;
+            let total = (item.precio * cantidad).toFixed(2);
+            let iva = (total * (item.exonerado ? 0 : 0.16)).toFixed(2);
+            totalCell.innerHTML = total;
+            ivaCell.innerHTML = iva;
+            item.cantidad = cantidad;
+            item.total = total;
+            item.iva = iva;
             calcularTotal();
         });
+
         eliminarButton.addEventListener('click', ()=> {
             eliminarProducto(`${item.id}`);
             calcularTotal();
@@ -282,18 +317,18 @@
     function calcularValores() {
         setSelectedProducto();
         let efectivoExacto = document.querySelector('#chkefectivoExacto').checked;
-        let efectivoRecibido = 0;
-        let subtotal = (sumaTotal - sumaIva).toFixed(2);
+        cancelado = 0;
+        let subtotal = (valor_compra - sumaIva).toFixed(2);
 
         if(efectivoExacto) {
-            efectivoRecibido = sumaTotal
-            document.querySelector('#cancelado').value = efectivoRecibido;
+            cancelado = valor_compra
+            document.querySelector('#cancelado').value = cancelado;
         } else {
-            efectivoRecibido = document.querySelector('#cancelado').value
+            cancelado = document.querySelector('#cancelado').value ?? 0
         }
 
-        let totalAPagar = (sumaTotal - efectivoRecibido).toFixed(2);
-        let vuelto = 0;
+        totalAPagar = (valor_compra - cancelado).toFixed(2);
+        vuelto = 0;
 
         if(totalAPagar < 0){
             vuelto = totalAPagar * -1;
@@ -309,21 +344,12 @@
     function calcularTotal() {
         let inputsTotales = document.querySelectorAll("[id^='total_']");
         let inputsIva = document.querySelectorAll("[id^='iva_']");
-        sumaTotal = 0;
+        valor_compra = 0;
         sumaIva = 0;
-        inputsTotales.forEach((total) => {sumaTotal += parseFloat(total.innerText)});
+        inputsTotales.forEach((total) => {valor_compra += parseFloat(total.innerText)});
         inputsIva.forEach((iva) => {sumaIva += parseFloat(iva.innerText)});
 
         calcularValores();
-    }
-
-    function fedeTest() {
-        console.log(selectedProducto)
-        let exonerado = selectedProducto?.exonerado ?? 0;
-        console.log(exonerado)
-        console.log(table);
-        calcularValores();
-        console.log(axios);
     }
 
 </script>

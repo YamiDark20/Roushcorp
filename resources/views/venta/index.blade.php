@@ -35,14 +35,14 @@
                             <tr>
                                 <thead>
                                     <th scope='col'>ID</th>
-                                    <th scope='col'>CODIGO</th>
-                                    <th scope='col'>NOMBRE</th>
-                                    <th scope='col'>MARCA</th>
-                                    <th scope='col'>PESO</th>
-                                    <th scope='col'>DESCRIPCION</th>
-                                    <th scope='col'>CANTIDAD</th>
-                                    <th scope='col'>PRECIO</th>
-                                    <th scope='col'>EXONERADO</th>
+                                    <th scope='col'>Valor Compra</th>
+                                    <th scope='col'>Cancelado</th>
+                                    <th scope='col'>Por Cancelar</th>
+                                    <th scope='col'>Vuelto</th>
+                                    <th scope='col'>Tipo Pago</th>
+                                    <th scope='col'>Tipo Documento</th>
+                                    <th scope='col'>Cliente</th>
+                                    <th scope='col'>Almacen</th>
                                     <th scope='col'>ACCIONES</th>
                                 </thead>
                             </tr>
@@ -51,20 +51,14 @@
                                 @foreach ($ventas as $venta)
                                     <tr>
                                         <td>{{ $venta ->id}}</td>
-                                        <td>{{ $venta ->codigo}}</td>
-                                        <td>{{ $venta ->nombre}}</td>
-                                        <td>{{ $venta ->marca}}</td>
-                                        <td>{{ $venta ->peso}}</td>
-                                        <td>{{ $venta ->descripcion}}</td>
-                                        <td>{{ $venta ->cantidad}}</td>
-                                        <td>{{ $venta ->precio}}</td>
-                                        @if ($venta ->exonerado == 0)
-                                        <td>No</td>
-                                        @endif
-                                        @if ($venta ->exonerado == 1)
-                                        <td>Si</td>
-                                        @endif
-
+                                        <td>{{ $venta ->valor_compra}}</td>
+                                        <td>{{ $venta ->cancelado}}</td>
+                                        <td>{{ $venta ->por_cancelar}}</td>
+                                        <td>{{ $venta ->vuelto}}</td>
+                                        <td>{{ $venta ->tipo_pago}}</td>
+                                        <td>{{ $venta ->tipo_documento}}</td>
+                                        <td>Cliente</td>
+                                        <td>Almacen</td>
                                         <td>
                                             <a href="/ventas/{{$venta->id}}/edit" class = 'btn btn-info'><i class="fa fa-edit"></i></a>
                                         </td>
