@@ -18,4 +18,14 @@ class Venta extends Model
     {
         return $this->hasMany(Factura::class);
     }
+
+    public function almacen()
+    {
+        return $this->belongsTo(Almacen::class);
+    }
+
+    public function cliente()
+    {
+        return $this->belongsTo(Customer::class);
+    }
 }
