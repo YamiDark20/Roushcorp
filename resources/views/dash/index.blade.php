@@ -12,32 +12,37 @@
 
     <div class="mr-3">
     <a href="{{ route('productos.index') }}" class="btn btn-danger btn-xl">
-      <i class=" ocul-ico fa fa-heart">&nbsp;Productos</i>
+      <i class="fa fa-heart small"></i>
+      Productos
     </a>
     </div>
 
     <div class="mr-3">
       <a href="{{ route('customers.index') }}" class="btn btn-primary btn-xl">
-      <i class="fa fa-user">&nbsp;Clientes  </i>
+      <i class="fa fa-user small"></i>
+      Clientes
       </a>
     </div>
 
 
     <div class="mr-3">
       <a href="{{ route('ventas.index') }}" class="btn btn-success btn-xl">
-      <i class="fa fa-user">&nbsp;Ventas  </i>
+      <i class="fa fa-user small"></i>
+      Ventas
       </a>
     </div>
 
     <div class="mr-3">
       <a href="{{ route('reportes.index') }}" class="btn btn-secondary btn-xl">
-      <i class="fa fa-file">&nbsp;Reporte  </i>
+      <i class="fa fa-file small"></i>
+      Reporte
       </a>
     </div>
 
     <div class="mr-3">
       <a href="#" class="btn btn-info btn-xl">
-      <i class="fa fa-heart">&nbsp;Compras  </i>
+      <i class="fa fa-heart small"></i>
+      Compras
       </a>
     </div>
     
