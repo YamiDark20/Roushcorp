@@ -29,6 +29,8 @@ return new class extends Migration
             $table->string('nombre_almacen', 45);
             $table->decimal('precio_antes_de_impuesto', 9,2);
             $table->decimal('precio_total_factura', 9,2);
+            $table->foreignId('venta_id')->constrained('ventas')->nullable()->onDelete('cascade');
+            $table->foreignId('compra_id')->constrained('compras')->nullable()->onDelete('cascade');
             $table->timestamps();
         });
     }

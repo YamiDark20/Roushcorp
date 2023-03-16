@@ -15,12 +15,14 @@ return new class extends Migration
     {
         Schema::create('ventas', function (Blueprint $table) {
             $table->id();
-            $table->decimal('valor_compra', 9,2);
-            $table->decimal('cancelado', 9,2);
-            $table->decimal('por_cancelar', 9,2);
-            $table->decimal('vuelto', 9,2);
-            $table->string('tipo_pago');
             $table->timestamps();
+            $table->integer('cantidad');
+            $table->decimal('vuelto', 9,2);
+            $table->string('tipo_documento');
+            $table->string('tipo_pago');
+            $table->decimal('cancelado', 9, 2);
+            $table->unsignedBigInteger('id_producto');
+            $table->foreign('id_producto')->references('id')->on('productos');
         });
     }
 

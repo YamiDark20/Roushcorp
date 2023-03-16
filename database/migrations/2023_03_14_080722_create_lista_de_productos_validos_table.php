@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('lista_de_productos_validos', function (Blueprint $table) {
+        Schema::create('productos_validos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_del_producto');
             $table->timestamps();
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lista_de_productos_validos');
+        Schema::dropIfExists('productos_validos');
     }
 };

@@ -9,7 +9,7 @@ class Almacen extends Model
 {
     use HasFactory;
 
-    protected $table = 'almacens';
+    protected $table = 'almacenes';
 
     protected $fillable = ['nombre', 'direccion', 'capacidad', 'estado'];
 }

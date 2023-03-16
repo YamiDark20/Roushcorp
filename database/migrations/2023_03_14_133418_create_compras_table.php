@@ -20,6 +20,8 @@ return new class extends Migration
             $table->decimal('por_cancelar', 9,2);
             $table->decimal('vuelto', 9,2);
             $table->string('tipo_pago');
+            $table->foreignId('cliente_id')->constrained('clientes')->nullable()->onDelete('cascade');
+            $table->foreignId('almacen_id')->constrained('almacenes')->nullable()->onDelete('cascade');
             $table->timestamps();
         });
     }

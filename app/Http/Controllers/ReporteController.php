@@ -7,17 +7,17 @@ use App\Models\Factura;
 use App\Models\Compra;
 use App\Models\Cliente;
 use App\Models\Almacen;
+use App\Models\Venta;
+use Carbon\Carbon;
 
-class CReporteController extends Controller
+class ReporteController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        return view('reporte.index');
     }
 
     /**

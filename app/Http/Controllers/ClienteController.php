@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 
@@ -48,7 +49,7 @@ class ClienteController extends Controller
 
 
         ]);
-        
+
         /*$request->all());
         $customer->rif = $request->get('tiporif').$request->get('rif');
         $customer->save();*/

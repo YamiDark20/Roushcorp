@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('clientes', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 45);
+            $table->string('nombre', 45);
             $table->string('rif', 11)->unique();
-            $table->string('address', 70);
-            $table->string('telephone', 11);
+            $table->string('direccion', 70);
+            $table->string('telefono', 11);
             $table->string('email')->unique();
-            $table->string('city', 45);
+            $table->string('ciudad', 45);
             $table->string('tipo_de_persona');
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('clientes');
     }
 };

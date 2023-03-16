@@ -7,6 +7,7 @@ use App\Models\Factura;
 use App\Models\Venta;
 use App\Models\Cliente;
 use App\Models\Almacen;
+use Illuminate\Support\Facades\DB;
 
 class VentaController extends Controller
 {
@@ -65,8 +66,9 @@ class VentaController extends Controller
                 'tipo_pago' => $request['tipo_pago'],
                 'cliente_id' => $cliente->id,
                 'almacen_id' => $almacen->id,
-                'request_creator_id' => $user->id
             ]);
+
+            # 'request_creator_id' => $user->id
          
             
             foreach($request['nombre_producto'] as $key){

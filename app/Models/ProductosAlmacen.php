@@ -9,7 +9,8 @@ class ProductosAlmacen extends Model
 {
     use HasFactory;
 
-    public function documentos(){
+    public function documentos()
+    {
         return $this->belongsTo(Documento::class);
     }
 }

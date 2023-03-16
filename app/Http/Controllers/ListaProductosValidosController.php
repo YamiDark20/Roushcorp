@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ListaProductosValidos;
-
+use Illuminate\Support\Facades\DB;
 
 class ListaProductosValidosController extends Controller
 {

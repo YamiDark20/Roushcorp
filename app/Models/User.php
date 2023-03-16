@@ -61,7 +61,7 @@ class User extends Authenticatable
     ];
 
     public function adminlte_desc(){
-        return 'rol';
+        return 'Administrador';
     }
 
     /* public function adminlte_profile(){

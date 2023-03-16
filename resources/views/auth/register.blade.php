@@ -30,7 +30,7 @@
             </div>
 
             <div class="mt-4">
-                <x-label for="rol" value="{{ __('Rol') }}" />
+                <x-label for="rol" value="{{ __('rol') }}" />
                 <select name="rol" id="rol" class="block mt-1 w-full">
                     <option value="Administrador">Administrador</option>
                     <option value="Comprador">Comprador</option>

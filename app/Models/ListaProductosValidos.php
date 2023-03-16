@@ -9,7 +9,7 @@ class ListaProductosValidos extends Model
 {
     use HasFactory;
 
-    protected $table = 'almacens';
+    protected $table = 'almacenxs';
 
     protected $fillable = ['nombre_del_producto'];
 }

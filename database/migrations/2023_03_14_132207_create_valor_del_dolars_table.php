@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('valor_del_dolars', function (Blueprint $table) {
+        Schema::create('valor_dolar', function (Blueprint $table) {
             $table->id();
-            $table->integer('cambio_del_dia');
+            $table->integer('cambio_dia');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('valor_del_dolars');
+        Schema::dropIfExists('valor_dolar');
     }
 };

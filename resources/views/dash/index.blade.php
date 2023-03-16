@@ -30,7 +30,7 @@
     </div>
 
     <div class="mr-3">
-      <a href="{{ route('reporte.index') }}" class="btn btn-secondary btn-xl">
+      <a href="{{ route('reportes.index') }}" class="btn btn-secondary btn-xl">
       <i class="fa fa-file">&nbsp;Reporte  </i>
       </a>
     </div>

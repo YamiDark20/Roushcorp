@@ -23,10 +23,13 @@ Route::resource('productos', '\App\Http\Controllers\ProductoController');
 
 Route::resource('customers', '\App\Http\Controllers\CustomerController')
 ->except('show', 'destroy')->names('customers');
-Route::post('/create_cliente', [ClienteController::class, 'store']);
+// Route::post('/create_cliente', [ClienteController::class, 'store']);
 
 Route::resource('cobros', CobroController::class)
 ->except('store', 'edit', 'update', 'show', 'destroy')->names('cobros');
+
+Route::resource('ventas', '\App\Http\Controllers\VentaController');
+Route::resource('reportes', '\App\Http\Controllers\ReporteController');
 
 Route::get('compras/almacen', function(){
     return view('compra.almacen.index');
@@ -40,7 +43,9 @@ Route::get('compras/{codalm}', function($codalm){
     return view('compra.index');
 })->name('compra.index'); //Visualizar compras de un almacen
 
-Route::resource('ventas', '\App\Http\Controllers\VentaController');
+Route::get('compras/{codcompra}/{codalm}', function($codcompra, $codalm){
+    return view('compra.almacen.visualizar-compra', compact('codcompra', 'codalm'));
+})->name('compra.almacen.visualizar');  //Visualizar compra x de un almacen x
 
 
 /* Route::get('/', function(){
@@ -56,9 +61,6 @@ Route::middleware([
         return view('dash.index');
     })->name('dash');
 });
-
-
-// AQUÍ LO HECHO POR DANIEL
 
 Route::post('/crear_tipo_de_producto', [ListaProductosValidosController::class, 'create']);
 Route::get('/obtener_productos_validos', [ListaProductosValidosController::class, 'list']);

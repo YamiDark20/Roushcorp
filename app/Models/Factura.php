@@ -30,11 +30,6 @@ class Factura extends Model
 
     ];
 
-    public function documentos()
-    {
-        return $this->belongsTo(Documento::class);
-    }
-
     public function ventas()
     {
         return $this->belongsTo(Venta::class);
