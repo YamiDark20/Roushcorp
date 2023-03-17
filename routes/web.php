@@ -19,7 +19,11 @@ use App\Http\Controllers\VentaController;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('index');
+});
+
+Route::get('/welcome', function () {
+    return view('welcome');
 });
 
 // Route::group(['middleware' => ['role:super-admin']], function () {
