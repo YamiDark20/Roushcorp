@@ -73,10 +73,10 @@
                             <label for="" class="form-label d-block">Exonerado</label>
                             <div class="btn-group btn-group-toggle d-block" data-toggle="buttons">
                                 <div class="btn btn-primary">
-                                    <input type="radio" name="exonerado" value="0" autocomplete="off" class="btn-check" checked>Sin IVA
+                                    <input type="radio" name="exonerado" value="1" autocomplete="off" class="btn-check" checked>Sin IVA
                                 </div>
                                 <div class="btn btn-primary">
-                                    <input type="radio" name="exonerado" value="1" autocomplete="off" class="btn-check">Con IVA
+                                    <input type="radio" name="exonerado" value="0" autocomplete="off" class="btn-check">Con IVA
                                 </div>
 
                             </div>

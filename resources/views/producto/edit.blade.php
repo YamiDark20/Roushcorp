@@ -77,17 +77,17 @@
                             <div class="btn-group btn-group-toggle d-block" data-toggle="buttons">
                                 @if ($producto->exonerado == 0)
                                     <div class="btn btn-primary">
-                                        <input type="radio" name="exonerado" value="0" autocomplete="off" class="btn-check" checked>Sin IVA
+                                        <input type="radio" name="exonerado" value="1" autocomplete="off" class="btn-check" checked>Sin IVA
                                     </div>
                                     <div class="btn btn-primary">
-                                        <input type="radio" name="exonerado" value="1" autocomplete="off" class="btn-check">Con IVA
+                                        <input type="radio" name="exonerado" value="0" autocomplete="off" class="btn-check">Con IVA
                                     </div>
                                 @else
                                     <div class="btn btn-primary">
-                                        <input type="radio" name="exonerado" value="0" autocomplete="off" class="btn-check">Sin IVA
+                                        <input type="radio" name="exonerado" value="1" autocomplete="off" class="btn-check">Sin IVA
                                     </div>
                                     <div class="btn btn-primary">
-                                        <input type="radio" name="exonerado" value="1" autocomplete="off" class="btn-check" checked>Con IVA
+                                        <input type="radio" name="exonerado" value="0" autocomplete="off" class="btn-check" checked>Con IVA
                                     </div>
                                 @endif
 
