@@ -6,8 +6,8 @@ use Livewire\Component;
 use App\Models\Producto;
 use App\Models\Movimiento;
 use App\Models\Compra;
-use App\Models\MovimientoAlmacen;
-use App\Models\ProductosAlmacen;
+use App\Models\AlmacenMovimiento;
+use App\Models\AlmacenProducto;
 
 class CompraAlmacen extends Component
 {
@@ -45,9 +45,9 @@ class CompraAlmacen extends Component
     public function mount(){
         $this->compras = Compra::all();
         $this->movimientos = Movimiento::all();
-        $this->movalms = MovimientoAlmacen::all();
+        $this->movalms = AlmacenMovimiento::all();
         $this->productos = Producto::all();
-        $this->productoscomprados = ProductosAlmacen::all();
+        $this->productoscomprados = AlmacenProducto::all();
         foreach ($this->compras as $compra) {
             if ($compra->codcompra == $this->codcompra) {
                 foreach ($this->movimientos as $mov) {

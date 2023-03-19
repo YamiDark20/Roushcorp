@@ -16,14 +16,11 @@ return new class extends Migration
         Schema::create('documentos', function (Blueprint $table) {
             $table->id();
             $table->string('codfact')->unique();
-            
-            //$table->string('impuesto');
             $table->string('numguia');
-            $table->string('moneda');
             $table->string('estado');
-            $table->date('fecha');
             $table->string('tipocambio');
             //$table->string('impuesto');
+            $table->foreignId('customer_id')->constrained('customers')->nullable()->onDelete('cascade');
             $table->decimal('impuesto', 9,2);
             $table->decimal('subtotal', 9,2);
             $table->decimal('total', 9,2);

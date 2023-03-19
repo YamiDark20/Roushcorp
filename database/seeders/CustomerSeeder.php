@@ -16,7 +16,7 @@ class CustomerSeeder extends Seeder
     public function run()
     {
         $customer = new Customer();
-        $customer->rif = 'v28462041';
+        $customer->rif = 'V-28462041';
         $customer->name = 'Leonel Araujo Jr';
         $customer->address = 'Anzoategui';
         $customer->telephone = '04245638975';
@@ -25,7 +25,7 @@ class CustomerSeeder extends Seeder
         $customer->save();
 
         $customer1 = new Customer();
-        $customer1->rif = 'j25262041';
+        $customer1->rif = 'J-25262041';
         $customer1->name = 'Robson Gutierrez';
         $customer1->address = 'Pto La Cruz';
         $customer1->telephone = '04148647512';
@@ -34,7 +34,7 @@ class CustomerSeeder extends Seeder
         $customer1->save();
 
         $customer2 = new Customer();
-        $customer2->rif = 'v26228041';
+        $customer2->rif = 'V-26228041';
         $customer2->name = 'Victor Mujica';
         $customer2->address = 'Lecheria';
         $customer2->telephone = '04246694574';

@@ -141,8 +141,8 @@ class CobrosIndex extends Component
 
     public function render()
     {
-        $cobros = Documento::where('rifcliente', 'LIKE', '%'.$this->search.'%')
-        ->paginate(5);
+        $cliente = Customer::where('rif', 'LIKE', '%'.$this->search.'%')->firstOrFail();
+        $cobros = $cliente->documentos;
         return view('livewire.cobros-index', compact('cobros'));
     }
 

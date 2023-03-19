@@ -21,14 +21,14 @@
         class="btn btn-dark btn-sm float-right mr-1">Agregar Devolución</a> --}}
     {{-- <a href="{{route('cobros.create')}}"
     class="btn btn-dark btn-sm float-right">Agregar Cobro</a> --}}
-    <h1>Lista de compras del almacen {{$codalm}}</h1>
+    <h1>Lista de compras del almacen </h1>
 @stop
 
 @section('content')
     <div class= "col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                @livewire('lista-compra-alm', ['codalm' => $codalm])
+                @livewire('lista-compra-alm')
             </div>
         </div>
     </div>

@@ -19,9 +19,13 @@ variable title proviene del admintle.php de la carpeta config --}}
 {{-- En la siguiente linea de codigo se modifica el contenido --}}
 @section('content')
     @if ($errors->any())
-        <div class="alert alert-danger">
-            <strong>No se han colocado nada en ninguno de los campos. Otra razon del error es que el rif o correo ya existen</strong>
-        </div>
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-danger">
+                <strong>
+                    {{ $error }}
+                </strong>
+            </div>
+        @endforeach
     @endif
     <div class="card">
         <div class="card-body">
@@ -36,17 +40,17 @@ variable title proviene del admintle.php de la carpeta config --}}
                     <div class="form-group col-4">
                         {!! Form::label('tiporif', 'Tipo RIF:', ['class' => 'd-inline']) !!}
                         <select name="tiporif" id="tiporif" class="form-control d-inline">
-                            <option value="v">Ente Natural (v)</option>
-                            <option value="j">Persona Jurídica (j)</option>
-                            <option value="e">Extranjero (e)</option>
-                            <option value="p">Agente registrado con Pasaporte (p)</option>
-                            <option value="g">Ente Gubernamental (g)</option>
+                            <option value="v">Ente Natural (V)</option>
+                            <option value="j">Persona Jurídica (J)</option>
+                            <option value="e">Extranjero (E)</option>
+                            <option value="p">Agente registrado con Pasaporte (P)</option>
+                            <option value="g">Ente Gubernamental (G)</option>
                         </select>
                     </div>
                     <div class="form-group col-4">
                         {!! Form::label('rif', 'RIF:', ['class' => 'd-inline']) !!}
                         {!! Form::text('rif', null, ['class' => 'form-control d-inline',
-                        'placeholder' => 'Ingrese el RIF del cliente']) !!}
+                        'placeholder' => 'Ingrese el RIF del cliente', 'pattern' => "\d{6,9}-?\d?"]) !!}
                     </div>
                     <div class="form-group col-4">
                         {!! Form::label('address', 'Dirección:', ['class' => 'd-inline']) !!}
@@ -56,12 +60,12 @@ variable title proviene del admintle.php de la carpeta config --}}
                     <div class="form-group col-4">
                         {!! Form::label('telephone', 'Telefono:', ['class' => 'd-inline']) !!}
                         {!! Form::text('telephone', null, ['class' => 'form-control d-inline',
-                    'placeholder' => 'Ingrese el telefono del cliente']) !!}
+                    'placeholder' => 'Ingrese el telefono del cliente', 'pattern' => "0(2(12|3[4589]|4[0-9]|[5-8][1-9]|9[1-5])|(4(12|14|16|24|26)))-?\d{7}"]) !!}
                     </div>
                     <div class="form-group col-4">
                         {!! Form::label('email', 'Correo:', ['class' => 'd-inline']) !!}
                         {!! Form::text('email', null, ['class' => 'form-control d-inline',
-                    'placeholder' => 'Ingrese el correo del cliente']) !!}
+                    'placeholder' => 'Ingrese el correo del cliente', 'pattern' => "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"]) !!}
                     </div>
                     <div class="form-group col-12">
                         {!! Form::label('city', 'Ciudad:', ['class' => 'd-inline']) !!}

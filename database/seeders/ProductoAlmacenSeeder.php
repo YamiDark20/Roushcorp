@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\ProductosAlmacen;
+use App\Models\AlmacenProducto;
 
 class ProductoAlmacenSeeder extends Seeder
 {
@@ -15,7 +15,7 @@ class ProductoAlmacenSeeder extends Seeder
      */
     public function run()
     {
-        $prodalma1 = new ProductosAlmacen();
+        $prodalma1 = new AlmacenProducto();
         $prodalma1->idprod = '1232';
         $prodalma1->idalm = 1;
         $prodalma1->estado = 'Bueno';
@@ -23,7 +23,7 @@ class ProductoAlmacenSeeder extends Seeder
         $prodalma1->cantReponer = 45;
         $prodalma1->save();
 
-        $prodalma2 = new ProductosAlmacen();
+        $prodalma2 = new AlmacenProducto();
         $prodalma2->idprod = '2728';
         $prodalma2->idalm = 1;
         $prodalma2->estado = 'Medio';
@@ -31,7 +31,7 @@ class ProductoAlmacenSeeder extends Seeder
         $prodalma2->cantReponer = 25;
         $prodalma2->save();
 
-        $prodalma3 = new ProductosAlmacen();
+        $prodalma3 = new AlmacenProducto();
         $prodalma3->idprod = '6372';
         $prodalma3->idalm = 1;
         $prodalma3->estado = 'Malo';
@@ -39,7 +39,7 @@ class ProductoAlmacenSeeder extends Seeder
         $prodalma3->cantReponer = 13;
         $prodalma3->save();
 
-        $prodalma4 = new ProductosAlmacen();
+        $prodalma4 = new AlmacenProducto();
         $prodalma4->idprod = '2728';
         $prodalma4->idalm = 2;
         $prodalma4->estado = 'Bueno';
@@ -47,7 +47,7 @@ class ProductoAlmacenSeeder extends Seeder
         $prodalma4->cantReponer = 25;
         $prodalma4->save();
 
-        $prodalma5 = new ProductosAlmacen();
+        $prodalma5 = new AlmacenProducto();
         $prodalma5->idprod = '6372';
         $prodalma5->idalm = 3;
         $prodalma5->estado = 'Medio';

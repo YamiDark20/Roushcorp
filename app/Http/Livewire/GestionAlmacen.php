@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Almacen;
-use App\Models\ProductosAlmacen;
+use App\Models\AlmacenProducto;
 use App\Models\Producto;
 
 class GestionAlmacen extends Component
@@ -17,7 +17,7 @@ class GestionAlmacen extends Component
     public function mount(){
         $this->productos = Producto::all();
         $this->almacenes = Almacen::all();
-        $this->prodalm = ProductosAlmacen::all();
+        $this->prodalm = AlmacenProducto::all();
     }
 
     public function btnVerContent()

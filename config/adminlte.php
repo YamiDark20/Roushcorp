@@ -310,42 +310,42 @@ return [
         [
             'text' => 'Inicio',
             'route'  => 'dash',
-            'icon'=> 'fas fa-fw fa-home',
+            'icon'=> 'fas mr-3 fa-fw fa-home',
         ],
         [
             'text'        => 'Clientes',
             'route'         => 'customers.index',
-            'icon'        => 'fas fa-fw fa-users'
+            'icon'        => 'fas mr-3 fa-fw fa-users'
         ],
         [
             'text'        => 'Productos',
             'url'         => '/productos',
-            'icon'        => 'fas fa-fw fa-box'
+            'icon'        => 'fas mr-3 fa-fw fa-box'
         ],
         [
-            'text'        => 'Cobrar',
+            'text'        => 'Cobros',
             'route'         => 'cobros.index',
-            'icon'        => 'fas fa-fw fa-book'
+            'icon'        => 'fas mr-3 fa-fw fa-book'
         ],
         // [
         //     'text'        => 'Facturar',
         //     'url'         => 'admin/pages',
-        //     'icon'        => 'fas fa-fw fa-file-invoice'
+        //     'icon'        => 'fas mr-3 fa-fw fa-file-invoice'
         // ],
         [
             'text'        => 'Ventas',
             'route'         => 'ventas.index',
-            'icon'        => 'fas fa-fw fa-cash-register'
+            'icon'        => 'fas mr-3 fa-fw fa-cash-register'
         ],
         [
             'text'        => 'Reportes',
             'route'         => 'reportes.index',
-            'icon'        => 'fas fa-fw fa-file'
+            'icon'        => 'fas mr-3 fa-fw fa-file'
         ],
         [
             'text'        => 'Compras',
             'route'         => 'compra.almacen',
-            'icon'        => 'fas fa-fw fa-shopping-cart'
+            'icon'        => 'fas mr-3 fa-fw fa-shopping-cart'
         ]
     ],
 

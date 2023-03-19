@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Movimiento;
 use App\Models\Compra;
-use App\Models\MovimientoAlmacen;
+use App\Models\AlmacenMovimiento;
 use App\Models\User;
 
 class ListaCompraAlm extends Component
@@ -15,7 +15,7 @@ class ListaCompraAlm extends Component
     public function mount(){
         $this->compras = Compra::all();
         $this->movimientos = Movimiento::all();
-        $this->movalmacenes = MovimientoAlmacen::all();
+        $this->movalmacenes = AlmacenMovimiento::all();
         $this->comprasalm = [];
         // $indexcodalm = $indexcodmov = "";
         foreach ($this->movalmacenes as $movalmacen) {

@@ -139,11 +139,11 @@
                     @foreach ($cobros as $documento)
                         <tr>
                             @if ($documento->estado != '')
-                                <td>{{$documento->rifcliente}}</td>
+                                <td>{{$documento->rif_cliente}}</td>
                                 @php
                                     $nombre = NULL;
                                     foreach($customers as $customer) {
-                                        if($customer->rif == $documento->rifcliente){
+                                        if($customer->rif == $documento->rif_cliente){
                                             $nombre = $customer->name;
                                             break;
                                         }
@@ -205,8 +205,8 @@
                 $total = $pagado = $nopagado = 0;
                 $rif = 0;
                 foreach ($cobros as $documento) {
-                    if (($rif == 0) || ($documento->rifcliente == $rif)){
-                        $rif = $documento->rifcliente;
+                    if (($rif == 0) || ($documento->rif_cliente == $rif)){
+                        $rif = $documento->rif_cliente;
                         $total += $documento->total;
                         if(($documento->estado == 'Pagado')||($documento->estado == 'Abonado')){
                             $pagado += $documento->total;

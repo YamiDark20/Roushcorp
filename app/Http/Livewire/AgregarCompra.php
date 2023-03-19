@@ -4,10 +4,10 @@ namespace App\Http\Livewire;
 
 use App\Models\Compra;
 use App\Models\Movimiento;
-use App\Models\MovimientoAlmacen;
+use App\Models\AlmacenMovimiento;
 use Livewire\Component;
 use App\Models\Producto;
-use App\Models\ProductosAlmacen;
+use App\Models\AlmacenProducto;
 
 class AgregarCompra extends Component
 {
@@ -19,7 +19,7 @@ class AgregarCompra extends Component
 
     public function mount(){
         $this->productos = Producto::all();
-        $this->productoscomprados = ProductosAlmacen::all();
+        $this->productoscomprados = AlmacenProducto::all();
     }
 
     public function guardarCompra(){
@@ -43,7 +43,7 @@ class AgregarCompra extends Component
             $movimiento->save();
 
             foreach ($this->prodcomprados as $producto) {
-                $movalm = new MovimientoAlmacen();
+                $movalm = new AlmacenMovimiento();
                 $movalm->codmov = $this->guiamov;
                 $movalm->codalm = $this->codalm;
                 $movalm->codprod = $producto[0];
@@ -59,7 +59,7 @@ class AgregarCompra extends Component
                     }
                 }
                 if ($existe == False) {
-                    $prodalm = new ProductosAlmacen();
+                    $prodalm = new AlmacenProducto();
                     $prodalm->idprod = $producto[0];
                     $prodalm->idalm = $this->codalm;
                     $prodalm->estado = $producto[4];

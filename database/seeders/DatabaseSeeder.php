@@ -32,5 +32,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AlmacenSeeder::class);
         $this->call(ProductoSeeder::class);
         $this->call(RolSeeder::class);
+        $this->call(DocumentoSeeder::class);
     }
 }

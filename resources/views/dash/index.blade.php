@@ -11,7 +11,7 @@
 
     <a href="{{ route('customers.index') }}">
       <div class="contenedor" id="uno">
-        <i class="fas fa-users icon"></i>
+        <i class="fas fa-users icon fix-padding"></i>
         <p class="texto">Clientes</p>
       </div>
     </a>

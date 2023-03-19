@@ -20,7 +20,7 @@ class Factura extends Model
         'producto_id',
     ];
 
-    public function ventas()
+    public function venta()
     {
         return $this->belongsTo(Venta::class);
     }

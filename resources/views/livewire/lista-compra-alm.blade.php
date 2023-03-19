@@ -32,7 +32,7 @@
                                 @php
                                     $nombre = NULL;
                                     foreach($customers as $customer) {
-                                        if($customer->rif == $documento->rifcliente){
+                                        if($customer->rif == $documento->rif_cliente){
                                             $nombre = $customer->name;
                                             break;
                                         }
