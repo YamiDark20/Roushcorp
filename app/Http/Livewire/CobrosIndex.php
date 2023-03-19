@@ -42,15 +42,28 @@ class CobrosIndex extends Component
     public $customers;
     public $documentos;
     public $result = "";
-    public $tipopago, $tipocambio, $rif;
+    public $tipo_pago, $tipocambio, $rif;
+
+    public $cliente_seleccionado;
+    public $cliente_seleccionado_obj;
+
+    public $showPagoFacturaModal = false;
 
     public function mount(){
         $this->customers = Customer::all();
         $this->documentos = Documento::all();
+        $this->cliente_seleccionado_obj = $this->customers[0];
+        $this->cliente_seleccionado = $this->cliente_seleccionado_obj?->id ?? 0;
     }
 
     public function updatingSearch(){
         $this->resetPage();
+    }
+
+    public function updatedClienteSeleccionado()
+    {
+        $this->cliente_seleccionado_obj = Customer::where('id', '=', $this->cliente_seleccionado)->first();
+        $this->emit('clienteSeleccionado', $this->cliente_seleccionado);
     }
 
     // public function btnEventPagado(){
@@ -73,16 +86,15 @@ class CobrosIndex extends Component
     // }
 
     public function procesarpagofactura(){
-        // if(($this->rif != '0')&&($this->tipocambio != '0')&&($this->tipopago != '0')){
-        //     $this->result = $this->rif.$this->tipocambio.$this->tipopago;
+        // if(($this->rif != '0')&&($this->tipocambio != '0')&&($this->tipo_pago != '0')){
+        //     $this->result = $this->rif.$this->tipocambio.$this->tipo_pago;
         // }
 
-        if(($this->rif != '0')
-        && ($this->tipocambio != '0') && ($this->tipopago != '0')){
+        if(($this->rif != '0') && ($this->tipo_pago != '0')){
             foreach($this->documentos as $documento){
                 if($documento->codfact == $this->rif){
                     $documento->tipocambio = $this->tipocambio;
-                    $documento->moneda = $this->tipopago;
+                    $documento->moneda = $this->tipo_pago;
                     if ($this->activarpagofact == 1) {
                         $documento->estado = 'Pagado';
                     }
@@ -95,16 +107,14 @@ class CobrosIndex extends Component
             $this->result = "No se pudo agregar el cobro";
         }
         $this->activarabono = 0;
-        #$this->mostrarPag = $this->tipopago;
+        #$this->mostrarPag = $this->tipo_pago;
     }
 
     public function procesarabono(){
-        if(($this->rif != '0')
-        && ($this->tipocambio != '0') && ($this->tipopago != '0')){
+        if(($this->rif != '0') &&  ($this->tipo_pago != '0')){
             foreach($this->documentos as $documento){
                 if($documento->codfact == $this->rif){
-                    $documento->tipocambio = $this->tipocambio;
-                    $documento->moneda = $this->tipopago;
+                    $documento->tipo_pago = $this->tipo_pago;
                     if ($this->activarabono == 1) {
                         $documento->estado = 'Abonado';
                     }
@@ -141,9 +151,7 @@ class CobrosIndex extends Component
 
     public function render()
     {
-        $cliente = Customer::where('rif', 'LIKE', '%'.$this->search.'%')->firstOrFail();
-        $cobros = $cliente->documentos;
-        return view('livewire.cobros-index', compact('cobros'));
+        return view('livewire.cobros-index');
     }
 
     #La siguiente funcion es usado para hacer cambios en el html select

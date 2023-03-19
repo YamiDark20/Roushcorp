@@ -18,11 +18,9 @@ class DocumentoSeeder extends Seeder
     {
         $documento = new Documento();
         $documento->codfact = '5362';
-        $documento->numguia = '6372';
         $documento->estado = 'Pagado';
-        $documento->tipocambio = 'T';
-        $documento->impuesto = 6.78;
-        $documento->subtotal = 25.25;
+        $documento->tipo_pago = 'Pago Móvil';
+        $documento->cancelado = 25.25;
         $documento->total = 32.32;
         $documento->customer_id = Customer::all()->first()->id;
         $documento->save();
