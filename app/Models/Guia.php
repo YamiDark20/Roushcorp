@@ -12,4 +12,9 @@ class Guia extends Model
     protected $table = 'guias';
 
     protected $fillable = ['origen', 'destino', 'fecha_salida', 'fecha_llegada'];
+
+    public function compra()
+    {
+        return $this->belongsTo(Compra::class);
+    }
 }

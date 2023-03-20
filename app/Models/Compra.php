@@ -17,4 +17,9 @@ class Compra extends Model
     {
         return $this->hasOne(Factura::class);
     }
+
+    public function guia()
+    {
+        return $this->hasOne(Guia::class);
+    }
 }
