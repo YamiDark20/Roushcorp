@@ -9,47 +9,77 @@
 @section('content')
   <div class="">
 
-    <a href="{{ route('customers.index') }}">
-      <div class="contenedor" id="uno">
-        <i class="fas fa-users icon fix-padding"></i>
-        <p class="texto">Clientes</p>
-      </div>
-    </a>
+    @can('Gestionar Clientes')
+      <a href="{{ route('customers.index') }}">
+        <div class="contenedor" id="uno">
+          <i class="fas fa-users icon fix-padding"></i>
+          <p class="texto">Clientes</p>
+        </div>
+      </a>
+    @endcan
 
-    <a href="/productos">
-      <div class="contenedor" id="dos">
-        <i class="fa fa-box icon"></i>
-        <p class="texto">Productos</p>
-      </div>
-    </a>
+    @can("Gestionar Productos")
+      <a href="/productos">
+        <div class="contenedor" id="dos">
+          <i class="fa fa-box icon"></i>
+          <p class="texto">Productos</p>
+        </div>
+      </a>
+    @endcan
 
-    <a href="{{ route('cobros.index') }}">
-      <div class="contenedor" id="tres">
-        <i class="fas fa-fw fa-book icon"></i>
-        <p class="texto">Cobros</p>
-      </div>
-    </a>
+    @can("Gestionar Cobros")
+      <a href="{{ route('cobros.index') }}">
+        <div class="contenedor" id="tres">
+          <i class="fas fa-fw fa-book icon"></i>
+          <p class="texto">Cobros</p>
+        </div>
+      </a>
+    @endcan
 
-    <a href="{{ route('ventas.index') }}">
-      <div class="contenedor" id="cuatro">
-        <i class="fas fa-fw fa-cash-register icon"></i>
-        <p class="texto">Ventas</p>
-      </div>
-    </a>
+    @can("Gestionar Ventas")
+      <a href="{{ route('ventas.index') }}">
+        <div class="contenedor" id="cuatro">
+          <i class="fas fa-fw fa-cash-register icon"></i>
+          <p class="texto">Ventas</p>
+        </div>
+      </a>
+    @endcan
 
-    <a href="{{ route('reportes.index') }}">
-      <div class="contenedor" id="cinco">
-        <i class="fas fa-fw fa-file icon"></i>
-        <p class="texto">Reportes</p>
-      </div>
-    </a>
+    @can("Gestionar Reportes")
+      <a href="{{ route('reportes.index') }}">
+        <div class="contenedor" id="cinco">
+          <i class="fas fa-fw fa-file icon"></i>
+          <p class="texto">Reportes</p>
+        </div>
+      </a>
+    @endcan
 
-    <a href="{{ route('compra.index') }}">
-      <div class="contenedor" id="seis">
-        <i class="fas fa-fw fa-shopping-cart icon fix-padding"></i>
-        <p class="texto">Compras</p>
-      </div>
-    </a>
+    @can("Gestionar Compras")
+      <a href="{{ route('compra.index') }}">
+        <div class="contenedor" id="seis">
+          <i class="fas fa-fw fa-shopping-cart icon fix-padding"></i>
+          <p class="texto">Compras</p>
+        </div>
+      </a>
+    @endcan
+
+    @can("Gestionar Inventario")
+      <a href="{{ route('almacen.index') }}">
+        <div class="contenedor" id="siete">
+          <i class="fas fa-fw icon fa-warehouse fix-padding"></i>
+          <p class="texto">Almacenes</p>
+        </div>
+      </a>
+    @endcan
+
+    @can("Super Admin")
+      <a href="{{ route('usuarios.index') }}">
+        <div class="contenedor" id="ocho">
+          <i class="fas fa-fw icon fa-user"></i>
+          <p class="texto">Usuarios</p>
+        </div>
+      </a>
+    @endcan
 
   </div>
 @stop
@@ -91,6 +121,14 @@ div#cinco{
 }
 div#seis{
   background-color: rgb(21, 40, 54)
+}
+
+div#siete{
+  background-color: rgb(202, 43, 230)
+}
+
+div#ocho{
+  background-color: rgb(43, 230, 130)
 }
 
 i.icon{

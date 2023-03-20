@@ -313,45 +313,58 @@ return [
             'icon'=> 'fas mr-3 fa-fw fa-home',
         ],
         [
+            'text' => 'Usuarios',
+            'route'  => 'usuarios.index',
+            'icon'=> 'fas mr-3 fa-fw fa-user',
+            'can' => 'super-admin',
+        ],
+        [
             'text'        => 'Clientes',
             'route'         => 'customers.index',
-            'icon'        => 'fas mr-3 fa-fw fa-users'
+            'icon'        => 'fas mr-3 fa-fw fa-users',
+            'can' => 'Gestionar Clientes'
         ],
         [
             'text'        => 'Productos',
             'url'         => '/productos',
-            'icon'        => 'fas mr-3 fa-fw fa-box'
+            'icon'        => 'fas mr-3 fa-fw fa-box',
+            'can' => 'Gestionar Productos'
         ],
         [
             'text'        => 'Almacenes',
             'route'         => 'almacen.index',
-            'icon'        => 'fas mr-3 fa-fw fa-warehouse'
+            'icon'        => 'fas mr-3 fa-fw fa-warehouse',
+            'can' => 'Gestionar Inventario'
         ],
         [
             'text'        => 'Cobrar',
             'route'         => 'cobros.index',
-            'icon'        => 'fas mr-3 fa-fw fa-book'
+            'icon'        => 'fas mr-3 fa-fw fa-book',
+            'can' => 'Gestionar Cobros'
+        ],
+        [
+            'text'        => 'Ventas',
+            'route'         => 'ventas.index',
+            'icon'        => 'fas mr-3 fa-fw fa-cash-register',
+            'can' => "Gestionar Ventas",
+        ],
+        [
+            'text'        => 'Reportes',
+            'route'         => 'reportes.index',
+            'icon'        => 'fas mr-3 fa-fw fa-file',
+            'can' => 'Gestionar Reportes'
+        ],
+        [
+            'text'        => 'Compras',
+            'route'         => 'compra.index',
+            'icon'        => 'fas mr-3 fa-fw fa-shopping-cart',
+            'can' => 'Gestionar Compras'
         ],
         // [
         //     'text'        => 'Facturar',
         //     'url'         => 'admin/pages',
         //     'icon'        => 'fas mr-3 fa-fw fa-file-invoice'
         // ],
-        [
-            'text'        => 'Ventas',
-            'route'         => 'ventas.index',
-            'icon'        => 'fas mr-3 fa-fw fa-cash-register'
-        ],
-        [
-            'text'        => 'Reportes',
-            'route'         => 'reportes.index',
-            'icon'        => 'fas mr-3 fa-fw fa-file'
-        ],
-        [
-            'text'        => 'Compras',
-            'route'         => 'compra.index',
-            'icon'        => 'fas mr-3 fa-fw fa-shopping-cart'
-        ]
     ],
 
     /*
