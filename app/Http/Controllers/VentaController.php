@@ -74,7 +74,7 @@ class VentaController extends Controller
             ]);
         }
 
-        return $documento;
+        return redirect("cobros.index");
     }
 
     /**
