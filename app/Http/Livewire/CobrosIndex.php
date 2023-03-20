@@ -42,115 +42,54 @@ class CobrosIndex extends Component
     public $customers;
     public $documentos;
     public $result = "";
-    public $tipopago, $tipocambio, $rif;
+    public $tipo_pago, $tipocambio, $rif;
+
+    public $cliente_seleccionado;
+    public $cliente_seleccionado_obj;
+
+    public $cancelados = [];
 
     public function mount(){
         $this->customers = Customer::all();
         $this->documentos = Documento::all();
+        $this->cliente_seleccionado_obj = $this->customers[0];
+        $this->cliente_seleccionado = $this->cliente_seleccionado_obj?->id ?? 0;
     }
 
     public function updatingSearch(){
         $this->resetPage();
     }
 
-    // public function btnEventPagado(){
-    //     if(($this->pagado == 0)||($this->pagado == -1)){
-    //         $this->pagado = 1;
-    //     }else{
-    //         $this->pagado = -1;
-    //     }
-    // }
-
-    // public function incrementar()
-    // {
-    //     $this->pagado = 1;
-    // }
-
-    // Al presionar el botón atrás disminuye el contador
-    // public function decremento()
-    // {
-    //     $this->pagado = 0;
-    // }
-
-    public function procesarpagofactura(){
-        // if(($this->rif != '0')&&($this->tipocambio != '0')&&($this->tipopago != '0')){
-        //     $this->result = $this->rif.$this->tipocambio.$this->tipopago;
-        // }
-
-        if(($this->rif != '0')
-        && ($this->tipocambio != '0') && ($this->tipopago != '0')){
-            foreach($this->documentos as $documento){
-                if($documento->codfact == $this->rif){
-                    $documento->tipocambio = $this->tipocambio;
-                    $documento->moneda = $this->tipopago;
-                    if ($this->activarpagofact == 1) {
-                        $documento->estado = 'Pagado';
-                    }
-                    $documento->save();
-                    $this->result = "Se agrego correctamente";
-                    break;
-                }
-            }
-        }else{
-            $this->result = "No se pudo agregar el cobro";
-        }
-        $this->activarabono = 0;
-        #$this->mostrarPag = $this->tipopago;
-    }
-
-    public function procesarabono(){
-        if(($this->rif != '0')
-        && ($this->tipocambio != '0') && ($this->tipopago != '0')){
-            foreach($this->documentos as $documento){
-                if($documento->codfact == $this->rif){
-                    $documento->tipocambio = $this->tipocambio;
-                    $documento->moneda = $this->tipopago;
-                    if ($this->activarabono == 1) {
-                        $documento->estado = 'Abonado';
-                    }
-                    $documento->save();
-                    $this->result = "Se agrego correctamente";
-                    break;
-                }
-            }
-        }else{
-            $this->result = "No se pudo agregar el cobro";
-        }
-        $this->activarpagofact = 0;
-    }
-
-    public function pagofactura()
+    public function updatedClienteSeleccionado()
     {
-        if($this->activarpagofact == 0){
-            $this->activarpagofact = 1;
-            $this->activarabono = 0;
-        }else{
-            $this->activarpagofact = 0;
-        }
+        $this->cliente_seleccionado_obj = Customer::where('id', '=', $this->cliente_seleccionado)->first();
+        $this->emit('clienteSeleccionado', $this->cliente_seleccionado);
     }
 
-    public function abono()
-    {
-        if($this->activarabono == 0){
-            $this->activarabono = 1;
-            $this->activarpagofact = 0;
-        }else{
-            $this->activarabono = 0;
+    public function pagar($documento_id) {
+        $documento = $this->documentos[$documento_id];
+        $total = $documento->total;
+        $cancelado = $this->cancelados[$documento_id];
+        $documento->cancelado += $cancelado;
+        $cancelado_actualizado = $documento->cancelado;
+
+        if($cancelado_actualizado >= $total) {
+            $documento->estado = "Pagado";
+
+            if($cancelado_actualizado > $total) {
+                #TODO: agregar abono a cuenta cliente
+            }
+        } else {
+            $documento->estado = "Abonado";
         }
+
+        $documento->save();
+
+        #TODO: agregar logica de abono aqui y corregirla en ventas para que se produzca en el documento y no en la venta
     }
 
     public function render()
     {
-        $cobros = Documento::where('rifcliente', 'LIKE', '%'.$this->search.'%')
-        ->paginate(5);
-        return view('livewire.cobros-index', compact('cobros'));
-    }
-
-    #La siguiente funcion es usado para hacer cambios en el html select
-    public function updatedSelectedState($state)
-    {
-        if (!is_null($state)) {
-            $this->opciones;
-        }
+        return view('livewire.cobros-index');
     }
 }

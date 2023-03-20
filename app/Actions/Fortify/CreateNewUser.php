@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
 
+use Spatie\Permission\Models\Role;
 class CreateNewUser implements CreatesNewUsers
 {
     use PasswordValidationRules;
@@ -27,11 +28,23 @@ class CreateNewUser implements CreatesNewUsers
             'rol' => ['required', 'string', 'max:30'],
         ])->validate();
 
-        return User::create([
+        $adminUser = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
-            'rol' => $input['rol'],
+            // 'rol' => $input['rol'],
         ]);
+
+        $adminRole = Role::create(['name' => $input['rol']]);
+        $adminUser->assignRole($adminRole);
+
+        return $adminUser;
+
+        // return User::create([
+        //     'name' => $input['name'],
+        //     'email' => $input['email'],
+        //     'password' => Hash::make($input['password']),
+        //     'rol' => $input['rol'],
+        // ]);
     }
 }

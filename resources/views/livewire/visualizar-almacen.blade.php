@@ -12,11 +12,11 @@
     {{-- <div class="d-flex justify-content-between"> --}}
     <div class="row">
         <div class="col-12">
-            {!! Form::label('codalm', 'Codigo Almacen', ['class' => 'form-label text-sm col-3 d-inline']) !!}
+            {!! Form::label('codalm', 'Codigo Almacen', ['class' => 'form-label col-4 d-inline']) !!}
             <div>
 
                 <select name="codalm" wire:model="codalm"
-                class="form-control col-3 d-inline ml-2">
+                class="form-control col-4 d-inline ml-2">
                     <option value="0">---------</option>
                     @foreach ($almacenes as $almacen)
                         @if ($almacen->estado == 'Activo')

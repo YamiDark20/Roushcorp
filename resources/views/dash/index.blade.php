@@ -3,62 +3,55 @@
 @section('title', 'Inicio')
 
 @section('content_header')
-    <h1>Roushcorp</h1>
+    <h1><b>Bienvenido {{ Auth::user()->name }} 💸</b></h1>
 @stop
 
 @section('content')
-    {{-- <p>Welcome to this beautiful admin panel.</p> --}}
-   <div class="d-flex">
-
-    <div class="mr-3">
-    <a href="{{ route('productos.index') }}" class="btn btn-danger btn-xl">
-      <i class=" ocul-ico fa fa-heart">&nbsp;Productos</i>
-    </a>
-    </div>
-
-    <div class="mr-3">
-      <a href="{{ route('customers.index') }}" class="btn btn-primary btn-xl">
-      <i class="fa fa-user">&nbsp;Clientes  </i>
-      </a>
-    </div>
-
-
-    <div class="mr-3">
-      <a href="{{ route('ventas.index') }}" class="btn btn-success btn-xl">
-      <i class="fa fa-user">&nbsp;Ventas  </i>
-      </a>
-    </div>
-
-    <div class="mr-3">
-      <a href="{{ route('reportes.index') }}" class="btn btn-secondary btn-xl">
-      <i class="fa fa-file">&nbsp;Reporte  </i>
-      </a>
-    </div>
-
-    <div class="mr-3">
-      <a href="#" class="btn btn-info btn-xl">
-      <i class="fa fa-heart">&nbsp;Compras  </i>
-      </a>
-    </div>
-    
-{{-- Botones con animacion --}}
-    {{-- <a href="/productos">
-      <div class="contenedor" id="uno">
-      <i class="fa fa-user icon"></i>
-        <p class="texto">productos</p>
-      
-      </div>
-    </a>
+  <div class="">
 
     <a href="{{ route('customers.index') }}">
-      <div class="contenedor" id="dos">
-        <i class="fa fa-heart icon"></i>
-        <p class="texto">clientes</p>
+      <div class="contenedor" id="uno">
+        <i class="fas fa-users icon fix-padding"></i>
+        <p class="texto">Clientes</p>
       </div>
-    </a> --}}
+    </a>
+
+    <a href="/productos">
+      <div class="contenedor" id="dos">
+        <i class="fa fa-box icon"></i>
+        <p class="texto">Productos</p>
+      </div>
+    </a>
+
+    <a href="{{ route('cobros.index') }}">
+      <div class="contenedor" id="tres">
+        <i class="fas fa-fw fa-book icon"></i>
+        <p class="texto">Cobros</p>
+      </div>
+    </a>
+
+    <a href="{{ route('ventas.index') }}">
+      <div class="contenedor" id="cuatro">
+        <i class="fas fa-fw fa-cash-register icon"></i>
+        <p class="texto">Ventas</p>
+      </div>
+    </a>
+
+    <a href="{{ route('reportes.index') }}">
+      <div class="contenedor" id="cinco">
+        <i class="fas fa-fw fa-file icon"></i>
+        <p class="texto">Reportes</p>
+      </div>
+    </a>
+
+    <a href="{{ route('compra.index') }}">
+      <div class="contenedor" id="seis">
+        <i class="fas fa-fw fa-shopping-cart icon fix-padding"></i>
+        <p class="texto">Compras</p>
+      </div>
+    </a>
 
   </div>
-
 @stop
 
 @section('css')
@@ -68,12 +61,18 @@
   @import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,700");
   @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
 
+i.icon {
+  color: white;
+}
+
+i.icon.fix-padding {
+  padding-left: 15px;
+}
 
 div.contenedor{
   width:200px;
   height: 200px;
   float: left;
-  transition: height .4s;  
 }
 div#uno{
   background-color: rgb(208, 101, 3)
@@ -95,7 +94,8 @@ div#seis{
 }
 
 i.icon{
-  font-size: 1.5em;
+  color: white;
+  font-size: 1.4em;
   display: block;
   margin: 50px auto;
   background-color: rgba(255, 255, 255, .15);
@@ -107,19 +107,16 @@ i.icon{
 }
 
 p.texto{
+  font-family:Helvetica, sans-serif;
   font-size: 1.2em;
   color: white;
   text-align: center;
-  padding-top: 10px;
   opacity: .5;
   transition: .4s;
-}
-div.contenedor:hover{
-  height: 230px;
+  font-weight: bolder;
 }
 
 div.contenedor:hover p.texto{
-  padding-top: 30px;
   opacity: 1;
 }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use Illuminate\Support\Str;
 
 class CustomerController extends Controller
 {
@@ -34,12 +35,12 @@ class CustomerController extends Controller
             'name' => 'required',
             'rif' => 'required|unique:customers',
             'address' => 'required',
-            'telephone' => 'required',
-            'email' => 'required|unique:customers',
+            'telephone' => ['required', 'regex:/0(2(12|3[4589]|4[0-9]|[5-8][1-9]|9[1-5])|(4(12|14|16|24|26)))-?\d{7}/'],
+            'email' => 'required|unique:customers|email',
             'city' => 'required'
         ]);
         $customer = Customer::create($request->all());
-        $customer->rif = $request->get('tiporif').$request->get('rif');
+        $customer->rif = Str::upper($request->get('tiporif')."-".$request->get('rif'));
         $customer->save();
         return redirect()->route('customers.edit', $customer)
         ->with('info', 'El cliente se ha creado exitosamente');
@@ -50,7 +51,8 @@ class CustomerController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $customer = Customer::find($id);
+        return view('customers.show', compact('customer'));
     }
 
     /**

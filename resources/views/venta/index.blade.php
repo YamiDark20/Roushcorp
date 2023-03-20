@@ -20,12 +20,9 @@
             <div class="card-body">
 
                 <div class="d-flex justify-content-between">
-                    <h3 class="card-title">Lista de ventas</h3>
+                    <h2>Lista de ventas</h2>
                     <div class="btn-group">
-                        <a href="ventas\create" class="btn btn-warning mb-3 mr-5"> +Agregar</a>
-
-                        <a class="btn" href="#"> <i class=" fas fa-download"></i>Exportar</a>
-
+                        <a href="ventas\create" class="btn btn-warning mb-3">Agregar</a>
                     </div>
                 </div>
 
@@ -34,39 +31,39 @@
                         <table class="table table-dark table-striped mt-4">
                             <tr>
                                 <thead>
-                                    <th scope='col'>ID</th>
-                                    <th scope='col'>CODIGO</th>
-                                    <th scope='col'>NOMBRE</th>
-                                    <th scope='col'>MARCA</th>
-                                    <th scope='col'>PESO</th>
-                                    <th scope='col'>DESCRIPCION</th>
-                                    <th scope='col'>CANTIDAD</th>
-                                    <th scope='col'>PRECIO</th>
-                                    <th scope='col'>EXONERADO</th>
-                                    <th scope='col'>ACCIONES</th>
+                                    <th scope='col' class="text-sm">ID</th>
+                                    <th scope='col' class="text-sm">Valor Compra</th>
+                                    <th scope='col' class="text-sm">Cancelado</th>
+                                    <th scope='col' class="text-sm">Por Cancelar</th>
+                                    <th scope='col' class="text-sm">Vuelto</th>
+                                    <th scope='col' class="text-sm">Estado</th>
+                                    <th scope='col' class="text-sm">Cliente</th>
+                                    <th scope='col' class="text-sm">Almacen</th>
+                                    <th scope='col' class="text-sm">Acciones</th>
                                 </thead>
                             </tr>
 
                             <tbody>
                                 @foreach ($ventas as $venta)
                                     <tr>
-                                        <td>{{ $venta ->id}}</td>
-                                        <td>{{ $venta ->codigo}}</td>
-                                        <td>{{ $venta ->nombre}}</td>
-                                        <td>{{ $venta ->marca}}</td>
-                                        <td>{{ $venta ->peso}}</td>
-                                        <td>{{ $venta ->descripcion}}</td>
-                                        <td>{{ $venta ->cantidad}}</td>
-                                        <td>{{ $venta ->precio}}</td>
-                                        @if ($venta ->exonerado == 0)
-                                        <td>No</td>
-                                        @endif
-                                        @if ($venta ->exonerado == 1)
-                                        <td>Si</td>
-                                        @endif
-
+                                        <td class="text-sm">{{ $venta ->id}}</td>
+                                        <td class="text-sm">{{ $venta ->valor_compra}}</td>
+                                        <td class="text-sm">{{ $venta ->cancelado}}</td>
+                                        <td class="text-sm">{{ $venta ->por_cancelar}}</td>
+                                        <td class="text-sm">{{ $venta ->vuelto}}</td>
+                                        <td class="text-sm">{{ $venta ->estado }}</td>
                                         <td>
-                                            <a href="/ventas/{{$venta->id}}/edit" class = 'btn btn-info'><i class="fa fa-edit"></i></a>
+                                            <a href="/customers/{{$venta ->cliente->id}}" class = 'btn btn-sm btn-info'>
+                                                {{ $venta ->cliente->name }}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="/almacenes/{{$venta ->almacen->id}}" class = 'btn btn-sm btn-info'>
+                                                {{ $venta ->almacen->nombre }}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="/ventas/{{$venta->id}}" class = 'btn btn-sm btn-info'><i class="fa fa-eye"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

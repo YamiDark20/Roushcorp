@@ -9,10 +9,9 @@ class Compra extends Model
 {
     use HasFactory;
 
-    protected $table = 'ventas';
+    protected $table = 'compras';
 
-    protected $fillable =['valor_compra','cancelado','por_cancelar',
-                        'vuelto','tipo_pago', 'cliente_id', 'almacen_id'];
+    protected $fillable =['valor_compra','tipo_pago', 'cliente_id', 'almacen_id', 'guias_id'];
 
     public function facturas()
     {

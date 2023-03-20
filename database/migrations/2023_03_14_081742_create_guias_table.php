@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('guias', function (Blueprint $table) {
             $table->id();
-            $table->string('mercancia');
-            $table->integer('cantidad');
-            $table->integer('precio');
+            // $table->string('mercancia');
+            // $table->integer('cantidad');
+            // $table->integer('precio');
             $table->string('origen');
             $table->string('destino');
             $table->date('fecha_salida');

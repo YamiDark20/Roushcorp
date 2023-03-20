@@ -14,26 +14,55 @@
         </div>
 
         <div class="form-group col-4 mt-2">
-            <label class="form-label">Proveedor</label>
-            <input wire:model="proveedor" name="proveedor"
-            type="text" class="form-control" >
+            <label class="form-label">Rif Proveedor</label>
+            <select name="proveedor" wire:model="proveedor"
+            class="form-control">
+                <option value="">---------</option>
+                @foreach ($clientes as $cliente)
+                    <option value="{{$cliente->id}}">
+                        {{$cliente->rif}} - {{$cliente->name}}
+                    </option>
+                @endforeach
+            </select>
+            {{-- <input wire:model="proveedor" name="proveedor"
+            type="text" class="form-control" > --}}
         </div>
 
         <div class="form-group col-4 mt-2">
-            <label class="form-label">Fecha</label>
-            <input wire:model="fecha" name="fecha"
+            <label class="form-label">Tipo Pago</label>
+            <select name="tipopago" wire:model="tipopago"
+            class="form-control">
+                <option value="">---------</option>
+                <option value="Efectivo">Efectivo</option>
+                <option value="Tarjeta">Tarjeta</option>
+                <option value="Pago Movil">Pago Movil</option>
+                <option value="Cash">Cash</option>
+                <option value="Zelle">Zelle</option>
+            </select>
+        </div>
+
+        <div class="form-group col-4 mt-2">
+            <label class="form-label">Fecha Llegada</label>
+            <input wire:model="fechallegada" name="fechallegada"
             type="date" class="form-control" >
         </div>
 
         <div class="form-group col-4 mt-2">
-            <label class="form-label">Moneda</label>
-            <select name="moneda" wire:model="moneda"
-            class="form-control">
-                <option value="">---------</option>
-                <option value="$">Dolar ($)</option>
-                <option value="Bs">Bolivar (Bs)</option>
-                <option value="€">Euro (€)</option>
-            </select>
+            <label class="form-label">Fecha Salida</label>
+            <input wire:model="fechasalida" name="fechasalida"
+            type="date" class="form-control" >
+        </div>
+
+        <div class="form-group col-4 mt-2">
+            <label class="form-label">Origen</label>
+            <input wire:model="origen" name="origen"
+            type="text" class="form-control" >
+        </div>
+
+        <div class="form-group col-4 mt-2">
+            <label class="form-label">Destino</label>
+            <input wire:model="destino" name="destino"
+            type="text" class="form-control" >
         </div>
 
         {{-- <div class="form-group col-4 mt-2">
@@ -174,7 +203,7 @@
                 <label for="" class="float-right">Impuesto: {{$moneda}} {{$this->total * ($this->impuesto / 100)}}</label>
             </div> --}}
             <div class="col-12">
-                <label for="" class="float-right">Total: {{$moneda}} {{$total}}</label>
+                <label for="" class="float-right">Total: {{$total}}</label>
             </div>
         @endif
         <div class="col-12">

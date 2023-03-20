@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Gestionar Almacen')
+@section('title', 'Listar Compras')
 
 {{-- En la siguiente linea de codigo se modifica el contenido del header --}}
 @section('content_header')

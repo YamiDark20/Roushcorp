@@ -24,9 +24,13 @@ variable title proviene del admintle.php de la carpeta config --}}
         </div>
     @endif
     @if ($errors->any())
-        <div class="alert alert-danger">
-            <strong>No se han colocado nada en ninguno de los campos. Otra razon del error es que el rif o correo ya existen</strong>
-        </div>
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-danger">
+                <strong>
+                    {{ $error }}
+                </strong>
+            </div>
+        @endforeach
     @endif
     <div class="card">
         <div class="card-body">
@@ -51,7 +55,7 @@ variable title proviene del admintle.php de la carpeta config --}}
                     <div class="form-group col-4">
                         {!! Form::label('telephone', 'Telefono:', ['class' => 'd-inline']) !!}
                         {!! Form::text('telephone', null, ['class' => 'form-control d-inline',
-                    'placeholder' => 'Ingrese el telefono del cliente']) !!}
+                    'placeholder' => 'Ingrese el telefono del cliente', 'pattern' => "0(2(12|3[4589]|4[0-9]|[5-8][1-9]|9[1-5])|(4(12|14|16|24|26)))-?\d{7}"]) !!}
                     </div>
                     <div class="form-group col-4">
                         {!! Form::label('email', 'Correo:', ['class' => 'd-inline']) !!}
@@ -64,7 +68,7 @@ variable title proviene del admintle.php de la carpeta config --}}
                         'placeholder' => 'Ingrese el ciudad del cliente']) !!}
                     </div>
                     <div class="form-group col-12">
-                        {!! Form::submit('Editar cliente', [
+                        {!! Form::submit('Actualizar datos', [
                         'class' => 'btn btn-info d-inline float-right col-2']) !!}
                     </div>
                 </div>

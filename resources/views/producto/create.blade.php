@@ -15,9 +15,13 @@
 @section('content')
 
     @if ($errors->any())
-        <div class="alert alert-danger">
-            <strong>No se han colocado nada en ninguno de los campos o el codigo del producto ya existe.</strong>
-        </div>
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-danger">
+                <strong>
+                    {{ $error }}
+                </strong>
+            </div>
+        @endforeach
     @endif
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
@@ -69,10 +73,10 @@
                             <label for="" class="form-label d-block">Exonerado</label>
                             <div class="btn-group btn-group-toggle d-block" data-toggle="buttons">
                                 <div class="btn btn-primary">
-                                    <input type="radio" name="exonerado" value="0" autocomplete="off" class="btn-check" checked>Sin IVA
+                                    <input type="radio" name="exonerado" value="1" autocomplete="off" class="btn-check" checked>Sin IVA
                                 </div>
                                 <div class="btn btn-primary">
-                                    <input type="radio" name="exonerado" value="1" autocomplete="off" class="btn-check">Con IVA
+                                    <input type="radio" name="exonerado" value="0" autocomplete="off" class="btn-check">Con IVA
                                 </div>
 
                             </div>

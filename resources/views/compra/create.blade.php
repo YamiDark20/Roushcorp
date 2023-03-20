@@ -14,12 +14,15 @@
 @endsection
 
 @section('content')
-
-    {{-- @if ($errors->any())
-        <div class="alert alert-danger">
-            <strong>No se han colocado nada en ninguno de los campos o el codigo del producto ya existe.</strong>
-        </div>
-    @endif --}}
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-danger">
+                <strong>
+                    {{ $error }}
+                </strong>
+            </div>
+        @endforeach
+    @endif
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">

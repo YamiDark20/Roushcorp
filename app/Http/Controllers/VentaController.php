@@ -7,12 +7,16 @@ use App\Models\Factura;
 use App\Models\Venta;
 use App\Models\Cliente;
 use App\Models\Almacen;
+use App\Models\Customer;
+use App\Models\Documento;
 use App\Models\Producto;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class VentaController extends Controller
 {
-    /**
+
+     /**
      * Display a listing of the resource.
      *
      */
@@ -30,7 +34,7 @@ class VentaController extends Controller
     public function create()
     {
         $productos = Producto::all();
-        $clientes = Cliente::all();
+        $clientes = Customer::all();
         $almacenes = Almacen::all();
         return view('venta.create', compact('productos', 'clientes', 'almacenes'));
     }
@@ -61,27 +65,36 @@ class VentaController extends Controller
             'cancelado' => $cancelado,
             'por_cancelar' => $porCancelar,
             'vuelto' => $vuelto,
-            'tipo_documento' => $request['tipo_documento'],
-            'tipo_pago' => $request['tipo_pago'],
             'cliente_id' => $request['cliente_id'],
             'almacen_id' => $request['almacen_id'],
+            'estado' => $vuelto? 'Pagado' : ($cancelado <= 0 ? 'No Pagado' : 'Abonado'),
+            'subtotal' => $request['subtotal'],
+            'iva' => $request['iva']
         ]);
 
-        $products = $request->input('products');
+        $documento = new Documento();
+        $documento->tipo_pago = $request['tipo_pago'];
+        $documento->tipo_cobro = $request['tipo_documento'];
+        $documento->cancelado = $cancelado;
+        $documento->customer_id = $request['cliente_id'];
+        $documento->venta_id = $venta->id;
+        $documento->save();
+
+        $products = $request['productos'];
 
         foreach ($products as $product) {
             Factura::create([
                 'numero_factura' => $venta->id,
-                'producto_id' => $product['producto_id'],
-                'cliente_id' => $request['cliente_id'],
-                'almacen_id' => $request['almacen_id'],
-                'precio_antes_de_impuesto' => $request['precio_antes_de_impuesto'],
-                'precio_total_factura' => $request['precio_total_factura'],
+                'producto_id' => $product['id'],
+                'cantidad_producto' => $product['cantidad'],
+                'precio_producto' => $product['precio'],
+                'iva_producto' => $product['iva'],
+                'total_producto' => $product['total'],
                 'venta_id' => $venta->id,
             ]);
         }
 
-        return $venta;
+        $this->show($venta->id);
     }
 
     /**
@@ -92,7 +105,8 @@ class VentaController extends Controller
      */
     public function show($id)
     {
-        return Venta::find($id);
+        $venta = Venta::find($id);
+        return view('venta.show', compact('venta'));
     }
 
 }
