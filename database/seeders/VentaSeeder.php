@@ -20,6 +20,8 @@ class VentaSeeder extends Seeder
         $venta = new Venta();
         $venta->vuelto = 0;
         $venta->cancelado = 0;
+        $venta->iva = 0;
+        $venta->subtotal = 32.32;
         $venta->valor_compra = 32.32;
         $venta->por_cancelar = 32.32;
         $venta->cliente_id = Customer::all()->first()->id;

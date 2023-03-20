@@ -61,18 +61,21 @@ class VentaController extends Controller
         }
 
         $venta = Venta::create([
+            'valor_compra' => $valorCompra,
+            'cancelado' => $cancelado,
+            'por_cancelar' => $porCancelar,
+            'vuelto' => $vuelto,
             'cliente_id' => $request['cliente_id'],
-            'almacen_id' => $request['almacen_id']
+            'almacen_id' => $request['almacen_id'],
+            'estado' => $vuelto? 'Pagado' : ($cancelado <= 0 ? 'No Pagado' : 'Abonado'),
+            'subtotal' => $request['subtotal'],
+            'iva' => $request['iva']
         ]);
 
         $documento = new Documento();
-        $documento->codfact = Str::random(5);
-        $documento->por_cancelar = $porCancelar;
-        $documento->vuelto = $vuelto;
-        $documento->estado = $vuelto? 'Pagado' : ($cancelado <= 0 ? 'No Pagado' : 'Abonado');
         $documento->tipo_pago = $request['tipo_pago'];
+        $documento->tipo_cobro = $request['tipo_documento'];
         $documento->cancelado = $cancelado;
-        $documento->total = $valorCompra;
         $documento->customer_id = $request['cliente_id'];
         $documento->venta_id = $venta->id;
         $documento->save();
@@ -91,7 +94,7 @@ class VentaController extends Controller
             ]);
         }
 
-        return redirect("cobros.index");
+        $this->show($venta->id);
     }
 
     /**
@@ -102,7 +105,8 @@ class VentaController extends Controller
      */
     public function show($id)
     {
-        return Venta::find($id);
+        $venta = Venta::find($id);
+        return view('venta.show', compact('venta'));
     }
 
 }

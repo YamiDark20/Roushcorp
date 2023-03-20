@@ -31,7 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('productos', ProductoController::class);
 
     Route::resource('customers', CustomerController::class)
-    ->except('show', 'destroy')->names('customers');
+    ->except('destroy')->names('customers');
     // Route::post('/create_cliente', [ClienteController::class, 'store']);
 
     Route::resource('cobros', CobroController::class)

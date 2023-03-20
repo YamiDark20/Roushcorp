@@ -19,6 +19,11 @@ class Documento extends Model
         return $this->hasMany(Factura::class);
     }
 
+    public function venta()
+    {
+        return $this->belongsTo(Venta::class);
+    }
+
     public function links()
     {
         return "";

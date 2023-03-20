@@ -15,4 +15,9 @@ class Customer extends Model
     {
         return $this->hasMany(Documento::class);
     }
+
+    public function ventas()
+    {
+        return $this->hasMany(Venta::class, 'cliente_id', 'id');
+    }
 }

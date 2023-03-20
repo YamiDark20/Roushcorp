@@ -20,6 +20,9 @@
                 Cargando información del cliente seleccionado...
             </div>
         </div>
+        <div class="btn-group">
+            <a href="{{ route('cobros.create') }}" class="btn btn-warning d-flex align-items-center">Agregar</a>
+        </div>
     </div>
     <div class="card-body">
         @if($cliente_seleccionado_obj->documentos->count() > 0)
@@ -29,31 +32,20 @@
                         <tr>
                             <th scope='col'>CodFact</th>
                             <th scope='col'>Fecha</th>
-                            <th scope='col'>Cancelado</th>
-                            <th scope='col'>Total</th>
-                            <th scope='col'>Estado</th>
-                            <th scope='col'>Opciones</th>
+                            <th scope='col'>Monto</th>
+                            <th scope='col'>Tipo Pago</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($cliente_seleccionado_obj->documentos as $index => $documento)
                             <tr>
-                                @if ($documento->estado != '')
-                                    <td>{{$documento->codfact}}</td>
+                                @if ($documento->venta->estado != '')
+                                    <td>
+                                        <a href="{{ route('ventas.index')."/".$documento->venta_id }}" class="btn btn-info">{{$documento->venta_id}}</a>
+                                    </td>
                                     <td>{{$documento->created_at}}</td>
                                     <td>{{$documento->cancelado}}</td>
-                                    <td>{{$documento->total}}</td>
-                                    <td>{{$documento->estado}}</td>
-                                    @if ($documento->estado != "Pagado")
-                                        <td>
-                                            <div class="row">
-                                                <input wire:model="cancelados.{{$index}}" id="cancelados.{{$index}}" class="form-control w-auto mr-3" type="number">
-                                                <a class="btn btn-warning" wire:click="pagar({{$index}})">
-                                                    Pagar / Abonar
-                                                </a>
-                                            </div>
-                                        </td>
-                                    @endif
+                                    <td>{{$documento->tipo_pago}}</td>
                                 @endif
                             </tr>
                         @endforeach

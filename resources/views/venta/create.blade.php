@@ -210,6 +210,7 @@
     let cancelado = 0;
     let totalAPagar = 0;
     let vuelto = 0;
+    let subtotal = 0;
     const table = document.querySelector('#listaProductoVenta');
 
     function realizarVenta() {
@@ -220,7 +221,7 @@
         const almacen_id = document.querySelector("#id_almacen")?.value ?? null;
         const tipo_documento = document.querySelector("#tipo_documento")?.value ?? "invalido";
         const tipo_pago = document.querySelector("#tipo_pago")?.value ?? "invalido";
-        const body = JSON.stringify({productos, cancelado, valor_compra, por_cancelar, vuelto, tipo_documento, tipo_pago, cliente_id, almacen_id});
+        const body = JSON.stringify({iva: sumaIva, subtotal, productos, cancelado, valor_compra, por_cancelar, vuelto, tipo_documento, tipo_pago, cliente_id, almacen_id});
 
         fetch('/ventas', {
             method: 'POST',
@@ -320,7 +321,7 @@
         setSelectedProducto();
         let efectivoExacto = document.querySelector('#chkefectivoExacto').checked;
         cancelado = 0;
-        let subtotal = (valor_compra - sumaIva).toFixed(2);
+        subtotal = (valor_compra - sumaIva).toFixed(2);
 
         if(efectivoExacto) {
             cancelado = valor_compra

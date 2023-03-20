@@ -19,7 +19,6 @@ class DocumentoSeeder extends Seeder
     {
         $documento = new Documento();
         $documento->venta_id = Venta::all()->first()->id;
-        $documento->codfact = '5362';
         $documento->estado = 'Abonado';
         $documento->tipo_pago = 'Pago Móvil';
         $documento->cancelado = 0;

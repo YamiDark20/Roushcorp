@@ -22,10 +22,7 @@
                 <div class="d-flex justify-content-between">
                     <h3 class="card-title">Lista de ventas</h3>
                     <div class="btn-group">
-                        <a href="ventas\create" class="btn btn-warning mb-3 mr-5"> +Agregar</a>
-
-                        <a class="btn" href="#"> <i class=" fas fa-download"></i>Exportar</a>
-
+                        <a href="ventas\create" class="btn btn-warning mb-3">Agregar</a>
                     </div>
                 </div>
 
@@ -39,11 +36,10 @@
                                     <th scope='col'>Cancelado</th>
                                     <th scope='col'>Por Cancelar</th>
                                     <th scope='col'>Vuelto</th>
-                                    <th scope='col'>Tipo Pago</th>
-                                    <th scope='col'>Tipo Documento</th>
+                                    <th scope='col'>Estado</th>
                                     <th scope='col'>Cliente</th>
                                     <th scope='col'>Almacen</th>
-                                    <th scope='col'>ACCIONES</th>
+                                    <th scope='col'>Acciones</th>
                                 </thead>
                             </tr>
 
@@ -55,12 +51,19 @@
                                         <td>{{ $venta ->cancelado}}</td>
                                         <td>{{ $venta ->por_cancelar}}</td>
                                         <td>{{ $venta ->vuelto}}</td>
-                                        <td>{{ $venta ->tipo_pago}}</td>
-                                        <td>{{ $venta ->tipo_documento}}</td>
-                                        <td>Cliente</td>
-                                        <td>Almacen</td>
+                                        <td>{{ $venta ->estado }}</td>
                                         <td>
-                                            <a href="/ventas/{{$venta->id}}/edit" class = 'btn btn-info'><i class="fa fa-edit"></i></a>
+                                            <a href="/customers/{{$venta ->cliente->id}}" class = 'btn btn-info'>
+                                                {{ $venta ->cliente->name }}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="/almacenes/{{$venta ->almacen->id}}" class = 'btn btn-info'>
+                                                {{ $venta ->almacen->nombre }}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="/ventas/{{$venta->id}}" class = 'btn btn-info'><i class="fa fa-eye"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

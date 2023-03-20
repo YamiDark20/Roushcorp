@@ -27,6 +27,6 @@ class Factura extends Model
 
     public function producto()
     {
-        return $this->hasOne(Producto::class);
+        return $this->hasOne(Producto::class, 'id', 'producto_id');
     }
 }

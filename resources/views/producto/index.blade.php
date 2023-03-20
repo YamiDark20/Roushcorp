@@ -22,10 +22,7 @@
                 <div class="d-flex justify-content-between">
                     <h3 class="card-title">Lista de productos</h3>
                     <div class="btn-group">
-                        <a href="productos\create" class="btn btn-warning mb-3 mr-5"> +Agregar</a>
-
-                        <a class="btn" href="#"> <i class=" fas fa-download"></i>Exportar</a>
-
+                        <a href="productos\create" class="btn btn-warning mb-3">Agregar</a>
                     </div>
                 </div>
 
@@ -66,7 +63,10 @@
                                         @endif
 
                                         <td>
-                                            <a href="/productos/{{$producto->id}}/edit" class = 'btn btn-info'><i class="fa fa-edit"></i></a>
+                                            <div class="d-flex">
+                                                <a href="/productos/{{$producto->id}}" class = 'btn btn-info mr-3'><i class="fa fa-eye"></i></a>
+                                                <a href="/productos/{{$producto->id}}/edit" class = 'btn btn-info'><i class="fa fa-edit"></i></a>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
