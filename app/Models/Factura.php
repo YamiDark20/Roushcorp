@@ -16,13 +16,13 @@ class Factura extends Model
         'precio_producto',
         'total_producto',
         'iva_producto',
-        'documento_id',
+        'venta_id',
         'producto_id',
     ];
 
-    public function documento()
+    public function venta()
     {
-        return $this->belongsTo(Documento::class);
+        return $this->belongsTo(Venta::class);
     }
 
     public function producto()

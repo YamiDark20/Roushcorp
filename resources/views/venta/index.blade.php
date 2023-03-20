@@ -29,7 +29,7 @@
                     </div>
                 </div>
 
-                @if ($facturas->count())
+                @if ($ventas->count())
                     <div class="table-responsive">
                         <table class="table table-dark table-striped mt-4">
                             <tr>

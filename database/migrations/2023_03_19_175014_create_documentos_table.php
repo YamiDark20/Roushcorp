@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('codfact')->unique();
             $table->string('estado')->default("Sin Pagar");
+            $table->foreignId('venta_id')->constrained('ventas')->nullable()->onDelete('cascade');
             $table->foreignId('customer_id')->constrained('customers')->nullable()->onDelete('cascade');
             $table->string('tipo_pago');
             $table->decimal('cancelado', 9,2)->default(0);

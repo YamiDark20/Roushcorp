@@ -15,12 +15,23 @@ use Illuminate\Support\Str;
 
 class VentaController extends Controller
 {
+
+     /**
+     * Display a listing of the resource.
+     *
+     */
+    public function index()
+    {
+        $ventas = Venta::all();
+        return view('venta.index', compact('ventas'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function create()
     {
         $productos = Producto::all();
         $clientes = Customer::all();
@@ -49,6 +60,11 @@ class VentaController extends Controller
             $vuelto = $cancelado - $valorCompra;
         }
 
+        $venta = Venta::create([
+            'cliente_id' => $request['cliente_id'],
+            'almacen_id' => $request['almacen_id']
+        ]);
+
         $documento = new Documento();
         $documento->codfact = Str::random(5);
         $documento->por_cancelar = $porCancelar;
@@ -58,19 +74,20 @@ class VentaController extends Controller
         $documento->cancelado = $cancelado;
         $documento->total = $valorCompra;
         $documento->customer_id = $request['cliente_id'];
+        $documento->venta_id = $venta->id;
         $documento->save();
 
         $products = $request['productos'];
 
         foreach ($products as $product) {
             Factura::create([
-                'numero_factura' => $documento->id,
+                'numero_factura' => $venta->id,
                 'producto_id' => $product['id'],
                 'cantidad_producto' => $product['cantidad'],
                 'precio_producto' => $product['precio'],
                 'iva_producto' => $product['iva'],
                 'total_producto' => $product['total'],
-                'documento_id' => $documento->id,
+                'venta_id' => $venta->id,
             ]);
         }
 

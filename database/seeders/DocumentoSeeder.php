@@ -6,6 +6,7 @@ use App\Models\Customer;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Documento;
+use App\Models\Venta;
 
 class DocumentoSeeder extends Seeder
 {
@@ -17,6 +18,7 @@ class DocumentoSeeder extends Seeder
     public function run()
     {
         $documento = new Documento();
+        $documento->venta_id = Venta::all()->first()->id;
         $documento->codfact = '5362';
         $documento->estado = 'Abonado';
         $documento->tipo_pago = 'Pago Móvil';

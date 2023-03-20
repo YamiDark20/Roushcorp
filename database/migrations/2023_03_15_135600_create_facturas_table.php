@@ -19,7 +19,7 @@ return new class extends Migration
             $table->decimal('precio_producto', 9,2);
             $table->decimal('total_producto', 9,2);
             $table->foreignId('producto_id')->constrained('productos')->nullable()->onDelete('cascade');
-            $table->foreignId('documento_id')->constrained('documentos')->nullable()->onDelete('cascade');
+            $table->foreignId('venta_id')->constrained('ventas')->nullable()->onDelete('cascade');
             $table->integer('cantidad_producto')->default(0);
             $table->timestamps();
         });
