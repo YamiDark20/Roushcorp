@@ -17,7 +17,7 @@ class DocumentoSeeder extends Seeder
     {
         $documento = new Documento();
         $documento->codfact = '5362';
-        $documento->rifcliente = 'v28462041';
+        // $documento->rifcliente = 'v28462041';
         $documento->fecha = '26/03/22';
         $documento->numguia = '6372';
         $documento->moneda = 'Bs';
@@ -30,7 +30,7 @@ class DocumentoSeeder extends Seeder
 
         $documento1 = new Documento();
         $documento1->codfact = '2362';
-        $documento1->rifcliente = 'v28462041';
+        // $documento1->rifcliente = 'v28462041';
         $documento1->fecha = '28/12/22';
         $documento1->numguia = '8372';
         $documento1->moneda = 'Bs';
@@ -43,7 +43,7 @@ class DocumentoSeeder extends Seeder
 
         $documento2 = new Documento();
         $documento2->codfact = '2223';
-        $documento2->rifcliente = 'v28462041';
+        // $documento2->rifcliente = 'v28462041';
         $documento2->fecha = '12/03/19';
         $documento2->numguia = '5641';
         $documento2->moneda = 'Bs';
@@ -56,7 +56,7 @@ class DocumentoSeeder extends Seeder
 
         $documento3 = new Documento();
         $documento3->codfact = '1185';
-        $documento3->rifcliente = 'v28462041';
+        // $documento3->rifcliente = 'v28462041';
         $documento3->fecha = '02/12/12';
         $documento3->numguia = '3884';
         $documento3->moneda = 'Bs';
@@ -69,7 +69,7 @@ class DocumentoSeeder extends Seeder
 
         $documento4 = new Documento();
         $documento4->codfact = '6633';
-        $documento4->rifcliente = 'v28462041';
+        // $documento4->rifcliente = 'v28462041';
         $documento4->fecha = '09/03/19';
         $documento4->numguia = '2225';
         $documento4->moneda = 'Bs';
@@ -82,7 +82,7 @@ class DocumentoSeeder extends Seeder
 
         $documento5 = new Documento();
         $documento5->codfact = '5540';
-        $documento5->rifcliente = 'j25262041';
+        // $documento5->rifcliente = 'j25262041';
         $documento5->fecha = '12/03/19';
         $documento5->numguia = '5641';
         $documento5->moneda = 'Bs';
@@ -95,7 +95,7 @@ class DocumentoSeeder extends Seeder
 
         $documento6 = new Documento();
         $documento6->codfact = '9820';
-        $documento6->rifcliente = 'v26228041';
+        // $documento6->rifcliente = 'v26228041';
         $documento6->fecha = '09/03/19';
         $documento6->numguia = '2225';
         $documento6->moneda = 'Bs';
@@ -108,7 +108,7 @@ class DocumentoSeeder extends Seeder
 
         $documento7 = new Documento();
         $documento7->codfact = '3440';
-        $documento7->rifcliente = 'v26228041';
+        // $documento7->rifcliente = 'v26228041';
         $documento7->fecha = '12/03/19';
         $documento7->numguia = '5641';
         $documento7->moneda = 'Bs';
@@ -121,7 +121,7 @@ class DocumentoSeeder extends Seeder
 
         $documento8 = new Documento();
         $documento8->codfact = '3040';
-        $documento8->rifcliente = 'v26228041';
+        // $documento8->rifcliente = 'v26228041';
         $documento8->fecha = '12/03/19';
         $documento8->numguia = '5641';
         $documento8->moneda = '';
@@ -134,7 +134,7 @@ class DocumentoSeeder extends Seeder
 
         $documento9 = new Documento();
         $documento9->codfact = '9020';
-        $documento9->rifcliente = 'v26228041';
+        // $documento9->rifcliente = 'v26228041';
         $documento9->fecha = '09/03/19';
         $documento9->numguia = '2225';
         $documento9->moneda = '';

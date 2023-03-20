@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Gestionar Almacen')
+@section('title', 'Visualizar Almacen')
 
 {{-- En la siguiente linea de codigo se modifica el contenido del header --}}
 @section('content_header')
@@ -11,7 +11,7 @@
     <nav aria-label="breadcrumb" class="mb-2">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('dash')}}">Inicio</a></li>
-            <li class="breadcrumb-item"><a href="{{route('compra.almacen')}}">Almacen</a></li>
+            <li class="breadcrumb-item"><a href="{{route('almacen.index')}}">Almacen</a></li>
         </ol>
     </nav>
     {{-- <a href="{{route('customers.create')}}"
@@ -20,15 +20,14 @@
         class="btn btn-dark btn-sm float-right mr-1">Agregar Devolución</a> --}}
     {{-- <a href="{{route('cobros.create')}}"
     class="btn btn-dark btn-sm float-right">Agregar Cobro</a> --}}
-    <h1>Gestionar Almacen</h1>
+    <h1>Visualizar contenido de un Almacen</h1>
 @stop
 
 @section('content')
     <div class= "col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                @livewire('agregar-compra')
-                {{-- @livewire('gestion-almacen') --}}
+                @livewire('visualizar-almacen')
             </div>
         </div>
     </div>

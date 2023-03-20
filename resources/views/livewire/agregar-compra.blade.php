@@ -36,7 +36,7 @@
             </select>
         </div>
 
-        <div class="form-group col-4 mt-2">
+        {{-- <div class="form-group col-4 mt-2">
             <label class="form-label">Guia de Mov.</label>
             <input type="text" name="guiamov" wire:model="guiamov"
             class="form-control">
@@ -57,7 +57,7 @@
             <label class="form-label">Impuesto</label>
             <input type="number" min="1" max="100" name="impuesto"
             wire:model="impuesto" class="form-control">
-        </div>
+        </div> --}}
 
         <div class="col-12">
             <h4 class="h5">Producto a agregar</h4>
@@ -170,11 +170,11 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-12">
+            {{-- <div class="col-12">
                 <label for="" class="float-right">Impuesto: {{$moneda}} {{$this->total * ($this->impuesto / 100)}}</label>
-            </div>
+            </div> --}}
             <div class="col-12">
-                <label for="" class="float-right">Total: {{$moneda}} {{$total + ($this->total * ($this->impuesto / 100))}}</label>
+                <label for="" class="float-right">Total: {{$moneda}} {{$total}}</label>
             </div>
         @endif
         <div class="col-12">

@@ -11,8 +11,8 @@
     <nav aria-label="breadcrumb" class="mb-2">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('dash')}}">Inicio</a></li>
-            <li class="breadcrumb-item"><a href="{{route('compra.almacen')}}">Almacen</a></li>
-            <li class="breadcrumb-item"><a href="">Lista Compras</a></li>
+            <li class="breadcrumb-item"><a href="{{route('compra.index')}}">Compras</a></li>
+            {{-- <li class="breadcrumb-item"><a href="">Lista Compras</a></li> --}}
         </ol>
     </nav>
     {{-- <a href="{{route('customers.create')}}"
@@ -21,14 +21,15 @@
         class="btn btn-dark btn-sm float-right mr-1">Agregar Devolución</a> --}}
     {{-- <a href="{{route('cobros.create')}}"
     class="btn btn-dark btn-sm float-right">Agregar Cobro</a> --}}
-    <h1>Lista de compras del almacen {{$codalm}}</h1>
+    <h1>Lista de compras del almacen</h1>
 @stop
 
 @section('content')
     <div class= "col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                @livewire('lista-compra-alm', ['codalm' => $codalm])
+                @livewire('lista-compra-alm')
+                {{-- @livewire('lista-compra-alm', ['codalm' => $codalm]) --}}
             </div>
         </div>
     </div>

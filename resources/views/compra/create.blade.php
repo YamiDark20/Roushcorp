@@ -6,7 +6,7 @@
 <nav>
     <ol class="breadcrumb">
         <li class="breadcrumb-item "><a href="/dash">Inicio</a></li>
-        <li class="breadcrumb-item"><a href="{{route('compra.almacen')}}">Almacen</a></li>
+        <li class="breadcrumb-item"><a href="{{route('compra.index')}}">Compras</a></li>
         <li class="breadcrumb-item active" aria-current="page"><a href="">Agregar Compra</a></li>
 
     </ol>

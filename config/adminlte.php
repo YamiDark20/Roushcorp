@@ -323,6 +323,11 @@ return [
             'icon'        => 'fas fa-fw fa-box'
         ],
         [
+            'text'        => 'Almacenes',
+            'route'         => 'almacen.index',
+            'icon'        => 'fas fa-fw fa-users'
+        ],
+        [
             'text'        => 'Cobrar',
             'route'         => 'cobros.index',
             'icon'        => 'fas fa-fw fa-book'
@@ -344,7 +349,7 @@ return [
         ],
         [
             'text'        => 'Compras',
-            'route'         => 'compra.almacen',
+            'route'         => 'compra.index',
             'icon'        => 'fas fa-fw fa-shopping-cart'
         ]
     ],

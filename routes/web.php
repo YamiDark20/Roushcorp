@@ -31,22 +31,39 @@ Route::resource('cobros', CobroController::class)
 Route::resource('ventas', '\App\Http\Controllers\VentaController');
 Route::resource('reportes', '\App\Http\Controllers\ReporteController');
 
-Route::get('compras/almacen', function(){
-    return view('compra.almacen.index');
-})->name('compra.almacen'); //Gestionar almacen
 
-Route::get('compras/almacen/{codalm}/create', function($codalm){
-    return view('compra.create', compact('codalm'));
-})->name('compra.almacen.create'); //Agregar compra de un almacen x
+// Route::get('compras/almacen', function(){
+//     return view('compra.almacen.index');
+// })->name('compra.almacen'); //Gestionar almacen
 
-Route::get('compras/{codalm}', function($codalm){
+// Route::get('compras/almacen/{codalm}/create', function($codalm){
+//     return view('compra.create', compact('codalm'));
+// })->name('compra.almacen.create'); //Agregar compra de un almacen x
+
+// Route::get('compras/{codalm}', function($codalm){
+//     return view('compra.index');
+// })->name('compra.index'); //Visualizar compras de un almacen
+
+// Route::get('compras/{codcompra}/{codalm}', function($codcompra, $codalm){
+//     return view('compra.almacen.visualizar-compra', compact('codcompra', 'codalm'));
+// })->name('compra.almacen.visualizar');  //Visualizar compra x de un almacen x
+
+
+Route::get('compras', function(){
     return view('compra.index');
-})->name('compra.index'); //Visualizar compras de un almacen
+})->name('compra.index'); //Visualizar almacen
 
-Route::get('compras/{codcompra}/{codalm}', function($codcompra, $codalm){
-    return view('compra.almacen.visualizar-compra', compact('codcompra', 'codalm'));
-})->name('compra.almacen.visualizar');  //Visualizar compra x de un almacen x
+Route::get('compras/{codalm}/create', function($codalm){
+    return view('compra.create', compact('codalm'));
+})->name('compra.create'); //Agregar compra de un almacen x
 
+Route::get('almacen', function(){
+    return view('almacen.index');
+})->name('almacen.index'); // Usada para ver contenido de un almacen
+
+Route::get('almacen/create', function(){
+    return view('almacen.create');
+})->name('almacen.create'); // Usada para mover contenido de un almacen a otro
 
 /* Route::get('/', function(){
     return view('cliente.registro');
