@@ -47,7 +47,7 @@ class CobrosIndex extends Component
     public $cliente_seleccionado;
     public $cliente_seleccionado_obj;
 
-    public $showPagoFacturaModal = false;
+    public $cancelados = [];
 
     public function mount(){
         $this->customers = Customer::all();
@@ -66,99 +66,30 @@ class CobrosIndex extends Component
         $this->emit('clienteSeleccionado', $this->cliente_seleccionado);
     }
 
-    // public function btnEventPagado(){
-    //     if(($this->pagado == 0)||($this->pagado == -1)){
-    //         $this->pagado = 1;
-    //     }else{
-    //         $this->pagado = -1;
-    //     }
-    // }
+    public function pagar($documento_id) {
+        $documento = $this->documentos[$documento_id];
+        $total = $documento->total;
+        $cancelado = $this->cancelados[$documento_id];
+        $documento->cancelado += $cancelado;
+        $cancelado_actualizado = $documento->cancelado;
 
-    // public function incrementar()
-    // {
-    //     $this->pagado = 1;
-    // }
+        if($cancelado_actualizado >= $total) {
+            $documento->estado = "Pagado";
 
-    // Al presionar el botón atrás disminuye el contador
-    // public function decremento()
-    // {
-    //     $this->pagado = 0;
-    // }
-
-    public function procesarpagofactura(){
-        // if(($this->rif != '0')&&($this->tipocambio != '0')&&($this->tipo_pago != '0')){
-        //     $this->result = $this->rif.$this->tipocambio.$this->tipo_pago;
-        // }
-
-        if(($this->rif != '0') && ($this->tipo_pago != '0')){
-            foreach($this->documentos as $documento){
-                if($documento->codfact == $this->rif){
-                    $documento->tipocambio = $this->tipocambio;
-                    $documento->moneda = $this->tipo_pago;
-                    if ($this->activarpagofact == 1) {
-                        $documento->estado = 'Pagado';
-                    }
-                    $documento->save();
-                    $this->result = "Se agrego correctamente";
-                    break;
-                }
+            if($cancelado_actualizado > $total) {
+                #TODO: agregar abono a cuenta cliente
             }
-        }else{
-            $this->result = "No se pudo agregar el cobro";
+        } else {
+            $documento->estado = "Abonado";
         }
-        $this->activarabono = 0;
-        #$this->mostrarPag = $this->tipo_pago;
-    }
 
-    public function procesarabono(){
-        if(($this->rif != '0') &&  ($this->tipo_pago != '0')){
-            foreach($this->documentos as $documento){
-                if($documento->codfact == $this->rif){
-                    $documento->tipo_pago = $this->tipo_pago;
-                    if ($this->activarabono == 1) {
-                        $documento->estado = 'Abonado';
-                    }
-                    $documento->save();
-                    $this->result = "Se agrego correctamente";
-                    break;
-                }
-            }
-        }else{
-            $this->result = "No se pudo agregar el cobro";
-        }
-        $this->activarpagofact = 0;
-    }
+        $documento->save();
 
-    public function pagofactura()
-    {
-        if($this->activarpagofact == 0){
-            $this->activarpagofact = 1;
-            $this->activarabono = 0;
-        }else{
-            $this->activarpagofact = 0;
-        }
-    }
-
-    public function abono()
-    {
-        if($this->activarabono == 0){
-            $this->activarabono = 1;
-            $this->activarpagofact = 0;
-        }else{
-            $this->activarabono = 0;
-        }
+        #TODO: agregar logica de abono aqui y corregirla en ventas para que se produzca en el documento y no en la venta
     }
 
     public function render()
     {
         return view('livewire.cobros-index');
-    }
-
-    #La siguiente funcion es usado para hacer cambios en el html select
-    public function updatedSelectedState($state)
-    {
-        if (!is_null($state)) {
-            $this->opciones;
-        }
     }
 }

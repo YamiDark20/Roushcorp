@@ -16,10 +16,12 @@ return new class extends Migration
         Schema::create('documentos', function (Blueprint $table) {
             $table->id();
             $table->string('codfact')->unique();
-            $table->string('estado');
+            $table->string('estado')->default("Sin Pagar");
             $table->foreignId('customer_id')->constrained('customers')->nullable()->onDelete('cascade');
             $table->string('tipo_pago');
-            $table->decimal('cancelado', 9,2);
+            $table->decimal('cancelado', 9,2)->default(0);
+            $table->decimal('por_cancelar', 9,2)->default(0);
+            $table->decimal('vuelto', 9,2)->default(0);
             $table->decimal('total', 9,2);
             $table->timestamps();
         });

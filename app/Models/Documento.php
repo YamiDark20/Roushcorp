@@ -14,6 +14,11 @@ class Documento extends Model
         return $this->belongsTo(Customer::class);
     }
 
+    public function facturas()
+    {
+        return $this->hasMany(Factura::class);
+    }
+
     public function links()
     {
         return "";

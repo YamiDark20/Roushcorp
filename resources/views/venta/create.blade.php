@@ -128,9 +128,11 @@
                         </label>
 
                         <select id="tipo_pago" class="form-select form-select-sm col-sm-12">
-                            <option value="efectivo">Efectivo</option>
-                            <option value="tarjeta">Tarjeta</option>
-                            <option value="pago_movil">Pago Movil</option>
+                            <option value="Efectivo">Efectivo</option>
+                            <option value="Tarjeta">Tarjeta</option>
+                            <option value="Pago Movil">Pago Movil</option>
+                            <option value="Cash">Cash</option>
+                            <option value="Zelle">Zelle</option>
                         </select>
 
                     </div>

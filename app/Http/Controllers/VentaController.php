@@ -8,27 +8,19 @@ use App\Models\Venta;
 use App\Models\Cliente;
 use App\Models\Almacen;
 use App\Models\Customer;
+use App\Models\Documento;
 use App\Models\Producto;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class VentaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     */
-    public function index()
-    {
-        $ventas = Venta::all();
-        return view('venta.index', compact('ventas'));
-    }
-
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function index()
     {
         $productos = Producto::all();
         $clientes = Customer::all();
@@ -57,32 +49,32 @@ class VentaController extends Controller
             $vuelto = $cancelado - $valorCompra;
         }
 
-        $venta = Venta::create([
-            'valor_compra' => $valorCompra,
-            'cancelado' => $cancelado,
-            'por_cancelar' => $porCancelar,
-            'vuelto' => $vuelto,
-            'tipo_documento' => $request['tipo_documento'],
-            'tipo_pago' => $request['tipo_pago'],
-            'cliente_id' => $request['cliente_id'],
-            'almacen_id' => $request['almacen_id']
-        ]);
+        $documento = new Documento();
+        $documento->codfact = Str::random(5);
+        $documento->por_cancelar = $porCancelar;
+        $documento->vuelto = $vuelto;
+        $documento->estado = $vuelto? 'Pagado' : ($cancelado <= 0 ? 'No Pagado' : 'Abonado');
+        $documento->tipo_pago = $request['tipo_pago'];
+        $documento->cancelado = $cancelado;
+        $documento->total = $valorCompra;
+        $documento->customer_id = $request['cliente_id'];
+        $documento->save();
 
         $products = $request['productos'];
 
         foreach ($products as $product) {
             Factura::create([
-                'numero_factura' => $venta->id,
+                'numero_factura' => $documento->id,
                 'producto_id' => $product['id'],
                 'cantidad_producto' => $product['cantidad'],
                 'precio_producto' => $product['precio'],
                 'iva_producto' => $product['iva'],
                 'total_producto' => $product['total'],
-                'venta_id' => $venta->id,
+                'documento_id' => $documento->id,
             ]);
         }
 
-        return $venta;
+        return $documento;
     }
 
     /**

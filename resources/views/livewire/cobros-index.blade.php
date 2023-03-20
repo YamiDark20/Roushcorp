@@ -22,63 +22,47 @@
         </div>
     </div>
     <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-dark table-striped">
-                <thead>
-                    <tr>
-                        <th scope='col'>CodFact</th>
-                        <th scope='col'>Fecha</th>
-                        <th scope='col'>Total</th>
-                        <th scope='col'>Estado</th>
-                        <th scope='col'>Opciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($cliente_seleccionado_obj->documentos as $documento)
+        @if($cliente_seleccionado_obj->documentos->count() > 0)
+            <div class="table-responsive">
+                <table class="table table-dark table-striped">
+                    <thead>
                         <tr>
-                            @if ($documento->estado != '')
-                                <td>{{$documento->codfact}}</td>
-                                <td>{{$documento->created_at}}</td>
-                                <td>{{$documento->total}}</td>
-                                <td>{{$documento->estado}}</td>
-                                <td>
-                                    <a class="btn btn-warning"
-                                        wire:click="pagofactura()">
-                                        Pago Factura
-                                    </a>
-                                </td>
-                                <td>
-                                    <a class="btn btn-warning"
-                                        wire:click="abono()">
-                                        Abono
-                                    </a>
-                                </td>
-                            @endif
+                            <th scope='col'>CodFact</th>
+                            <th scope='col'>Fecha</th>
+                            <th scope='col'>Cancelado</th>
+                            <th scope='col'>Total</th>
+                            <th scope='col'>Estado</th>
+                            <th scope='col'>Opciones</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <div class="modal" tabindex="-1" role="dialog" style="{{ $showPagoFacturaModal ? 'display:block' : 'display:none' }}">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Pago Factura</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <!-- Add your form here for the payment -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Guardar</button>
-                </div>
+                    </thead>
+                    <tbody>
+                        @foreach ($cliente_seleccionado_obj->documentos as $index => $documento)
+                            <tr>
+                                @if ($documento->estado != '')
+                                    <td>{{$documento->codfact}}</td>
+                                    <td>{{$documento->created_at}}</td>
+                                    <td>{{$documento->cancelado}}</td>
+                                    <td>{{$documento->total}}</td>
+                                    <td>{{$documento->estado}}</td>
+                                    @if ($documento->estado != "Pagado")
+                                        <td>
+                                            <div class="row">
+                                                <input wire:model="cancelados.{{$index}}" id="cancelados.{{$index}}" class="form-control w-auto mr-3" type="number">
+                                                <a class="btn btn-warning" wire:click="pagar({{$index}})">
+                                                    Pagar / Abonar
+                                                </a>
+                                            </div>
+                                        </td>
+                                    @endif
+                                @endif
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
-        </div>
+            @else
+            <div>No hay cobros disponibles para este cliente</div>
+        @endif
     </div>
 </div>
 
@@ -88,14 +72,8 @@
     }
 </style>
 
-@push('scripts')
-    <script>
-        Livewire.on('showPagoFacturaModal', () => {
-            console.log("here");
-            $('#pagoFacturaModal').modal('show');
-        });
-        Livewire.on('hidePagoFacturaModal', () => {
-            $('#pagoFacturaModal').modal('hide');
-        });
-    </script>
-@endpush
+<script>
+    function showPagoFacturaModal(id) {
+        $('#pagoFacturaModal').modal('show');
+    }
+</script>
