@@ -10,6 +10,7 @@ use App\Models\Almacen;
 use App\Models\Customer;
 use App\Models\Documento;
 use App\Models\Producto;
+use App\Models\TasaDia;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -36,7 +37,8 @@ class VentaController extends Controller
         $productos = Producto::all();
         $clientes = Customer::all();
         $almacenes = Almacen::all();
-        return view('venta.create', compact('productos', 'clientes', 'almacenes'));
+        $tasa_dia = TasaDia::all()->first()->tasa;
+        return view('venta.create', compact('productos', 'clientes', 'almacenes', 'tasa_dia'));
     }
 
     /**
@@ -72,13 +74,15 @@ class VentaController extends Controller
             'iva' => $request['iva']
         ]);
 
-        $documento = new Documento();
-        $documento->tipo_pago = $request['tipo_pago'];
-        $documento->tipo_cobro = $request['tipo_documento'];
-        $documento->cancelado = $cancelado;
-        $documento->customer_id = $request['cliente_id'];
-        $documento->venta_id = $venta->id;
-        $documento->save();
+        if($cancelado > 0 ) {
+            $documento = new Documento();
+            $documento->tipo_pago = $request['tipo_pago'];
+            $documento->tipo_cobro = $request['tipo_documento'];
+            $documento->cancelado = $cancelado;
+            $documento->customer_id = $request['cliente_id'];
+            $documento->venta_id = $venta->id;
+            $documento->save();
+        }
 
         $products = $request['productos'];
 

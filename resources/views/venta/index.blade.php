@@ -47,10 +47,10 @@
                                 @foreach ($ventas as $venta)
                                     <tr>
                                         <td class="text-sm">{{ $venta ->id}}</td>
-                                        <td class="text-sm">{{ $venta ->valor_compra}}</td>
-                                        <td class="text-sm">{{ $venta ->cancelado}}</td>
-                                        <td class="text-sm">{{ $venta ->por_cancelar}}</td>
-                                        <td class="text-sm">{{ $venta ->vuelto}}</td>
+                                        <td class="text-sm">{{ $venta ->valor_compra_formateado}}</td>
+                                        <td class="text-sm">{{ $venta ->cancelado_formateado}}</td>
+                                        <td class="text-sm">{{ $venta ->por_cancelar_formateado}}</td>
+                                        <td class="text-sm">{{ $venta ->vuelto_formateado}}</td>
                                         <td class="text-sm">{{ $venta ->estado }}</td>
                                         <td>
                                             <a href="/customers/{{$venta ->cliente->id}}" class = 'btn btn-sm btn-info'>

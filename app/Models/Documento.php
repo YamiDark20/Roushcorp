@@ -28,4 +28,12 @@ class Documento extends Model
     {
         return "";
     }
+
+    public function getCanceladoDivisaAttribute() {
+        return Compra::valorDivisa($this->cancelado);
+    }
+
+    public function getCanceladoFormateadoAttribute() {
+        return "{$this ->cancelado} $ / Bs. {$this->cancelado_divisa}";
+    }
 }

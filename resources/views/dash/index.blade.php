@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-  <div class="">
+  <div class="d-flex flex-wrap">
 
     @can('Gestionar Clientes')
       <a href="{{ route('customers.index') }}">
@@ -81,6 +81,10 @@
       </a>
     @endcan
 
+  </div>
+
+  <div class="mt-3">
+    @livewire('tasa-dia')
   </div>
 @stop
 

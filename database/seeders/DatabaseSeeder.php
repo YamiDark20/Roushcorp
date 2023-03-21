@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\TasaDia;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -27,6 +28,8 @@ class DatabaseSeeder extends Seeder
 
         $adminRole = Role::create(['name' => 'Super Admin']);
         $adminUser->assignRole($adminRole);
+
+        TasaDia::create(['tasa' => 24.56]);
 
         $this->call(CustomerSeeder::class);
         $this->call(AlmacenSeeder::class);

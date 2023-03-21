@@ -77,7 +77,7 @@
                                         <a href="{{ route('ventas.index')."/".$documento->venta_id }}" class="btn btn-info">{{$documento->venta_id}}</a>
                                     </td>
                                     <td>{{$documento->created_at}}</td>
-                                    <td>{{$documento->cancelado}}</td>
+                                    <td>{{$documento->cancelado_formateado}}</td>
                                     <td>{{$documento->tipo_pago}}</td>
                                 @endif
                             </tr>

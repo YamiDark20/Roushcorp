@@ -74,9 +74,9 @@
                                 <th>Codigo</th>
                                 <th>Nombre</th>
                                 <th>Cantidad</th>
-                                <th>Precio</th>
-                                <th>IVA</th>
-                                <th>Total</th>
+                                <th>Precio ($)</th>
+                                <th>IVA ($)</th>
+                                <th>Total ($)</th>
                                 <th class="text-center">Opciones</th>
                             </tr>
                         </thead>
@@ -202,6 +202,7 @@
 
 </div>
 <script>
+    let tasaDia = {{ Js::from($tasa_dia) }};
     let productos = {{ Js::from($productos) }};
     let selectedProducto = null;
     let selectedProductos = new Map();
@@ -231,7 +232,6 @@
             },
             body
         })
-        .then(response => response.json())
         .then(data => window.location.href = '/ventas')
         .catch(error => console.error(error));
     }
@@ -254,6 +254,7 @@
     }
 
     function anadirProductoTabla(item) {
+        console.log(item);
         const row = table.insertRow();
         row.id = `fila_${item.id}`;
         const codigoCell = row.insertCell(0);
@@ -338,10 +339,15 @@
             totalAPagar = 0;
         }
 
-        document.querySelector('#vuelto').innerText = vuelto;
-        document.querySelector('#documentoSubtotal').innerText = subtotal;
-        document.querySelector('#documentoIva').innerText = sumaIva.toFixed(2);
-        document.querySelector('#documentoTotal').innerText = totalAPagar;
+        document.querySelector('#vuelto').innerText = formatearDivisa(vuelto);
+        document.querySelector('#documentoSubtotal').innerText = formatearDivisa(subtotal);
+        document.querySelector('#documentoIva').innerText = formatearDivisa(sumaIva);
+        document.querySelector('#documentoTotal').innerText = formatearDivisa(totalAPagar);
+    }
+
+    function formatearDivisa(valor) {
+        parsedValor = parseFloat(valor);
+        return `${(parsedValor).toFixed(2)}$ / Bs. ${(parsedValor*tasaDia).toFixed(2)} `
     }
 
     function calcularTotal() {

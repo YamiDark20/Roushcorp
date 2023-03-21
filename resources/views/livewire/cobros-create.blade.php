@@ -42,7 +42,7 @@
 
                 <div class="form-group col-4">
                     <label for="" class="form-label">Pendiente por Cancelar:</label>
-                    <input type="number" class="form-control" disabled value="{{$venta_seleccionada_obj?->por_cancelar}}">
+                    <input type="number" class="form-control" disabled value="{{$venta_seleccionada_obj?->por_cancelar_formateado}}">
                 </div>
 
                 <div class="form-group col-4">

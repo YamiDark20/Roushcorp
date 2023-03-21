@@ -22,4 +22,17 @@ class Compra extends Model
     {
         return $this->hasOne(Guia::class);
     }
+
+    public static function valorDivisa($valor) {
+        $tasa = TasaDia::all()->first()->tasa;
+        return $valor * $tasa;
+    }
+
+    public function getValorCompraDivisaAttribute() {
+        return $this->valorDivisa($this->valor_compra);
+    }
+
+    public function getValorCompraFormateadoAttribute() {
+        return "{$this ->valor_compra} $ / Bs. {$this->valor_compra_divisa}";
+    }
 }

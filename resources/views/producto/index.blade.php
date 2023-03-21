@@ -54,7 +54,7 @@
                                         <td>{{ $producto ->peso}}</td>
                                         <td>{{ $producto ->descripcion}}</td>
                                         <td>{{ $producto ->cantidad}}</td>
-                                        <td>{{ $producto ->precio}}</td>
+                                        <td>{{ $producto ->precio_formateado }}</td>
                                         @if ($producto ->exonerado == 0)
                                         <td>No</td>
                                         @endif

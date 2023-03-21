@@ -59,9 +59,9 @@
                                     <td><a href="{{ "/productos/".$factura->producto->id }}" class="btn btn-info">{{$factura->producto->codigo}}</a></td>
                                     <td>{{$factura->producto->nombre}}</td>
                                     <td>{{$factura->cantidad_producto}}</td>
-                                    <td>{{$factura->precio_producto}}</td>
-                                    <td>{{$factura->iva_producto}}</td>
-                                    <td>{{$factura->total_producto}}</td>
+                                    <td>{{$factura->precio_producto_formateado}}</td>
+                                    <td>{{$factura->iva_producto_formateado}}</td>
+                                    <td>{{$factura->total_producto_formateado}}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -86,13 +86,13 @@
                     <div class="form-group">
                         <label for="cancelado">Efectivo Recibido</label>
                         <input type="number" id="cancelado"
-                        class="form-control form-control-sm" placeholder="Cantidad de efectivo recibido" disabled value="{{ $venta->cancelado }}">
+                        class="form-control form-control-sm" placeholder="Cantidad de efectivo recibido" disabled value="{{ $venta->cancelado_formateado }}">
                     </div>
 
                     {{-- Mostrar monto y vuelto --}}
                     <div class="row">
                         <div class="col-12">
-                            <h6 class="text-start text-danger">Vuelto: <span id="vuelto">{{ $venta->vuelto }}</span></h6>
+                            <h6 class="text-start text-danger">Vuelto: <span id="vuelto">{{ $venta->vuelto_formateado }}</span></h6>
                         </div>
                     </div>
 
@@ -102,21 +102,21 @@
                             <span>SUBTOTAL</span>
                         </div>
                         <div class="col-md-5 text-rigth">
-                            <span id="documentoSubtotal">{{ $venta->subtotal }}</span>
+                            <span id="documentoSubtotal">{{ $venta->subtotal_formateado }}</span>
                         </div>
 
                         <div class="col-md-7">
                             <span>IVA (16%)</span>
                         </div>
                         <div class="col-md-5 text-rigth">
-                            <span id="documentoIva">{{ $venta->iva }}</span>
+                            <span id="documentoIva">{{ $venta->iva_formateado }}</span>
                         </div>
 
                         <div class="col-md-7">
                             <span>TOTAL</span>
                         </div>
                         <div class="col-md-5 text-rigth">
-                            <span id="documentoTotal">{{ $venta->valor_compra }}</span>
+                            <span id="documentoTotal">{{ $venta->valor_compra_divisa }}</span>
                         </div>
 
                     </div>

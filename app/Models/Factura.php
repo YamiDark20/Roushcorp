@@ -29,4 +29,28 @@ class Factura extends Model
     {
         return $this->hasOne(Producto::class, 'id', 'producto_id');
     }
+
+    public function getIvaProductoDivisaAttribute() {
+        return Compra::valorDivisa($this->iva_producto);
+    }
+
+    public function getIvaProductoFormateadoAttribute() {
+        return "{$this ->iva_producto} $ / Bs. {$this->iva_producto_divisa}";
+    }
+
+    public function getPrecioProductoDivisaAttribute() {
+        return Compra::valorDivisa($this->precio_producto);
+    }
+
+    public function getPrecioProductoFormateadoAttribute() {
+        return "{$this ->precio_producto} $ / Bs. {$this->precio_producto_divisa}";
+    }
+
+    public function getTotalProductoDivisaAttribute() {
+        return Compra::valorDivisa($this->total_producto);
+    }
+
+    public function getTotalProductoFormateadoAttribute() {
+        return "{$this ->total_producto} $ / Bs. {$this->total_producto_divisa}";
+    }
 }

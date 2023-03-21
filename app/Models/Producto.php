@@ -13,4 +13,13 @@ class Producto extends Model
 
     protected $fillable =['codigo', 'nombre', 'marca', 'peso',
     'descripcion', 'cantidad', 'precio', 'exonerado'];
+
+    public function getPrecioDivisaAttribute() {
+        $tasa = TasaDia::all()->first()->tasa;
+        return $this->precio * $tasa;
+    }
+
+    public function getPrecioFormateadoAttribute() {
+        return "{$this ->precio} $ / Bs. {$this->precio_divisa}";
+    }
 }

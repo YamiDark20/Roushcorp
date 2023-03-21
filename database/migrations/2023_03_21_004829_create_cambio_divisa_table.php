@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('productos_comprados', function (Blueprint $table) {
+        Schema::create('cambio_divisa', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('compra_id')->constrained('compras')->nullable()->onDelete('cascade');
-            $table->foreignId('producto_id')->constrained('productos')->nullable()->onDelete('cascade');
-            $table->string('estado');
-            $table->integer('cantidad');
+            $table->decimal('tasa', 9,2);
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('productos_comprados');
+        Schema::dropIfExists('cambio_divisa');
     }
 };
