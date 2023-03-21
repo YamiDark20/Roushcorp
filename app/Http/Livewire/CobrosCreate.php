@@ -93,7 +93,7 @@ class CobrosCreate extends Component
         $venta->por_cancelar = $porCancelar;
         $venta->vuelto = $vuelto;
         $venta->cancelado = $cancelado;
-        $venta->estado = $vuelto? 'Pagado' : ($cancelado <= 0 ? 'No Pagado' : 'Abonado');
+        $venta->estado = !$vuelto ? 'Pagado' : ($cancelado <= 0 ? 'No Pagado' : 'Abonado');
         $venta->save();
 
         return redirect()->route('cobros.index');

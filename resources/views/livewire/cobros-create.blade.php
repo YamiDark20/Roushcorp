@@ -42,12 +42,12 @@
 
                 <div class="form-group col-4">
                     <label for="" class="form-label">Pendiente por Cancelar:</label>
-                    <input type="number" class="form-control" disabled value="{{$venta_seleccionada_obj?->por_cancelar_formateado}}">
+                    <input type="number" class="form-control" disabled value="{{$venta_seleccionada_obj?->por_cancelar}}">
                 </div>
 
                 <div class="form-group col-4">
                     <label for="" class="form-label">Cantidad a abonar/pagar</label>
-                    <input wire:model="abono" id="abono" class="form-control" type="number">
+                    <input wire:model="abono" id="abono" class="form-control" type="number" step="0.01">
                 </div>
 
                 <div class="form-group col-4">

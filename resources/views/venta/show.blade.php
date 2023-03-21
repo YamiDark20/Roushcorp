@@ -119,6 +119,8 @@
                             <span id="documentoTotal">{{ $venta->valor_compra_divisa }}</span>
                         </div>
 
+                        <button class="btn btn-info" onclick="print()">Factura</button>
+
                     </div>
                 </div>
             </div>

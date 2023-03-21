@@ -30,10 +30,12 @@ class UsuariosCreate extends Component
             $this->addError('key', 'El Rol del usuario es requerido');
         }
 
+        $validated_email = $validated_data['email'];
+
         $user = new User();
         $user->name = $validated_data['name'];
-        $user->email = $validated_data['email'];
-        $user->password = Hash::make($validated_data['email']);
+        $user->email = $validated_email;
+        $user->password = Hash::make($validated_email);
         $user->email_verified_at = now(); # en produccion no iria esto
 
         $role = Role::find($this->rol_seleccionado_id);
