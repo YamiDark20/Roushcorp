@@ -56,6 +56,27 @@ class AgregarCompra extends Component
                 $prodcomprado->estado = $producto[4];
                 $prodcomprado->cantidad = $producto[2];
                 $prodcomprado->save();
+                $exists = False;
+
+                foreach ($this->productoscomprados as $productosalmacen) {
+                    if ($productosalmacen->idalm == $this->codalm &&
+                    $productosalmacen->idprod == $producto[5] &&
+                    $productosalmacen->estado == $producto[4]) {
+                        $productosalmacen->stock = strval(intval($productosalmacen->stock) + $producto[2]);
+                        $productosalmacen->save();
+                        $exists = True;
+                        break;
+                    }
+                }
+                if ($exists == False) {
+                    $prodalm = new AlmacenProducto();
+                    $prodalm->idprod = $producto[5];
+                    $prodalm->idalm = $this->codalm;
+                    $prodalm->estado = $producto[4];
+                    $prodalm->stock = $producto[2];
+                    $prodalm->cantidad_a_Reponer = 0;
+                    $prodalm->save();
+                }
                 // $existe = False;
 
                 // foreach ($this->productoscomprados as $prodcomp) {

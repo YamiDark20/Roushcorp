@@ -26,7 +26,7 @@ class AlmacenSeeder extends Seeder
         $almacen2->nombre = 'Almacen 2';
         $almacen2->direccion = 'Maricaba';
         $almacen2->capacidad = '631.36';
-        $almacen2->estado = 'Inactivo';
+        $almacen2->estado = 'Activo';
         $almacen2->save();
 
         $almacen3 = new Almacen();
@@ -47,7 +47,7 @@ class AlmacenSeeder extends Seeder
         $almacen5->nombre = 'Almacen 5';
         $almacen5->direccion = 'Lucaba';
         $almacen5->capacidad = '4523.31';
-        $almacen5->estado = 'Inactivo';
+        $almacen5->estado = 'Activo';
         $almacen5->save();
     }
 }
