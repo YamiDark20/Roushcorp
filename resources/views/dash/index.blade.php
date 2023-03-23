@@ -86,6 +86,7 @@
   <div class="mt-3">
     @livewire('tasa-dia')
   </div>
+
 @stop
 
 @section('css')
@@ -128,12 +129,13 @@ div#seis{
 }
 
 div#siete{
-  background-color: rgb(202, 43, 230)
+  background-color: rgb(109, 3, 128)
 }
 
 div#ocho{
-  background-color: rgb(43, 230, 130)
+  background-color: rgb(202, 43, 230)
 }
+
 
 i.icon{
   color: white;
@@ -193,43 +195,6 @@ div.contenedor:hover i.icon{
     text-align: center;
     border-radius: 10px;
 }
-
-/* .contenedor{
-  width: 50px;
-  right: 8px;
-  z-index: 999;
-}
-
-.botonHover {
-    width: 31px;
-    height: 45px;
-    background: coral;
-    border-radius: 5%;
-    font-size: 23px;
-    position: fixed;
-    border: none;
-    color: #FFF;
-    transition: .3s;
-    margin-bottom: 250px;
-}
-
-.botonHover:hover{
-  width: 150px;
-}
-
-.botonHover:hover .ocul{
-  visibility: visible;
-}
-
-.ocul{
-  visibility: hidden;
-}
-
-a:hover .ocul{
-  visibility:visible ;
-}
- */
-
 
 </style>
 

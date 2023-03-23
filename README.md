@@ -1,66 +1,143 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+![Alt text](public/img/Logo%20RoushCorp.jpg)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Sistema de Ventas
 
-## About Laravel
+Proyecto de **Sistema para la gestión de ventas** desarrollado con Laravel y Livewire para la materia Desarrollo de Software Avanzado
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Caracteristicas
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+-   Modulo para gestion de Clientes
+-   Modulo de gestion de Inventario
+-   Modulo para Gestion de Ventas
+-   Modulo de Gestion de Usuarios
+-   Modulo Roles y permisos
+-   Reportes ventas por día y entre fechas (PDF)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Arquitectura del proyecto
 
-## Learning Laravel
+-   **Modelo Vista Controlador**
+    EL Modelo Vista Controlador (MVC), es un patrón de diseño que separa en capas bien definidas el desarrollo de una aplicación, esas partes son tres, el Modelo encargado de la lógica del negocio y la persistencia de los datos, las Vistas son las responsables de mostrar al usuario el resultado que obtienen del modelo a través del controlador, el Controlador encargado es el encargado de gestionar las peticiones del usuario, procesarlas invocando al modelo y mostrarlas al usuario a través de las vistas.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Herramientas
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Para la codificación de este sistema web se utilizaron las siguientes herramientas tecnológicas:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+-   **Laravel**: framework de PHP del lado del _backend_, gratis y de codigo abierto. Brinda un conjunto de herramientas y recursos para el desarrollo de aplicaciones web modernas totalmente personalizadas.
 
-## Laravel Sponsors
+-   **Livewire**: framework para el desarrollo de componentes Laravel que pueden comunicarse automaticamente entre la vista y el controlador, de modo que se produzcan comportamientos dinamicos. Permite realizar componentes con programacion Javascript avanzada, pero sin necesidad de escribir codigo del lado cliente.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+-   **Blade**: las vistas son la parte publica que el usuario de nuestro sistema puede ver(_frontend_). Para esto se usa Blade, el motor de plantillas de Laravel. Una plantilla por lo general contiene el head del HTML, las ligas del CSS del sistema y una seccion para los archivos Javascript.
 
-### Premium Partners
+-   **Base de datos**
+    La basse de datos usada es MySQL manejada a traves del ORM de Laravel Eloquent.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+## Requisitos previos
 
-## Contributing
+-   Instalar un entorno de desarrollo como [Xamp](https://www.apachefriends.org/es/download.html), [Wamp](https://www.wampserver.com/en/) o [Laragon](https://laragon.org/download/index.html)
+-   Luego instalar [Composer](https://getcomposer.org/download/) de manera global
+-   Tener instalado GIT
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Instalación
 
-## Code of Conduct
+Siga estos pasos para la instalación:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+-   Clonar desde github
 
-## Security Vulnerabilities
+(usando la linea de comandos)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+  git clone https://github.com/YamiDark20/Roushcorp.git
+```
 
-## License
+(o usando github desktop)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+  gh repo clone YamiDark20/Roushcorp
+```
+
+-   Vaya a la carpeta del proyecto
+
+```bash
+  cd Roushcorp
+```
+
+-   Instalar dependencias con composer desde consola
+
+```bash
+  composer install
+```
+
+-   Instalar dependencias node
+
+```bash
+  npm install
+```
+
+-   Generar archivo .env
+
+```bash
+  cp .env.example .env
+```
+
+-   Generar el APP_KEY, se necesita ejecutar el siguiente comando:
+
+```bash
+  php artisan key:generate
+```
+
+## Ejecutar Localmente
+
+Ejecutar las migraciones y datos de prueba
+
+```bash
+  php artisan migrate:fresh --seed
+```
+
+Iniciar el server
+
+```bash
+  php artisan serve
+```
+
+#
+
+Ir a
+
+[http://127.0.0.1:8000](localhost)
+
+Usuario para prueba como Administrador:
+
+```bash
+    user: admin@example.com
+    pass: admin@example.com
+```
+
+## Screenshots
+
+## Acceso al sistema
+
+![Acceso](public/img/Acceso%20al%20sistema.png)
+
+### Inicio
+
+![Inicio](public/img/Inicio.png)
+
+### Agregar Producto
+
+![Agregar Producto](public/img/Agregar%20Producto.png)
+
+### Agregar Cliente
+
+![Crear Cliente](public/img/Crear%20Cliente.png)
+
+### Registrar Usuario
+
+![Registrar Usuario](public/img/Registrar%20usuario.png)
+
+### Vender
+
+![Venta](public/img/Venta.png)
+
+### Reporte de ventas
+
+![Reporte](public/img/Reporte%20de%20Ventas.png)
