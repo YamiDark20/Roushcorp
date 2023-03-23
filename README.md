@@ -1,3 +1,5 @@
+<!-- ![Logo Roushcorp](public/img/Logo%20RoushCorp.jpg) -->
+
 ## Sistema de Ventas
 
 Proyecto de **Sistema para la gestión de ventas** desarrollado con Laravel y Livewire para la materia Desarrollo de Software Avanzado
