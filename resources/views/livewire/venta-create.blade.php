@@ -57,7 +57,7 @@
 
                                     <select class="form-control form-control-sm" id="producto_seleccionado" name="producto_seleccionado" wire:model="producto_seleccionado">
                                         @foreach ($this->productos_almacen as $producto_almacen)
-                                            <option value="{{ $producto_almacen->id }}">{{ $producto_almacen->producto->nombre }}</option>
+                                            <option value="{{ $producto_almacen->id }}">{{ $producto_almacen->producto->nombre }} (Disp: {{ $producto_almacen->stock }})</option>
                                         @endforeach
                                     </select>
 

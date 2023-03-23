@@ -28,6 +28,8 @@ class UsuariosCreate extends Component
 
         if(!isset($this->rol_seleccionado_id)) {
             $this->addError('key', 'El Rol del usuario es requerido');
+
+            return;
         }
 
         $validated_email = $validated_data['email'];

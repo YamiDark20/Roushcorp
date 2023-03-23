@@ -31,7 +31,7 @@ class AlmacenSeeder extends Seeder
         $almacen2->nombre = 'Almacen 2';
         $almacen2->direccion = 'Maricaba';
         $almacen2->capacidad = '631';
-        $almacen2->estado = 'Inactivo';
+        $almacen2->estado = 'Activo';
         $almacen2->vendedor_id = $vendedor_id;
         $almacen2->save();
 
@@ -55,7 +55,7 @@ class AlmacenSeeder extends Seeder
         $almacen5->nombre = 'Almacen 5';
         $almacen5->direccion = 'Lucaba';
         $almacen5->capacidad = '4523';
-        $almacen5->estado = 'Inactivo';
+        $almacen5->estado = 'Activo';
         $almacen5->vendedor_id = $vendedor_id;
         $almacen5->save();
     }

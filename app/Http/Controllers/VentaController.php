@@ -11,6 +11,7 @@ use App\Models\Customer;
 use App\Models\Documento;
 use App\Models\Producto;
 use App\Models\TasaDia;
+use App\Models\AlmacenProducto;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -85,8 +86,20 @@ class VentaController extends Controller
         }
 
         $products = $request['productos'];
+        $productosAlmacen = AlmacenProducto::all();
 
         foreach ($products as $product) {
+            //Actualizar cantidad de productos de almacen
+            foreach ($productosAlmacen as $productoAlmacen) {
+                if ($productoAlmacen->idprod == $product['id'] &&
+                $request['almacen_id'] == $productoAlmacen->idalm &&
+                ($productoAlmacen->estado == 'Bueno' || $productoAlmacen->estado == 'Medio')) {
+                    $productoAlmacen->stock = strval(intval($productoAlmacen->stock) - $product['cantidad']);
+                    $productoAlmacen->save();
+                    break;
+                }
+            }
+            //
             Factura::create([
                 'numero_factura' => $venta->id,
                 'producto_id' => $product['id'],

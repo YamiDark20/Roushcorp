@@ -21,25 +21,27 @@ class ProductoRow extends Component
     public function getIvaDivisasProperty() {
         $iva_divisas = Compra::valorDivisa($this->iva);
         $iva_divisas = number_format($iva_divisas, 2);
+        $iva_formatted = number_format($this ->iva, 2);
 
-        return "{$this ->iva} $ / Bs. {$iva_divisas}";
+        return "{$iva_formatted} $ / Bs. {$iva_divisas}";
     }
 
     public function getTotalDivisasProperty() {
         $total_divisas = Compra::valorDivisa($this->total);
         $total_divisas = number_format($total_divisas, 2);
+        $total_formatted = number_format($this ->total, 2);
 
-        return "{$this ->total} $ / Bs. {$total_divisas}";
+        return "{$total_formatted} $ / Bs. {$total_divisas}";
     }
 
     public function getIvaProperty() {
         $iva = ($this->producto_obj->exonerado ? 0 : 0.16) * floatval($this->total);
-        return floatval(number_format($iva, 2));
+        return floatval($iva);
     }
 
     public function getTotalProperty() {
         $total = ($this->producto_obj->precio) * intval($this->producto['cantidad']);
-        return floatval(number_format($total, 2));
+        return floatval($total);
     }
 
     public function getProductoAlmacenProperty() {

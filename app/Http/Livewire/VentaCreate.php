@@ -64,7 +64,7 @@ class VentaCreate extends Component
         $total = $suma_total - (floatval($this->cancelado) ?? 0);
         $total = $total < 0 || $total == 0 ? 0 : $total;
 
-        return floatval(number_format($total, 2));
+        return floatval($total);
     }
 
     public function getVueltoProperty() {
@@ -73,7 +73,7 @@ class VentaCreate extends Component
         $total = $suma_total - (floatval($this->cancelado) ?? 0);
         $total = $total > 0 || $total == 0 ? 0 : ($total * -1);
 
-        return floatval(number_format($total, 2));
+        return floatval($total);
     }
 
     public function getIvaDivisasProperty() {
@@ -112,6 +112,7 @@ class VentaCreate extends Component
     }
 
     public function anadirProducto() {
+        $producto_almacen = AlmacenProducto::find($this->producto_seleccionado);
         $key = $this->producto_seleccionado;
 
         $object = array(
@@ -120,6 +121,8 @@ class VentaCreate extends Component
             'iva' => 0,
             'precio' => 0,
             'total' => 0,
+            'max_cantidad' => $producto_almacen->stock,
+            'nombre' => $producto_almacen->producto->nombre
         );
 
         $this->productos[$key] = $object;
@@ -158,6 +161,22 @@ class VentaCreate extends Component
             'cancelado' => 'required|numeric',
         ]);
 
+        $products = $validatedData['productos'];
+
+        foreach ($products as $product) {
+            if ($product['cantidad'] > $product['max_cantidad']) {
+                $this->addError('cantidad', 'La cantidad del producto '. $product['nombre'] .' debe ser menor o igual a ' . $product['max_cantidad']);
+
+                return;
+            }
+
+            if ($product['cantidad'] <= 0) {
+                $this->addError('cantidad', 'La cantidad del producto '. $product['nombre'] .' debe ser mayor a 0');
+
+                return;
+            }
+        }
+
         $venta = Venta::create([
             'valor_compra' => $this->getSumaTotal(),
             'cancelado' => floatval(($this->cancelado)),
@@ -180,11 +199,17 @@ class VentaCreate extends Component
             $documento->save();
         }
 
-        $products = $validatedData['productos'];
-
         foreach ($products as $product) {
             if($product['cantidad'] > 0) {
-                $producto_id = AlmacenProducto::find($product['id'])->producto->id;
+                $producto_almacen = AlmacenProducto::find($product['id']);
+
+                if(($producto_almacen->estado == 'Bueno' || $producto_almacen->estado == 'Medio')) {
+                    $producto_almacen->stock = strval(intval($producto_almacen->stock) - $product['cantidad']);
+                    $producto_almacen->save();
+                }
+
+                $producto_id = $producto_almacen->producto->id;
+
                 Factura::create([
                     'numero_factura' => $venta->id,
                     'producto_id' => $producto_id,
