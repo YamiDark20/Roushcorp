@@ -1,5 +1,3 @@
-![Alt text](public/img/Logo%20RoushCorp.jpg)
-
 ## Sistema de Ventas
 
 Proyecto de **Sistema para la gestión de ventas** desarrollado con Laravel y Livewire para la materia Desarrollo de Software Avanzado
@@ -126,9 +124,15 @@ Usuario para prueba como Administrador:
 
 ![Agregar Producto](public/img/Agregar%20Producto.png)
 
+### Lista de Productos
+![Lista de productos](public/img/Lista%20de%20productos.png)
+
 ### Agregar Cliente
 
 ![Crear Cliente](public/img/Crear%20Cliente.png)
+
+### Agregar Almacen
+![Agregar almacen](public/img/Agregar%20almacen.png)
 
 ### Registrar Usuario
 
