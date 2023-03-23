@@ -14,11 +14,14 @@ class ReporteIndex extends Component
     protected $casts = [
         'fecha_inicio' => 'date:Y-m-d',
         'fecha_fin' => 'date:Y-m-d',
+        'cedula_cliente' => '0'
     ];
 
     public $fecha_inicio;
     public $fecha_fin;
+    public $cedula_cliente = "0", $clientes;
     public $results;
+    public $condicion_cliente = ">=";
 
     public $results_debug;
 
@@ -26,6 +29,16 @@ class ReporteIndex extends Component
         $this->fecha_inicio = now();
         $this->fecha_fin = now();
         $this->results = [];
+        $this->clientes = Customer::all();
+    }
+
+    public function updatedCedulaCliente() {
+        if ($this->cedula_cliente == "0") {
+            $this->condicion_cliente = ">";
+        }else{
+            $this->condicion_cliente = "=";
+        }
+        $this->actualizarResultados();
     }
 
     public function updatedFechaInicio() {
@@ -39,7 +52,8 @@ class ReporteIndex extends Component
     public function actualizarResultados() {
         $this->fecha_inicio_formateada = Carbon::parse($this->fecha_inicio)->format('Y-m-d');
         $this->fecha_fin_formateada = Carbon::parse($this->fecha_fin)->format('Y-m-d');
-        $this->results = Venta::where('created_at', '>=' , $this->fecha_inicio_formateada)->where('created_at', '<=' , $this->fecha_fin_formateada)->where('estado', 'Pagado')->get();
+        $this->results = Venta::where('created_at', '>=' , $this->fecha_inicio_formateada)
+        ->where('created_at', '<=' , $this->fecha_fin_formateada)->where('cliente_id', $this->condicion_cliente, (int)$this->cedula_cliente)->where('estado', 'Pagado')->get();
     }
 
 

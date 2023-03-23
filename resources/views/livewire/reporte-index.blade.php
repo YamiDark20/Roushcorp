@@ -6,6 +6,20 @@
                     <div class="col-sm-12 col-md-3">
                         <div class="row">
                             <div class="col-sm-12">
+                                <h6>Cedula del Cliente</h6>
+                                <div class="form-group">
+                                    <select name="cedula_cliente" wire:model="cedula_cliente"
+                                    class="form-control">
+                                        <option value="0">Todos los clientes</option>
+                                        @foreach ($clientes as $cliente)
+                                            <option value="{{$cliente->id}}">
+                                                {{$cliente->name}} - {{$cliente->rif}}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
                                 {{-- de este input imagino saliendo un calendario --}}
                                 <h6>Fecha desde</h6>
                                 <div class="form-group">
