@@ -29,6 +29,8 @@
                             <span class="bold">Cliente</span>
                         </label>
 
+                        <br>
+
                         <input type="text" disabled value="{{ $venta->cliente->name }}">
                     </div>
 
@@ -37,6 +39,8 @@
                             <i class="fas fa barcode"></i>
                             <span class="bold">Vendedor</span>
                         </label>
+
+                        <br>
 
                         <input type="text" disabled value="{{ $venta->vendedor->name }}">
                     </div>
@@ -101,27 +105,27 @@
                     {{-- Mostrar subtotal, IVA y Total de la venta --}}
                     <div class="row">
                         <div class="col-md-7">
-                            <span>SUBTOTAL</span>
+                            <span><b>SUBTOTAL</b></span>
                         </div>
                         <div class="col-md-5 text-rigth">
                             <span id="documentoSubtotal">{{ $venta->subtotal_formateado }}</span>
                         </div>
 
                         <div class="col-md-7">
-                            <span>IVA (16%)</span>
+                            <span><b>IVA (16%)</b></span>
                         </div>
                         <div class="col-md-5 text-rigth">
                             <span id="documentoIva">{{ $venta->iva_formateado }}</span>
                         </div>
 
                         <div class="col-md-7">
-                            <span>TOTAL</span>
+                            <span><b>TOTAL</b></span>
                         </div>
                         <div class="col-md-5 text-rigth">
                             <span id="documentoTotal">{{ $venta->valor_compra_divisa }}</span>
                         </div>
 
-                        <button class="btn btn-info" onclick="print()">Factura</button>
+                        <a href="/ventas/factura/{{$venta->id}}" target="_blank" rel="noopener noreferrer" class="btn btn-info">Factura</a>
 
                     </div>
                 </div>

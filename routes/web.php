@@ -50,6 +50,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['middleware' => ['can:Gestionar Ventas']], function () {
         Route::resource('ventas', VentaController::class);
+        Route::get('ventas/factura/{id}','App\Http\Controllers\VentaController@generarFactura');
+        Route::get('ventas/facturatest/{id}','App\Http\Controllers\VentaController@generarFacturaTest');
     });
 
     Route::group(['middleware' => ['can:Gestionar Compras']], function () {
