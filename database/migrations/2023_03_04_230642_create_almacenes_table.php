@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('nombre', 45);
             $table->string('direccion', 45);
-            $table->string('capacidad', 45);
+            $table->integer('capacidad');
             $table->string('estado', 45);
+            $table->foreignId('vendedor_id')->constrained('users')->nullable()->onDelete('cascade');
             $table->timestamps();
         });
     }

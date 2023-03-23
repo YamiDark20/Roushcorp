@@ -71,6 +71,10 @@ class User extends Authenticatable
         return '';
     }
 
+    public function almacenes() {
+        return $this->hasMany(Almacen::class, 'vendedor_id', 'id');
+    }
+
     /* public function adminlte_profile(){
         return 'profile/username';
     } */

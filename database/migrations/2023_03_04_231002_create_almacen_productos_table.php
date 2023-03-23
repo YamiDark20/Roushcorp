@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('estado', 25);
             $table->string('stock', 45);
             $table->integer('cantidad_a_reponer');
-            $table->foreignId('idprod')->constrained('productos')->nullable()->onDelete('cascade');
-            $table->foreignId('idalm')->constrained('almacenes')->nullable()->onDelete('cascade');
+            $table->foreignId('producto_id')->constrained('productos')->nullable()->onDelete('cascade');
+            $table->foreignId('almacen_id')->constrained('almacenes')->nullable()->onDelete('cascade');
             $table->timestamps();
         });
     }

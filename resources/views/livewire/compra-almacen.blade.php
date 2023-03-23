@@ -55,7 +55,7 @@
 
         <div class="form-group col-4 mt-2">
             <label class="form-label">Impuesto</label>
-            <input type="number" min="1" max="100" name="impuesto"
+            <input type="number" min="1" step="0.01" name="impuesto"
             wire:model="impuesto" class="form-control" readonly>
         </div>
 

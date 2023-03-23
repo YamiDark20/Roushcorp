@@ -59,7 +59,7 @@ class AgregarCompra extends Component
                 // $existe = False;
 
                 // foreach ($this->productoscomprados as $prodcomp) {
-                //     if ($prodcomp->idprod == $producto[0] && $prodcomp->idalm == $this->codalm) {
+                //     if ($prodcomp->producto_id == $producto[0] && $prodcomp->almacen_id == $this->codalm) {
                 //         $prodcomp->stock += $producto[2];
                 //         $prodcomp->save();
                 //         $existe = True;
@@ -68,8 +68,8 @@ class AgregarCompra extends Component
                 // }
                 // if ($existe == False) {
                 //     $prodalm = new AlmacenProducto();
-                //     $prodalm->idprod = $producto[0];
-                //     $prodalm->idalm = $this->codalm;
+                //     $prodalm->producto_id = $producto[0];
+                //     $prodalm->almacen_id = $this->codalm;
                 //     $prodalm->estado = $producto[4];
                 //     $prodalm->stock = $producto[2];
                 //     $prodalm->cantReponer = 0;
@@ -106,7 +106,7 @@ class AgregarCompra extends Component
     //             $existe = False;
 
     //             foreach ($this->productoscomprados as $prodcomp) {
-    //                 if ($prodcomp->idprod == $producto[0] && $prodcomp->idalm == $this->codalm) {
+    //                 if ($prodcomp->producto_id == $producto[0] && $prodcomp->almacen_id == $this->codalm) {
     //                     $prodcomp->stock += $producto[2];
     //                     $prodcomp->save();
     //                     $existe = True;
@@ -115,15 +115,15 @@ class AgregarCompra extends Component
     //             }
     //             if ($existe == False) {
     //                 $prodalm = new AlmacenProducto();
-    //                 $prodalm->idprod = $producto[0];
-    //                 $prodalm->idalm = $this->codalm;
+    //                 $prodalm->producto_id = $producto[0];
+    //                 $prodalm->almacen_id = $this->codalm;
     //                 $prodalm->estado = $producto[4];
     //                 $prodalm->stock = $producto[2];
     //                 $prodalm->cantReponer = 0;
     //                 $prodalm->save();
     //             }
     //             // $prodalm = new ProductosAlmacen();
-    //             // $prodalm->idprod = $producto[0];
+    //             // $prodalm->producto_id = $producto[0];
 
     //         }
     //         // $movalm = new MovimientoAlmacen();

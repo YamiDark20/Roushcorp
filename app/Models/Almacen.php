@@ -12,4 +12,12 @@ class Almacen extends Model
     protected $table = 'almacenes';
 
     protected $fillable = ['nombre', 'direccion', 'capacidad', 'estado'];
+
+    public function vendedor() {
+        return $this->belongsTo(User::class);
+    }
+
+    public function productos_almacen() {
+        return $this->hasMany(AlmacenProducto::class);
+    }
 }

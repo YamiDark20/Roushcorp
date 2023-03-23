@@ -22,7 +22,7 @@
                 <div class="d-flex justify-content-between">
                     <h2>Lista de ventas</h2>
                     <div class="btn-group">
-                        <a href="ventas\create" class="btn btn-warning mb-3">Agregar</a>
+                        <a href="/ventas/create" class="btn btn-warning mb-3">Agregar</a>
                     </div>
                 </div>
 
@@ -38,7 +38,7 @@
                                     <th scope='col' class="text-sm">Vuelto</th>
                                     <th scope='col' class="text-sm">Estado</th>
                                     <th scope='col' class="text-sm">Cliente</th>
-                                    <th scope='col' class="text-sm">Almacen</th>
+                                    <th scope='col' class="text-sm">Vendedor</th>
                                     <th scope='col' class="text-sm">Acciones</th>
                                 </thead>
                             </tr>
@@ -58,9 +58,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="/almacenes/{{$venta ->almacen->id}}" class = 'btn btn-sm btn-info'>
-                                                {{ $venta ->almacen->nombre }}
-                                            </a>
+                                            {{ $venta ->vendedor->name }}
                                         </td>
                                         <td>
                                             <a href="/ventas/{{$venta->id}}" class = 'btn btn-sm btn-info'><i class="fa fa-eye"></i></a>

@@ -31,13 +31,13 @@ class DatabaseSeeder extends Seeder
 
         TasaDia::create(['tasa' => 24.56]);
 
+        $this->call(RolSeeder::class);
         $this->call(CustomerSeeder::class);
         $this->call(AlmacenSeeder::class);
         $this->call(ProductoSeeder::class);
         $this->call(AlmacenProductoSeeder::class);
-        // $this->call(ProductoAlmacenSeeder::class);
         $this->call(VentaSeeder::class);
+        // $this->call(ProductoAlmacenSeeder::class);
         // $this->call(DocumentoSeeder::class);
-        $this->call(RolSeeder::class);
     }
 }

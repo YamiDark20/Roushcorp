@@ -18,6 +18,7 @@ return new class extends Migration
             $table->decimal('iva_producto', 9,2);
             $table->decimal('precio_producto', 9,2);
             $table->decimal('total_producto', 9,2);
+            $table->foreignId('almacen_id')->constrained('almacenes')->nullable()->onDelete('cascade');
             $table->foreignId('producto_id')->constrained('productos')->nullable()->onDelete('cascade');
             $table->foreignId('venta_id')->constrained('ventas')->nullable()->onDelete('cascade');
             $table->integer('cantidad_producto')->default(0);

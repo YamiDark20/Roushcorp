@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Almacen;
 use App\Models\Customer;
+use App\Models\User;
 use App\Models\Venta;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -25,7 +26,7 @@ class VentaSeeder extends Seeder
         $venta->valor_compra = 32.32;
         $venta->por_cancelar = 32.32;
         $venta->cliente_id = Customer::all()->first()->id;
-        $venta->almacen_id = Almacen::all()->first()->id;
+        $venta->vendedor_id = User::role('Vendedor')->first()->id;
         $venta->save();
     }
 }

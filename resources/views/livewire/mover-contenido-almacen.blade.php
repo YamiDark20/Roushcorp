@@ -68,12 +68,12 @@
                     <tbody>
                         @foreach ($prodalm as $producto)
                             <tr>
-                                @if ($producto->idalm == $codalm)
+                                @if ($producto->almacen_id == $codalm)
                                     @php
                                         $nombre = NULL;
                                         $codigo = NULL;
                                         foreach($productos as $prod) {
-                                            if($prod->id == $producto->idprod){
+                                            if($prod->id == $producto->producto_id){
                                                 $codigo = $prod->codigo;
                                                 $nombre = $prod->nombre;
                                                 break;
@@ -122,12 +122,12 @@
                         <option value="">---------</option>
                         @foreach ($prodalm as $producto)
                             <tr>
-                                @if ($producto->idalm == $codalm)
+                                @if ($producto->almacen_id == $codalm)
                                     @php
                                         $nombre = NULL;
                                         $codigo = NULL;
                                         foreach($productos as $prod) {
-                                            if($prod->id == $producto->idprod){
+                                            if($prod->id == $producto->producto_id){
                                                 $codigo = $prod->codigo;
                                                 $nombre = $prod->nombre;
                                                 break;

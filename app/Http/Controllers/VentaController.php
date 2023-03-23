@@ -109,7 +109,7 @@ class VentaController extends Controller
      */
     public function show($id)
     {
-        $venta = Venta::find($id);
+        $venta = Venta::findOrFail($id);
         return view('venta.show', compact('venta'));
     }
 

@@ -22,4 +22,8 @@ class Producto extends Model
     public function getPrecioFormateadoAttribute() {
         return "{$this ->precio} $ / Bs. {$this->precio_divisa}";
     }
+
+    public function productos_almacen() {
+        return $this->hasMany(AlmacenProducto::class);
+    }
 }

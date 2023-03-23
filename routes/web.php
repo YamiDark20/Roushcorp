@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlmacenController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CobroController;
 use App\Http\Controllers\CustomerController;
@@ -70,6 +71,8 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::group(['middleware' => ['can:Gestionar Inventario']], function () {
+        Route::resource('almacen', AlmacenController::class);
+
         Route::get('almacen', function(){
             return view('almacen.index');
         })->name('almacen.index'); // Usada para ver contenido de un almacen

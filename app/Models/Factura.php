@@ -18,11 +18,17 @@ class Factura extends Model
         'iva_producto',
         'venta_id',
         'producto_id',
+        'almacen_id'
     ];
 
     public function venta()
     {
         return $this->belongsTo(Venta::class);
+    }
+
+    public function almacen()
+    {
+        return $this->belongsTo(Almacen::class);
     }
 
     public function producto()

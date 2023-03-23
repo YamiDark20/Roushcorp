@@ -78,12 +78,12 @@
                     <tbody>
                         @foreach ($prodalm as $producto)
                             <tr>
-                                @if ($producto->idalm == $codalm)
-                                    <td>{{$producto->idprod}}</td>
+                                @if ($producto->almacen_id == $codalm)
+                                    <td>{{$producto->producto_id}}</td>
                                     @php
                                         $nombre = NULL;
                                         foreach($productos as $prod) {
-                                            if($prod->codigo == $producto->idprod){
+                                            if($prod->codigo == $producto->producto_id){
                                                 $nombre = $prod->nombre;
                                                 break;
                                             }

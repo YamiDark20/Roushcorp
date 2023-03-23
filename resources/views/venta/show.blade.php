@@ -33,12 +33,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label mt-3" for="id_producto">
+                        <label class="form-label mt-3" for="id_vendedor">
                             <i class="fas fa barcode"></i>
-                            <span class="bold">Almacen</span>
+                            <span class="bold">Vendedor</span>
                         </label>
 
-                        <input type="text" disabled value="{{ $venta->almacen->nombre }}">
+                        <input type="text" disabled value="{{ $venta->vendedor->name }}">
                     </div>
                 </div>
 
@@ -47,6 +47,7 @@
                         <thead>
                             <th>Codigo</th>
                             <th>Nombre</th>
+                            <th>Almacen</th>
                             <th>Cantidad</th>
                             <th>Precio</th>
                             <th>IVA</th>
@@ -58,6 +59,7 @@
                                 <tr>
                                     <td><a href="{{ "/productos/".$factura->producto->id }}" class="btn btn-info">{{$factura->producto->codigo}}</a></td>
                                     <td>{{$factura->producto->nombre}}</td>
+                                    <td>{{$factura->almacen->nombre}}</td>
                                     <td>{{$factura->cantidad_producto}}</td>
                                     <td>{{$factura->precio_producto_formateado}}</td>
                                     <td>{{$factura->iva_producto_formateado}}</td>
@@ -86,7 +88,7 @@
                     <div class="form-group">
                         <label for="cancelado">Efectivo Recibido</label>
                         <input type="number" id="cancelado"
-                        class="form-control form-control-sm" placeholder="Cantidad de efectivo recibido" disabled value="{{ $venta->cancelado_formateado }}">
+                        class="form-control form-control-sm" placeholder="Cantidad de efectivo recibido" disabled value="{{ $venta->cancelado }}">
                     </div>
 
                     {{-- Mostrar monto y vuelto --}}

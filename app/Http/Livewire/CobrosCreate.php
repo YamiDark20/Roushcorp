@@ -37,9 +37,9 @@ class CobrosCreate extends Component
         $this->emit('clienteSeleccionado', $this->cliente_seleccionado);
 
         $this->venta_seleccionada_obj = Venta::where('id', '=', $this->venta_seleccionada)->first();
-        $this->emit('ventaSeleccionada', $this->venta_seleccionada);
-
         $this->ventas = $this->cliente_seleccionado_obj->ventas;
+
+        $this->emit('clienteSeleccionado', $this->cliente_seleccionado);
     }
 
     public function updatedVentaSeleccionada()

@@ -63,7 +63,15 @@ class RolSeeder extends Seeder
             'email_verified_at' => now(),
         ]);
 
+        $usuario_vendedor_2 = User::create([
+            'name' => 'vendedor2',
+            'email' => 'vendedor2@example.com',
+            'password' => Hash::make('vendedor2@example.com'),
+            'email_verified_at' => now(),
+        ]);
+
         $usuario_vendedor->assignRole($rol_vendedor);
+        $usuario_vendedor_2->assignRole($rol_vendedor);
 
         $usuario_gerente = User::create([
             'name' => 'gerente',

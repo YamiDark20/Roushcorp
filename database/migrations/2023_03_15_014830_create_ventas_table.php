@@ -24,7 +24,7 @@ return new class extends Migration
             $table->decimal('iva', 9, 2)->default(0);
             $table->decimal('por_cancelar', 9, 2)->default(0);
             $table->foreignId('cliente_id')->constrained('customers')->nullable()->onDelete('cascade');
-            $table->foreignId('almacen_id')->constrained('almacenes')->nullable()->onDelete('cascade');
+            $table->foreignId('vendedor_id')->constrained('users')->nullable()->onDelete('cascade');
         });
     }
 
