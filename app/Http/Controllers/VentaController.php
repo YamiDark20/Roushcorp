@@ -93,8 +93,8 @@ class VentaController extends Controller
         foreach ($products as $product) {
             //Actualizar cantidad de productos de almacen
             foreach ($productosAlmacen as $productoAlmacen) {
-                if ($productoAlmacen->idprod == $product['id'] &&
-                $request['almacen_id'] == $productoAlmacen->idalm &&
+                if ($productoAlmacen->producto_id == $product['id'] &&
+                $request['almacen_id'] == $productoAlmacen->almacen_id &&
                 ($productoAlmacen->estado == 'Bueno' || $productoAlmacen->estado == 'Medio')) {
                     $productoAlmacen->stock = strval(intval($productoAlmacen->stock) - $product['cantidad']);
                     $productoAlmacen->save();

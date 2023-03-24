@@ -59,8 +59,8 @@ class AgregarCompra extends Component
                 $exists = False;
 
                 foreach ($this->productoscomprados as $productosalmacen) {
-                    if ($productosalmacen->idalm == $this->codalm &&
-                    $productosalmacen->idprod == $producto[5] &&
+                    if ($productosalmacen->almacen_id == $this->codalm &&
+                    $productosalmacen->producto_id == $producto[5] &&
                     $productosalmacen->estado == $producto[4]) {
                         $productosalmacen->stock = strval(intval($productosalmacen->stock) + $producto[2]);
                         $productosalmacen->save();
@@ -70,8 +70,8 @@ class AgregarCompra extends Component
                 }
                 if ($exists == False) {
                     $prodalm = new AlmacenProducto();
-                    $prodalm->idprod = $producto[5];
-                    $prodalm->idalm = $this->codalm;
+                    $prodalm->producto_id = $producto[5];
+                    $prodalm->almacen_id = $this->codalm;
                     $prodalm->estado = $producto[4];
                     $prodalm->stock = $producto[2];
                     $prodalm->cantidad_a_Reponer = 0;
