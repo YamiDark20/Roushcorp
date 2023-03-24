@@ -28,28 +28,32 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="mb-3">Contenido del Almacen {{$almacen->nombre}}</h4>
-                <div class="table-responsive">
-                    <table class="table table-dark table-striped">
-                        <thead>
-                            <tr>
-                                <th scope='col'>CodProd</th>
-                                <th scope='col'>Nombre</th>
-                                <th scope='col'>Stock</th>
-                                <th scope='col'>Estado</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($productos_almacen as $producto_almacen)
+                @if($productos_almacen->count() > 0)
+                    <div class="table-responsive">
+                        <table class="table table-dark table-striped">
+                            <thead>
                                 <tr>
-                                    <td><a href="{{ "/productos/".$producto_almacen->producto->codigo }}" class="btn btn-info">{{$producto_almacen->producto->codigo}}</a></td>
-                                    <td>{{$producto_almacen->producto->nombre}}</td>
-                                    <td>{{$producto_almacen->stock}}</td>
-                                    <td>{{$producto_almacen->estado}}</td>
+                                    <th scope='col'>CodProd</th>
+                                    <th scope='col'>Nombre</th>
+                                    <th scope='col'>Stock</th>
+                                    <th scope='col'>Estado</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                            </thead>
+                            <tbody>
+                                    @foreach ($productos_almacen as $producto_almacen)
+                                        <tr>
+                                            <td><a href="{{ "/productos/".$producto_almacen->producto->codigo }}" class="btn btn-info">{{$producto_almacen->producto->codigo}}</a></td>
+                                            <td>{{$producto_almacen->producto->nombre}}</td>
+                                            <td>{{$producto_almacen->stock}}</td>
+                                            <td>{{$producto_almacen->estado}}</td>
+                                        </tr>
+                                    @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    @else
+                    <div class="alert alert-danger">No hay productos registrados en este almacen</div>
+                @endif
             </div>
         </div>
     </div>
