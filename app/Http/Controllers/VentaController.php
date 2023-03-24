@@ -139,12 +139,8 @@ class VentaController extends Controller
         $fecha_formateada = Carbon::parse($venta->created_at)->isoFormat('dddd, D [de] MMMM [de] YYYY');
         $fecha_formateada = ucfirst($fecha_formateada);
         $pdf = Pdf::loadView('facturas.factura-pdf', ['venta' => $venta, 'fecha_formateada' => $fecha_formateada]);
-        # dd($pdf);
-        $view = $pdf->stream();
 
-        # dd($view);
-
-        return $view;
+        return $pdf->stream();
     }
 
 }

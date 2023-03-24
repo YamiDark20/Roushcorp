@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Factura - {{ $venta->id }}</title>
+        <title>Reporte</title>
         <style>
             * {
                 -webkit-box-sizing: border-box;
@@ -95,7 +95,7 @@
             }
 
             .fecha {
-                width: 30%;
+                width: 40%;
                 text-align: right;
             }
 
@@ -120,10 +120,9 @@
                         <a href="https://www.roushcorp.com">roushcorp.com</a><br>
                     </th>
                     <th class="fecha">
+                        Reporte<br>
+                        Generado por: {{ Auth::user()->name }} <br>
                         {{ $fecha_formateada }}<br />
-                        @if ($venta->id)
-                            <b>Venta #: </b> {{ $venta->id }}
-                        @endif
                     </th>
                 </thead>
             </table>
@@ -131,72 +130,47 @@
         </header>
         <br>
         <main>
-            <div style="clear:both; position:relative;">
-                <div>
-                    <h4>Facturar a:</h4>
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <b>ID:</b> {{ $venta->cliente->id }}<br />
-                            <b>Nombre:</b> {{ $venta->cliente->name }}<br />
-                            <b>RIF:</b> {{ $venta->cliente->rif }}<br />
-                            <b>Tlf:</b> {{ $venta->cliente->telephone }}<br />
-                            <b>Email:</b> <a href="mailto:{{ $venta->cliente->email }}">{{ $venta->cliente->email }}</a><br />
-                            <b>Ciudad:</b> {{ $venta->cliente->city }}<br />
-                            <b>Dirección:</b> {{ $venta->cliente->address }}<br />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <h4>Productos:</h4>
+            @if($nombre_cliente)
+                <div><b>Cliente: </b>{{ $nombre_cliente }}</div><br>
+            @endif
+            <div><b>Fecha Inicio: </b>{{ $fecha_inicio_formateada }}</div><br>
+            <div><b>Fecha Fin: </b>{{ $fecha_fin_formateada }}</div><br>
+
             <table class="table table-bordered">
                 <thead>
-                    <th>Codigo</th>
-                    <th>Nombre</th>
-                    <th>Almacen</th>
-                    <th>Cantidad</th>
-                    <th>Precio</th>
-                    <th>IVA</th>
-                    <th>Total</th>
+                    <th scope='col' class="text-sm">ID</th>
+                    <th scope='col' class="text-sm">Valor Compra</th>
+                    <th scope='col' class="text-sm">Cancelado</th>
+                    <th scope='col' class="text-sm">Por Cancelar</th>
+                    <th scope='col' class="text-sm">Vuelto</th>
+                    <th scope='col' class="text-sm">Estado</th>
+                    <th scope='col' class="text-sm">Cliente</th>
+                    <th scope='col' class="text-sm">Vendedor</th>
+                    <th scope='col' class="text-sm">Fecha</th>
                 </thead>
 
                 <tbody>
-                    @foreach ($venta->facturas as $factura)
+                    @foreach ($results as $venta)
                         <tr>
-                            <td>{{$factura->producto->codigo}}</td>
-                            <td>{{$factura->producto->nombre}}</td>
-                            <td>{{$factura->almacen->nombre}}</td>
-                            <td>{{$factura->cantidad_producto}}</td>
-                            <td>{{$factura->precio_producto_formateado}}</td>
-                            <td>{{$factura->iva_producto_formateado}}</td>
-                            <td>{{$factura->total_producto_formateado}}</td>
+                            <td class="text-sm">{{ $venta ->id}}</td>
+                            <td class="text-sm">{{ $venta ->valor_compra_formateado}}</td>
+                            <td class="text-sm">{{ $venta ->cancelado_formateado}}</td>
+                            <td class="text-sm">{{ $venta ->por_cancelar_formateado}}</td>
+                            <td class="text-sm">{{ $venta ->vuelto_formateado}}</td>
+                            <td class="text-sm">{{ $venta ->estado }}</td>
+                            <td>
+                                {{ $venta ->cliente->name }}
+                            </td>
+                            <td>
+                                {{ $venta ->vendedor->name }}
+                            </td>
+                            <td>
+                                {{ $venta -> created_at }}
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
-
-
             </table>
-
-            <div style="clear:both; position:relative;">
-                <div style="margin-left: 300pt;">
-                    <h4>Total:</h4>
-                    <table class="table table-bordered">
-                        <tbody>
-                            <tr>
-                                <td><b>Subtotal</b></td>
-                                <td>{{ $venta->subtotal_formateado }}</td>
-                            </tr>
-                            <tr>
-                                <td><b>IVA</b></td>
-                                <td>{{ $venta->iva_formateado }}</td>
-                            </tr>
-                            <tr>
-                                <td><b>TOTAL</b></td>
-                                <td><b>{{ $venta->valor_compra_formateado }}</b></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
         </main>
     </body>
 </html>
