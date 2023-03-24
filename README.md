@@ -127,14 +127,14 @@ Usuario para prueba como Administrador:
 ![Agregar Producto](public/img/Agregar%20Producto.png)
 
 ### Lista de Productos
-![Lista de productos](public/img/Lista%20de%20productos.png)
+![Lista de productos](public/img/lista%20de%20productos.png)
 
 ### Agregar Cliente
 
 ![Crear Cliente](public/img/Crear%20Cliente.png)
 
 ### Agregar Almacen
-![Agregar almacen](public/img/Agregar%20almacen.png)
+![Agregar almacen](public/img/Agregar%20Almacen.png)
 
 ### Registrar Usuario
 
