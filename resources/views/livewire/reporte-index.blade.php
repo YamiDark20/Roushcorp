@@ -8,7 +8,7 @@
                             <div class="col-sm-12">
                                 <h6>Cedula del Cliente</h6>
                                 <div class="form-group">
-                                    <select name="cedula_cliente" wire:model="cedula_cliente"
+                                    <select name="cliente_id" wire:model="cliente_id"
                                     class="form-control">
                                         <option value="0">Todos los clientes</option>
                                         @foreach ($clientes as $cliente)
@@ -40,38 +40,57 @@
                             <div class="col-sm-12">
                                 {{-- En este momento no tengo idea que mas poner en estos botones >:-( --}}
 
-                                <a class="btn btn-danger btn-block" onclick="print()">Generar PDF</a>
+                                <button class="btn btn-danger btn-block" wire:click="generarFactura" @if(!count($results)) disabled @endif>Generar PDF</button>
                             </div>
 
                         </div>
                     </div>
 
                     <div class="col-sm-12 col-md-9">
-                        {{-- Tabla --}}
-                        <div class="table-responsive">
-                            <table id="listaProductoVenta" class="table table-striped shadow">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">Nro Venta</th>
-                                        <th class="text-center">Cancelado</th>
-                                        <th class="text-center">Vuelto</th>
-                                        <th class="text-center">Fecha</th>
-                                    </tr>
-                                </thead>
+                        @if(count($results) > 0)
+                            <div class="table-responsive">
+                                <table id="listaProductoVenta" class="table table-striped shadow">
+                                    <thead>
+                                        <th scope='col' class="text-sm">ID</th>
+                                        <th scope='col' class="text-sm">Valor Compra</th>
+                                        <th scope='col' class="text-sm">Cancelado</th>
+                                        <th scope='col' class="text-sm">Por Cancelar</th>
+                                        <th scope='col' class="text-sm">Vuelto</th>
+                                        <th scope='col' class="text-sm">Estado</th>
+                                        <th scope='col' class="text-sm">Cliente</th>
+                                        <th scope='col' class="text-sm">Vendedor</th>
+                                        <th scope='col' class="text-sm">Fecha</th>
+                                    </thead>
 
-                                <tbody>
-                                    @foreach ($results as $result)
-                                        <tr>
-                                            <td>{{$result->id}}</td>
-                                            <td>{{$result->cancelado_formateado}}</td>
-                                            <td>{{$result->vuelto_formateado}}</td>
-                                            <td>{{$result->created_at}}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                    <tbody>
+                                        @foreach ($results as $venta)
+                                            <tr>
+                                                <td class="text-sm">{{ $venta ->id}}</td>
+                                                <td class="text-sm">{{ $venta ->valor_compra_formateado}}</td>
+                                                <td class="text-sm">{{ $venta ->cancelado_formateado}}</td>
+                                                <td class="text-sm">{{ $venta ->por_cancelar_formateado}}</td>
+                                                <td class="text-sm">{{ $venta ->vuelto_formateado}}</td>
+                                                <td class="text-sm">{{ $venta ->estado }}</td>
+                                                <td>
+                                                    <a href="/customers/{{$venta ->cliente->id}}" class = 'btn btn-sm btn-info'>
+                                                        {{ $venta ->cliente->name }}
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    {{ $venta ->vendedor->name }}
+                                                </td>
+                                                <td>
+                                                    {{ $venta -> created_at }}
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
 
-                        </div>
+                            </div>
+                            @else
+                                <div class="alert alert-danger">No hay resultados para los parametros introducidos</div>
+                        @endif
                     </div>
                 </div>
 

@@ -13,14 +13,27 @@
         @endif
         <div class="row">
             <div class="form-group col-4">
-                <label for="vendedor_seleccionado" class="form-label">Asigne un vendedor al almacen</label>
-                <select wire:model="vendedor_seleccionado" id="vendedor_seleccionado"
+                <label for="vendedor_id" class="form-label">Asigne un vendedor al almacen</label>
+                <select wire:model="vendedor_id" id="vendedor_id"
                 placeholder="Seleccione un vendedor" class="form-control">
                     @foreach ($vendedores as $vendedor)
                         <option value="{{$vendedor->id}}">
                             {{$vendedor->name}}
                         </option>
                     @endforeach
+                </select>
+            </div>
+
+            <div class="form-group col-4">
+                <label for="estado" class="form-label">Estado del almacen</label>
+                <select wire:model="estado" id="estado"
+                placeholder="Seleccione un estado" class="form-control">
+                    <option value="Activo">
+                        Activo
+                    </option>
+                    <option value="Inactivo">
+                        Inactivo
+                    </option>
                 </select>
             </div>
 

@@ -50,6 +50,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['middleware' => ['can:Gestionar Ventas']], function () {
         Route::resource('ventas', VentaController::class);
+        Route::get('ventas/factura/{id}','App\Http\Controllers\VentaController@generarFactura');
     });
 
     Route::group(['middleware' => ['can:Gestionar Compras']], function () {
@@ -68,6 +69,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['middleware' => ['can:Gestionar Reportes']], function () {
         Route::resource('reportes', ReporteController::class);
+        Route::get('reportes/pdf/{id}','App\Http\Controllers\ReporteController@generarReporte');
     });
 
     Route::group(['middleware' => ['can:Gestionar Inventario']], function () {

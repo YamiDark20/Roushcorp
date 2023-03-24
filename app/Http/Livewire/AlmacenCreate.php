@@ -8,15 +8,16 @@ use Livewire\Component;
 
 class AlmacenCreate extends Component
 {
-    public $nombre, $capacidad, $vendedor_seleccionado, $direccion;
+    public $nombre, $capacidad, $vendedor_id, $direccion, $estado;
     public $vendedores;
 
     public function mount(){
         $this->nombre = "";
         $this->capacidad = 0;
-        $this->vendedor_seleccionado = 1;
+        $this->vendedor_id = 1;
         $this->direccion = "";
         $this->vendedores = User::role('Vendedor')->get();
+        $this->estado = "Activo";
     }
 
     public function submit()
@@ -24,13 +25,14 @@ class AlmacenCreate extends Component
         $validatedData = $this->validate([
             'nombre' => 'required',
             'capacidad' => 'required|numeric',
-            'vendedor_seleccionado' => 'required',
-            'direccion' => 'required'
+            'vendedor_id' => 'required',
+            'direccion' => 'required',
+            'estado' => 'required'
         ]);
 
-        Almacen::create($validatedData);
+        $almacen = Almacen::create($validatedData);
 
-        return redirect('almacen.index');
+        return redirect("/almacen/{$almacen->id}");
     }
 
     public function store(){

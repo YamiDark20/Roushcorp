@@ -12,6 +12,8 @@ use App\Models\Documento;
 use App\Models\Producto;
 use App\Models\TasaDia;
 use App\Models\AlmacenProducto;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -91,8 +93,8 @@ class VentaController extends Controller
         foreach ($products as $product) {
             //Actualizar cantidad de productos de almacen
             foreach ($productosAlmacen as $productoAlmacen) {
-                if ($productoAlmacen->idprod == $product['id'] &&
-                $request['almacen_id'] == $productoAlmacen->idalm &&
+                if ($productoAlmacen->producto_id == $product['id'] &&
+                $request['almacen_id'] == $productoAlmacen->almacen_id &&
                 ($productoAlmacen->estado == 'Bueno' || $productoAlmacen->estado == 'Medio')) {
                     $productoAlmacen->stock = strval(intval($productoAlmacen->stock) - $product['cantidad']);
                     $productoAlmacen->save();
@@ -124,6 +126,21 @@ class VentaController extends Controller
     {
         $venta = Venta::findOrFail($id);
         return view('venta.show', compact('venta'));
+    }
+
+    public function generarFacturaTest($id)
+    {
+        $venta = Venta::findOrFail($id);
+        return view('facturas.factura-pdf', compact('venta'));
+    }
+
+    public function generarFactura($id) {
+        $venta = Venta::findOrFail($id);
+        $fecha_formateada = Carbon::parse($venta->created_at)->isoFormat('dddd, D [de] MMMM [de] YYYY');
+        $fecha_formateada = ucfirst($fecha_formateada);
+        $pdf = Pdf::loadView('facturas.factura-pdf', ['venta' => $venta, 'fecha_formateada' => $fecha_formateada]);
+
+        return $pdf->stream();
     }
 
 }

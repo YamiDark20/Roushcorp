@@ -50,7 +50,7 @@ class Venta extends Model
     }
 
     public function getValorCompraFormateadoAttribute() {
-        return "{$this ->valorCompra} $ / Bs. {$this->valor_compra_divisa}";
+        return "{$this ->valor_compra} $ / Bs. {$this->valor_compra_divisa}";
     }
 
     public function getSubtotalDivisaAttribute() {
