@@ -122,6 +122,8 @@ Usuario para prueba como **Vendedor**:
     pass:vendedor@example.com
 ```
 
+Nota: Recordar que la única forma de registrar usuarios es con el usuario administrador.
+
 ## Screenshots
 
 ## Acceso al sistema

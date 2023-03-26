@@ -24,8 +24,8 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/welcome', function () {
-    return view('welcome');
+Route::get('register', function () {
+    return view('auth.login');
 });
 
 Route::group(['middleware' => ['auth']], function () {
