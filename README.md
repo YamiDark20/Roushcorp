@@ -35,7 +35,7 @@ Para la codificación de este sistema web se utilizaron las siguientes herramien
 
 -   Instalar un entorno de desarrollo como [Xamp](https://www.apachefriends.org/es/download.html), [Wamp](https://www.wampserver.com/en/) o [Laragon](https://laragon.org/download/index.html). Se recomienda Laragon.
 -   Luego instalar [Composer](https://getcomposer.org/download/) de manera global
-- Instalar [Node JS](https://nodejs.org/es/download) de manera global (puede saltarse este paso si instalo Laragon)
+-   Instalar [Node JS](https://nodejs.org/es/download) de manera global (puede saltarse este paso si instalo Laragon)
 -   Tener instalado GIT
 
 ## Instalación
@@ -62,7 +62,7 @@ Siga estos pasos para la instalación:
   cd Roushcorp
 ```
 
--   Instalar dependencias con composer desde consola
+-   Instalar dependencias con composer desde consola (Podría ser necesario habilitar la extension GD de PHP https://www.php.net/manual/es/install.pecl.windows.php)
 
 ```bash
   composer install
@@ -122,7 +122,6 @@ Usuario para prueba como **Vendedor**:
     pass:vendedor@example.com
 ```
 
-
 ## Screenshots
 
 ## Acceso al sistema
@@ -138,6 +137,7 @@ Usuario para prueba como **Vendedor**:
 ![Agregar Producto](public/img/Agregar%20Producto.png)
 
 ### Lista de Productos
+
 ![Lista de productos](public/img/lista%20de%20productos.png)
 
 ### Agregar Cliente
@@ -145,6 +145,7 @@ Usuario para prueba como **Vendedor**:
 ![Crear Cliente](public/img/Crear%20Cliente.png)
 
 ### Agregar Almacen
+
 ![Agregar almacen](public/img/Agregar%20Almacen.png)
 
 ### Registrar Usuario
