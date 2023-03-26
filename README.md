@@ -33,9 +33,9 @@ Para la codificación de este sistema web se utilizaron las siguientes herramien
 
 ## Requisitos previos
 
--   Instalar un entorno de desarrollo como [Xamp](https://www.apachefriends.org/es/download.html), [Wamp](https://www.wampserver.com/en/) o [Laragon](https://laragon.org/download/index.html)
+-   Instalar un entorno de desarrollo como [Xamp](https://www.apachefriends.org/es/download.html), [Wamp](https://www.wampserver.com/en/) o [Laragon](https://laragon.org/download/index.html). Se recomienda Laragon.
 -   Luego instalar [Composer](https://getcomposer.org/download/) de manera global
-- Instalar [Node JS](https://nodejs.org/es/download) de manera global
+- Instalar [Node JS](https://nodejs.org/es/download) de manera global (puede saltarse este paso si instalo Laragon)
 -   Tener instalado GIT
 
 ## Instalación
