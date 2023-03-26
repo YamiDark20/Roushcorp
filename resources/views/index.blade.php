@@ -73,10 +73,6 @@
                         <a href="{{ url('/dash') }}" class="home-button text-white dark:text-white">Dashboard</a>
                     @else
                         <a href="{{ route('login') }}" class="home-button text-white dark:text-white">Iniciar Sesión</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 home-button text-white dark:text-white">Registrarse</a>
-                        @endif
                     @endauth
                 </div>
             @endif
