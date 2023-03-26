@@ -88,6 +88,8 @@ Siga estos pasos para la instalación:
 
 ## Ejecutar Localmente
 
+Iniciar el entorno de desarrollo instalado previamente(sea Xamp, Wamp o Laragon)
+
 Ejecutar las migraciones y datos de prueba
 
 ```bash
@@ -104,14 +106,22 @@ Iniciar el server
 
 Ir a
 
-[http://127.0.0.1:8000](localhost)
+[http://127.0.0.1:8000](http://127.0.0.1:8000)
 
-Usuario para prueba como Administrador:
+Usuario para prueba como **Administrador**:
 
 ```bash
     user: admin@example.com
     pass: admin@example.com
 ```
+
+Usuario para prueba como **Vendedor**:
+
+```bash
+    user:vendedor@example.com
+    pass:vendedor@example.com
+```
+
 
 ## Screenshots
 
